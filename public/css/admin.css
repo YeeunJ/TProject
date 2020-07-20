@@ -1,0 +1,64 @@
+
+#showROI{
+  font-size: 20px;
+  padding: 10px;
+  background-color: #99ccff;
+  display: inline-block;
+  border-radius: 2px;
+}
+#adminROI{
+  display:none;
+  text-align: center;
+  width: 100%;
+}
+.roi{
+  display: inline-block;
+  background-color: #ffe6e6;
+  width: 80%;
+  max-width: 800px;
+}
+.roiTab{
+  width: 100%;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  margin-bottom: 5px;
+  background-color:#e6ccff;
+  border: 1px solid #a64dff;
+  border-radius: 3px;
+  text-align: left;
+}
+.roiCam{
+  display: inline-block;
+  background-color: #ff99c2;
+  color:white;
+  padding: 7px;
+  margin: 7px;
+  border-radius: 2px;
+}
+.roiImage{
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+.CameraNumber{
+  border:1px solid #c2c2d6;
+  background-color: #8585ad;
+  border-radius: 10px;
+  font-size: 45px;
+  color:white;
+  padding: 15px 20px;
+  margin: 10px;
+  display: inline-block;
+}
+.camImage{
+  width: 80%;
+  margin:60px;
+}
+.submit{
+  font-size: 20px;
+  padding: 10px;
+  background-color: #c2c2d6;
+  display: inline-block;
+  border-radius: 2px;
+  margin: 20px;
+}
