@@ -1,21 +1,81 @@
-<div id = "adminROI">
+<div id="adminROI">
   <div class="roi">
     <div class="roiTab">
-    <div class = "roiCam" id = "cam1">카메라 1</div>
-    <div class = "roiCam" id = "cam2">카메라 2</div>
-      </div>
-      <div class="roiImage">
-        <div class="CameraNumber">
-          ROI 설정 (카메라 1)
-        </div>
-        <!--<canvas class="camImage" id="camImg" onClick="findCoordinates()"></canvas>-->
-        <canvas id="canvas1" width= "400px" height= "300px" onClick="findCoordinates()"></canvas>
-        <canvas id="canvas2" width= "400px" height= "300px" onClick="findCoordinates()"></canvas>
-      </div>
-
+      <div class="roiCam" id="cam1">카메라 1</div>
+      <div class="roiCam" id="cam2">카메라 2</div>
     </div>
-    <br>
-    <div class="submit">
+    <div class="roiImage">
+      <div class="CameraNumber">
+        ROI 설정 (카메라 1)
+      </div>
+      <!--<canvas class="camImage" id="camImg" onClick="findCoordinates()"></canvas>-->
+      <div id = "camera1">
+        <img src="./config/images/1.jpeg" id="image1" />
+      </div>
+      <div id = "camera2">
+        <img src="./config/images/2.jpeg" id="image2" />
+      </div>
+    </div>
+
+  </div>
+  <br>
+  <div class="submit">
     확인
   </div>
+  <br>
+  <br>
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label class="col-xs-5 control-label"><em>x</em> coordinate</label>
+      <div class="col-xs-7">
+        <input type="text" name="x" id="x" class="form-control" value="0">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-xs-5 control-label"><em>y</em> coordinate</label>
+      <div class="col-xs-7">
+        <input type="text" name="y" id="y" class="form-control" value="0">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-xs-5 control-label">Selected <em>width</em></label>
+      <div class="col-xs-7">
+        <input type="text" name="width" id="width" class="form-control" value="0">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-xs-5 control-label">Selected <em>height</em></label>
+      <div class="col-xs-7">
+        <input type="text" name="height" id="height" class="form-control" value="0">
+      </div>
+    </div>
+  </form>
+  <br>
+  <br>
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label class="col-xs-5 control-label"><em>x</em> coordinate</label>
+      <div class="col-xs-7">
+        <input type="text" name="x" id="x2" class="form-control" value="0">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-xs-5 control-label"><em>y</em> coordinate</label>
+      <div class="col-xs-7">
+        <input type="text" name="y" id="y2" class="form-control" value="0">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-xs-5 control-label">Selected <em>width</em></label>
+      <div class="col-xs-7">
+        <input type="text" name="width" id="width2" class="form-control" value="0">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-xs-5 control-label">Selected <em>height</em></label>
+      <div class="col-xs-7">
+        <input type="text" name="height" id="height2" class="form-control" value="0">
+      </div>
+    </div>
+  </form>
 </div>

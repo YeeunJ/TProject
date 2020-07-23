@@ -7,7 +7,6 @@
   border-radius: 2px;
 }
 #adminROI{
-  display:none;
   text-align: center;
   width: 100%;
 }
@@ -40,6 +39,22 @@
   width: 100%;
   text-align: center;
 }
+.cropper {
+    position: relative;
+    cursor: crosshair;
+    margin-left: 80px;
+}
+.cropper-area-handle {
+    width: 6px;
+    height: 6px;
+    background: yellow;
+}
+.cropper-overlay {
+    background: black;
+    opacity: 0.5;
+    filter: alpha(opacity = 50);
+}
+
 .CameraNumber{
   border:1px solid #c2c2d6;
   background-color: #8585ad;
