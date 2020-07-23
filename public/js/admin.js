@@ -23,12 +23,12 @@ document.getElementById('image2').onload = function() {
     }
   });
 }
-
 document.getElementById('cam1').addEventListener('click', function() {
   document.getElementById('camera2').style.display = 'none';
   document.getElementById('camera1').style.display = 'block';
 });
 document.getElementById('cam2').addEventListener('click', function() {
+  
   document.getElementById('camera1').style.display = 'none';
   document.getElementById('camera2').style.display = 'block';
 });
