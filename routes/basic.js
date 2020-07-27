@@ -14,29 +14,30 @@ const db = new sqlite3.Database('./resources/db/information.db', sqlite3.OPEN_RE
 router.get('/', function(req, res){
   const query1 = `select * from setting where id = 1;`;
   const query2 = `select * from cam_image;`;
-  data = []
-  //`select strftime('%d', regDate), sum(peopleCNT) from cam_image where cameraID = 1 GROUP BY strftime('%d', regDate);`
+  const query3 = `select cameraID, substr(regDate, 1, 10) as date, sum(peopleCNT) as people from cam_image where strftime('%j', regDate) > strftime('%j', datetime('now', 'localtime'), '-7 days') GROUP BY strftime('%j', regDate), cameraID;`;
+  const query4 = `select cameraID, substr(regDate, 1, 13) as date, sum(peopleCNT) as people from cam_image where strftime('%j', regDate) > strftime('%j', datetime('now', 'localtime'), '-1 days') GROUP BY strftime('%H', regDate), cameraID;`;
+  const query5 = `select cameraID, substr(regDate, 1, 16) as date, avg(peopleCNT) as people from cam_image where strftime('%H', regDate) > strftime('%H', datetime('now', 'localtime'), '-1 hours') and strftime('%j', regDate) > strftime('%j', datetime('now', 'localtime'), '-1 days') GROUP BY strftime('%M', regDate), cameraID;`;
+data = [];
   db.parallelize(() => {
-    db.get(query1, (err, rows) => {
 
+    db.get(query1, (err, rows) => {
+      data.push(rows);
     });
+    db.each(query2, (err, rows) => {
+      data.push(rows);
+    });
+    db.each(query3, (err, rows) => {
+      data.push(rows);
+    });
+    db.each(query4, (err, rows) => {
+      data.push(rows);
+    });
+    db.each(query5, (err, rows) => {
+      data.push(rows);
+      console.log(data);
+    });
+    res.render('basic/index', {data: data});
   });
-  //const cam_query = `select * from camera;`;
-  console.log(query);
-  db.serialize();
-  db.all(query1, (err, rows) => {
-      //res.json(rows);
-      if(err) return res.json(err);
-      res.render('basic/index', {data: rows[1]});
-      console.log(rows[0]);
-  });
-  /*
-  db.each(query, function(err, row){
-    if(err) return res.json(err);
-    //res.render('basic/index', {data: row});
-    console.log(row);
-  });*/
-  //res.render('basic/index');
 });
 
 router.get('/search', function(req, res){
