@@ -1,0 +1,58 @@
+<div id="setting">
+    <!--<form action="./setting" method="post" id="setting">-->
+      <table>
+        <tr>
+          <td>카메라 해상도</td>
+          <td><input type="text" id="res_cw" name = "res_cw" class="input" placeholder="width" required></td>
+          <td><input type="text" id="res_ch" name = "res_ch" placeholder="height" required></td>
+        </tr>
+        <tr>
+          <td>리사이즈 해상도</td>
+          <td><input type="text" id="res_rw" name = "res_rw" class="input" placeholder="width" required></td>
+          <td><input type="text" id="res_rh" name = "res_rh" placeholder="height" required></td>
+        </tr>
+        <tr>
+          <td>카메라 숫자</td>
+          <td>
+            <select id="num_cam" name="num_cam">
+              <option value="1" class="input">1</option>
+              <option value="2" class="input">2</option>
+              <option value="3" class="input">3</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>저장간격</td>
+          <td>
+            <select id="save_interval" name="저장간격">
+              <option value="10(초)" class="input">10(초)</option>
+              <option value="20(초)" class="input">20(초)</option>
+              <option value="30(초)" class="input">30(초)</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>최대저장갯수</td>
+          <td>
+            <select id="max_cnt" name="최대저장갯수">
+              <option value="100(개)" class="input">100(개)</option>
+              <option value="200(개)" class="input">200(개)</option>
+              <option value="300(개)" class="input">300(개)</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>최대저장기간</td>
+          <td>
+            <select id="max_term" name="최대저장기간">
+              <option value="10(개월)" class="input">10(개월)</option>
+              <option value="20(개월)" class="input">20(개월)</option>
+              <option value="30(개월)" class="input">30(개월)</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+  </div>
+  <button class="btn" id="change">정보 수정</button>
+  <button class="submit btn" id="confirm">확인</button>
+  <!--</form>-->

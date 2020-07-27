@@ -1,34 +1,35 @@
 //var ctx = document.getElementById('myChart1').getContext('2d');
+var color = ['#4abd9e', '#4097f5', '#f68645', '#dd497d', '#febe27', '#a14cfc', '#84c460', '#fa4cd7', '#3ed4de', '#fc5551'];
 
 var chart1 = {
   labels: ['7월 14일(화)', '7월 15일(수)', '7월 16일(목)', '7월 17일(금)', '7월 18일(토)', '7월 19일(일)', '오늘(월)'],
   datasets: [{
       label: '카메라 1',
-      borderColor: 'rgba(255, 99, 132, 1)',
-      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      borderColor: color[0],
+      backgroundColor: color[0],
       fill: false,
       data: [65, 79, 120, 110, 132, 55, 87],
       yAxisID: 'y-axis-1',
     }, {
       label: '카메라 2',
-      borderColor: 'rgba(54, 162, 235, 1)',
-      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+      borderColor: color[1],
+      backgroundColor: color[1],
       fill: false,
       data: [95, 101, 78, 72, 115, 62, 63],
       yAxisID: 'y-axis-1'
     },
     {
       label: '카메라 3',
-      borderColor: 'rgba(255, 206, 86, 1)',
-      backgroundColor: 'rgba(255, 206, 86, 0.2)',
+      borderColor: color[2],
+      backgroundColor: color[2],
       fill: false,
       data: [90, 100, 72, 68, 103, 83, 80],
       yAxisID: 'y-axis-1',
     },
     {
       label: '총인원',
-      borderColor: 'rgba(75, 192, 192, 1)',
-      backgroundColor: 'rgba(75, 192, 192, 0.2)',
+      borderColor: color[3],
+      backgroundColor: color[3],
       fill: false,
       data: [250, 280, 270, 250, 350, 200, 230],
       yAxisID: 'y-axis-1',
@@ -39,31 +40,31 @@ var chart2 = {
   labels: ['0~3시', '3~6시', '6~9시', '9~12시', '12~15시', '15~18시', '18~21시', '18~21시'],
   datasets: [{
       label: '카메라 1',
-      borderColor: 'rgba(255, 99, 132, 1)',
-      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      borderColor: color[0],
+      backgroundColor: color[0],
       fill: false,
       data: [65, 79, 120, 110, 132, 55, 87, 79],
       yAxisID: 'y-axis-1',
     }, {
       label: '카메라 2',
-      borderColor: 'rgba(54, 162, 235, 1)',
-      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+      borderColor: color[1],
+      backgroundColor: color[1],
       fill: false,
       data: [95, 101, 78, 72, 115, 62, 63, 102],
       yAxisID: 'y-axis-1'
     },
     {
       label: '카메라 3',
-      borderColor: 'rgba(255, 206, 86, 1)',
-      backgroundColor: 'rgba(255, 206, 86, 0.2)',
+      borderColor: color[2],
+      backgroundColor: color[2],
       fill: false,
       data: [90, 100, 72, 68, 103, 83, 80, 100],
       yAxisID: 'y-axis-1',
     },
     {
       label: '총인원',
-      borderColor: 'rgba(75, 192, 192, 1)',
-      backgroundColor: 'rgba(75, 192, 192, 0.2)',
+      borderColor: color[3],
+      backgroundColor: color[3],
       fill: false,
       data: [250, 280, 270, 250, 350, 200, 230, 280],
       yAxisID: 'y-axis-1',
@@ -74,33 +75,25 @@ var chart3 = {
   labels: ['5분', '10분', '30분', '1시간'],
   datasets: [{
       label: '카메라 1',
-      borderColor: 'rgba(255, 99, 132, 1)',
-      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      borderColor: color[0],
+      backgroundColor: color[0],
       fill: false,
       data: [15, 30, 35, 60],
       yAxisID: 'y-axis-1',
     }, {
       label: '카메라 2',
-      borderColor: 'rgba(54, 162, 235, 1)',
-      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+      borderColor: color[1],
+      backgroundColor: color[1],
       fill: false,
       data: [20, 40, 42, 50],
       yAxisID: 'y-axis-1'
     },
     {
       label: '카메라 3',
-      borderColor: 'rgba(255, 206, 86, 1)',
-      backgroundColor: 'rgba(255, 206, 86, 0.2)',
+      borderColor: color[2],
+      backgroundColor: color[2],
       fill: false,
       data: [13, 20, 22, 40],
-      yAxisID: 'y-axis-1',
-    },
-    {
-      label: '총인원',
-      borderColor: 'rgba(75, 192, 192, 1)',
-      backgroundColor: 'rgba(75, 192, 192, 0.2)',
-      fill: false,
-      data: [16, 30, 33, 50],
       yAxisID: 'y-axis-1',
     }
   ]
@@ -116,7 +109,6 @@ window.onload = function() {
       stacked: false,
       title: {
         display: true,
-        text: '지난 7일 동안 인원수 차트'
       },
       scales: {
         yAxes: [{
@@ -124,7 +116,14 @@ window.onload = function() {
           display: true,
           position: 'left',
           id: 'y-axis-1',
+          gridLines:{
+            color: 'rgba(255, 255, 255, 0.4)',
+            lineWidth:1
+          }
         }],
+        ticks: {
+          stepSize: 5
+        }
       }
     }
   });
@@ -142,7 +141,6 @@ window.onload = function() {
         stacked: false,
         title: {
           display: true,
-          text: '지난 7일 동안 인원수 차트'
         },
         scales: {
           yAxes: [{
@@ -150,7 +148,14 @@ window.onload = function() {
             display: true,
             position: 'left',
             id: 'y-axis-1',
+            gridLines:{
+  						color: 'rgba(255, 255, 255, 0.4)',
+  						lineWidth:1
+  					}
           }],
+          ticks: {
+            stepSize: 5
+          }
         }
       }
     });
@@ -168,7 +173,6 @@ window.onload = function() {
         stacked: false,
         title: {
           display: true,
-          text: '시간별 인원수 차트'
         },
         scales: {
           yAxes: [{
@@ -176,7 +180,14 @@ window.onload = function() {
             display: true,
             position: 'left',
             id: 'y-axis-1',
+            gridLines:{
+  						color: 'rgba(255, 255, 255, 0.4)',
+  						lineWidth:1
+  					}
           }],
+          ticks: {
+            stepSize: 5
+          }
         }
       }
     });
@@ -202,7 +213,14 @@ window.onload = function() {
               display: true,
               position: 'left',
               id: 'y-axis-1',
+              gridLines:{
+    						color: 'rgba(255, 255, 255, 0.4)',
+    						lineWidth:1
+    					}
             }],
+            ticks: {
+              stepSize: 5
+            }
           }
         }
       });

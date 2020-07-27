@@ -1,78 +1,128 @@
-
-#showROI{
-  font-size: 20px;
-  padding: 10px;
-  background-color: #99ccff;
-  display: inline-block;
-  border-radius: 2px;
+body{
+  background-color: #131419;
+  padding: 0;
+  margin:0;
 }
+
+#header {
+  text-align: center;
+}
+
+#logo{
+  background-color: rgba( 255, 255, 255, 0.05);
+  border-radius: 0 0 15px 15px;
+  padding: 30px;
+  margin-bottom: 10px;
+  text-align: left;
+  display: inline-block;
+  width: 80%;
+  min-width: 1000px;
+}
+
+/*roi section*/
 #adminROI{
   text-align: center;
   width: 100%;
 }
+.CameraNumber{
+  font-size: 30px;
+  color: white;
+  padding: 15px 20px;
+  margin: 30px 20px;
+  display: block;
+  text-align: left;
+}
 .roi{
   display: inline-block;
-  background-color: #ffe6e6;
   width: 80%;
-  max-width: 800px;
+  padding: 5px 15px;
+  border-radius: 0 0 20px 20px;
+  background-color: #26262c;
+  min-width: 1000px;
 }
 .roiTab{
-  width: 100%;
+  display: inline-block;
+  width: 19%;
+  font-size: 20px;
   padding-top: 3px;
   padding-bottom: 3px;
   margin-bottom: 5px;
-  background-color:#e6ccff;
-  border: 1px solid #a64dff;
   border-radius: 3px;
   text-align: left;
+  vertical-align: top;
+}
+#roiContent {
+  vertical-align: top;
+  margin-bottom: 10px;
+
 }
 .roiCam{
   display: inline-block;
-  background-color: #ff99c2;
-  color:white;
-  padding: 7px;
-  margin: 7px;
-  border-radius: 2px;
+  color: rgba( 255, 255, 255, 0.8);
+  padding: 1px 15px;
+  border-radius: 20px;
+  border: 2px solid rgba( 255, 255, 255, 0.8);
+      margin-bottom: 10px;
 }
 .roiImage{
   display: inline-block;
-  width: 100%;
+  width: 50%;
   text-align: center;
+}
+.button{
+  display: inline-block;
+  width: 28%;
+  text-align: right;
+}
+#submit{
+  font-size: 15px;
+  padding: 5px 40px;
+  background-color: #4abd9e;
+  display: inline-block;
+  border-radius: 30px;
 }
 .cropper {
     position: relative;
     cursor: crosshair;
-    margin-left: 80px;
+    margin-left: 0px;
 }
 .cropper-area-handle {
     width: 6px;
     height: 6px;
-    background: yellow;
+    background: red
 }
 .cropper-overlay {
     background: black;
     opacity: 0.5;
     filter: alpha(opacity = 50);
 }
-.CameraNumber{
-  border:1px solid #c2c2d6;
-  background-color: #8585ad;
-  border-radius: 10px;
-  font-size: 45px;
-  color:white;
-  padding: 15px 20px;
-  margin: 10px;
-  display: inline-block;
+
+/* setting 관련 정보 */
+
+div#setting, div#search{
+  background: #42453d;
+  padding: 30px;
+  color: white;
+  margin-bottom: 30px;
 }
-.camImage{
-  width: 80%;
-  margin:60px;
+table{
+  width:100%;
+  border-spacing: 10px;
 }
-.submit{
-  font-size: 20px;
-  padding: 10px;
-  background-color: #c2c2d6;
-  display: inline-block;
-  border-radius: 2px;
-  margin: 20px;
+input, select{
+  width:80%;
+  border-radius: 5px;
+  border-style: none;
+  height: 25px;
+}
+input.date, input.time{
+  width: 20%;
+}
+.btn{
+  width: 100px;
+  height: 40px;
+}
+button#search{
+  margin-left:10px;
+  border: solid 1px white;
 }

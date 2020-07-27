@@ -1,0 +1,83 @@
+body{
+  background-color: #131419;
+  padding: 0;
+  margin:0;
+}
+
+#header {
+  text-align: center;
+}
+
+#logo{
+  background-color: rgba( 255, 255, 255, 0.05);
+  border-radius: 0 0 15px 15px;
+  padding: 30px;
+  margin-bottom: 10px;
+  text-align: left;
+  display: inline-block;
+  width: 80%;
+  min-width: 1000px;
+}
+
+/*chart*/
+.chartSection{
+  text-align: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.chartContent{
+  display: inline-block;
+  background-color: #1b1b21;
+  width: 84%;
+  border-radius: 20px;
+}
+.chartTab{
+  width: 100%;
+  border-radius: 3px;
+  text-align: right;
+}
+.CameraNumber{
+  color: white;
+  font-size: 20px;
+  padding: 20px 40px;
+  text-align: left;
+}
+.chartCrt{
+
+}
+.criteria{
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  padding: 5px 10px;
+  margin-right: 20px;
+  border-radius: 18px;
+}
+
+.clickedCriteria{
+  display: inline-block;
+  color: #131419;
+  background-color: #4abd9e;
+  padding: 5px 10px;
+  margin-right: 20px;
+  border-radius: 18px;
+}
+.chart{
+  width: 90%;
+  margin: 30px 0 30px 60px;
+  text-align: center;
+}
+#myChart2{
+  display: none;
+}
+#myChart3{
+  display: none;
+}
+
+.chartjsLegend li span {
+       display: inline-block;
+       width: 12px;
+       height: 12px;
+       margin-right: 5px;
+       border-radius: 25px;
+}

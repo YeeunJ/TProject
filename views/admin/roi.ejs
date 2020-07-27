@@ -1,30 +1,27 @@
+<div id="hidden" hidden>hidden</div>
 <div id="adminROI">
   <div class="roi">
-    <div class="roiTab">
-      <div class="roiCam" id="cam1">카메라 1</div>
-      <div class="roiCam" id="cam2">카메라 2</div>
+    <div class="CameraNumber">
+      ROI 설정
     </div>
-    <div class="roiImage">
-      <div class="CameraNumber">
-        ROI 설정 (카메라 1)
+    <div id="roiContent">
+      <div class="roiTab">
+        <div class="roiCam" id="cam1">CAMERA 1</div><br/>
+        <div class="roiCam" id="cam2">CAMERA 2</div>
       </div>
-      <!--<canvas class="camImage" id="camImg" onClick="findCoordinates()"></canvas>-->
-      <div id = "camera1">
-        <img src="./config/images/1.jpeg" id="image1" />
+      <div class="roiImage">
+        <div id="camera1"><img src="./config/images/1.jpeg" id="image1" class = "image"/></div>
+        <div id="camera2"><img src="./config/images/2.jpeg" id="image2" class = "image"/></div>
       </div>
-      <div id = "camera2">
-        <img src="./config/images/2.jpeg" id="image2" />
+      <div class="button">
+        <button type="button" id = "submit">확인</button>
       </div>
     </div>
-
-  </div>
-  <br>
-  <div class="submit">
-    확인
   </div>
   <br>
   <br>
-  <form class="form-horizontal">
+  <br>
+  <form class="form-horizontal" hidden>
     <div class="form-group">
       <label class="col-xs-5 control-label"><em>x</em> coordinate</label>
       <div class="col-xs-7">
@@ -52,7 +49,7 @@
   </form>
   <br>
   <br>
-  <form class="form-horizontal">
+  <form class="form-horizontal" hidden>
     <div class="form-group">
       <label class="col-xs-5 control-label"><em>x</em> coordinate</label>
       <div class="col-xs-7">

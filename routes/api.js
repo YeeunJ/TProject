@@ -1,82 +1,117 @@
 var express  = require('express');
 var router = express.Router();
+var sqlite3 = require('sqlite3').verbose();
+var multer = require('multer');
+var fs = require('fs');
+var mime = require('mime');
 //var api = require('./apiController');
+
+//roi에 필요한 이미지 받기
+var settingStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'config/images/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+})
+var uploadSetting = multer({ storage: settingStorage })
+
+//결과 값에 필요한 이미지 받기!!
+var resultStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'resources/images/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname + '-' + Date.now());
+  }
+})
+var uploadResult = multer({ storage: resultStorage })
+
+const db = new sqlite3.Database('./resources/db/information.db', sqlite3.OPEN_READWRITE, (err) => {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log('success');
+    }
+});
 
 
 router.get('/admin/setting', function (req, res){
-  var id = 1;
-  res.status(200).json(
-    {
-      "id": 1,
-      "sizeW": 416,
-      "sizeH": 416,
-      "resizeW": 416,
-      "resizeH": 416,
-      "sizeW": 416,
-      "camNum": 2
-    }
-  );
+  const query = `SELECT * FROM setting;`;
+  db.serialize();
+  db.each(query, (err, row) => {
+        res.status(200).json(
+          {
+            "id": row.id,
+            "sizeW": row.sizeW,
+            "sizeH": row.sizeH,
+            "resizeW": row.resizeW,
+            "resizeH": row.resizeH,
+            "camNum": row.camNum
+          }
+        );
+        console.log(row);
+    });
 });
 
-router.post('/admin/roi-image', function (req, res){
-  const id = id;
+router.post('/admin/roi-image', uploadSetting.single('file'), function (req, res){
   const ip = req.body.ip;
-  const image = req.body.image;
-  res.status(201).json(
-    {
-        "id": id,
-        "ip": ip
-     }
-  );
+  const image = req.file.originalname;
+
+  const query = `insert into camera(ip, image) values ("${ip}", "${image}");`;
+    console.log(query);
+    db.serialize();
+    db.each(query, (err, row) => {
+        if(err) return res.json(err);
+        res.status(201).json(
+          {
+              "ip": ip,
+              "image": image,
+           }
+        );
+  });
 });
 
 router.get('/admin/roi-info', function (req, res){
-  var user = [
-    {
-      "camID":1,
-      "leftX": 60,
-      "leftY": 60,
-      "rightX": 90,
-      "rightY": 90,
-    },
-    {
-      "camID":1,
-      "leftX": 90,
-      "leftY": 70,
-      "rightX": 200,
-      "rightY": 160,
-    },
-    {
-      "camID":1,
-      "leftX": 60,
-      "leftY": 60,
-      "rightX": 70,
-      "rightY": 70,
-    },
-    {
-      "camID":1,
-      "leftX": 80,
-      "leftY": 90,
-      "rightX": 100,
-      "rightY": 110,
-    }
-  ]
+  const query = `select ip, leftX, leftY, rightX, rightY from camera as c join roi as r on c.id = r.camID;`;
+  db.serialize();
+  db.each(query, (err, row) => {
+        res.status(200).json(
+          {
+            "ip": row.ip,
+            "leftX": row.leftX,
+          	"leftY": row.leftY,
+          	"rightX": row.rightX,
+          	"rightY": row.rightY,
+          }
+        );
+        console.log(row);
+    });
   res.status(200).json(user);
 });
 
-router.get('/basic/image-info', function (req, res){
-  const id = req.body.id;
-  const name = req.body.name;
+router.post('/basic/image-info', uploadResult.single('file'), function (req, res){
+  const ip = req.body.ip;
+  const name = req.file.originalname;
   const regDate = req.body.regDate;
   const people = req.body.peopleCNT;
-  res.status(201).json(
-    {
-      "camID": id,
-      "name": name,
-      "regDate": regDate,
-      "peopleCNT": people
-    }
-  );
+  const query = `insert into cam_image (name, peopleCNT, cameraID)
+    values ("${name}", "${people}", (select id from camera where ip = "${ip}"));`;
+    console.log(query);
+    db.serialize();
+    db.each(query, (err, row) => {
+        if(err) return res.json(err);
+        res.status(201).json(
+          {
+            "camID": id,
+            "name": name,
+            "regDate": regDate,
+            "peopleCNT": people
+          }
+        );
+        console.log(res);
+    });
 });
 
 module.exports = router;

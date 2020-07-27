@@ -5,11 +5,15 @@
     <title>admin</title>
     <link rel="stylesheet" href="./public/css/admin.css">
     <script type="text/javascript" src="./public/js/cropper.js"></script>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
   </head>
   <body>
-    <div id="showROI">
-      확인
+    <div id = "header">
+      <div id="logo">
+        <img src="./public/images/technonia_logo.png" id="header" />
+      </div>
     </div>
+    <%- include('./setting') %>
     <%- include('./roi') %>
     <script src="./public/js/admin.js"></script>
   </body>
