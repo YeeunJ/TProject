@@ -13,7 +13,7 @@ app.use('/basic', require('./routes/basic'));
 app.use('/api', require('./routes/api'));
 
 // Port setting
-var port = process.env.PORT || 80;;
+var port = process.env.PORT || 3000;
 
 app.listen(port, function(){
   console.log('server on! http://localhost:'+port);

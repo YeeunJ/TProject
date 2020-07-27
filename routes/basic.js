@@ -12,13 +12,19 @@ const db = new sqlite3.Database('./resources/db/information.db', sqlite3.OPEN_RE
 
 
 router.get('/', function(req, res){
-  const query = `select * from setting where id = 1; select * from cam_image;`;
+  const query1 = `select * from setting where id = 1;`;
+  const query2 = `select * from cam_image;`;
+  data = []
   //`select strftime('%d', regDate), sum(peopleCNT) from cam_image where cameraID = 1 GROUP BY strftime('%d', regDate);`
+  db.parallelize(() => {
+    db.get(query1, (err, rows) => {
 
+    });
+  });
   //const cam_query = `select * from camera;`;
   console.log(query);
   db.serialize();
-  db.all(query, (err, rows) => {
+  db.all(query1, (err, rows) => {
       //res.json(rows);
       if(err) return res.json(err);
       res.render('basic/index', {data: rows[1]});
