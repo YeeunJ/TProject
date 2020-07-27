@@ -35,10 +35,10 @@ router.post('/', function (req, res, next) {
     db.serialize();
     db.each(query, (err, row) => {
         if(err) return res.json(err);
-        res.redirect('/admin/index');
+        //res.redirect('/admin/index');
         console.log(res);
     });
-    res.redirect('/admin/index');
+    //res.redirect('/admin/index');
     //res.send({title, body});
 });
 
