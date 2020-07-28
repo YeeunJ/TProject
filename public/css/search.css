@@ -1,0 +1,38 @@
+div#search{
+  padding: 30px;
+  color: white;
+  margin-bottom: 30px;
+}
+table{
+  width:100%;
+  border-spacing: 10px;
+}
+input, select{
+  width:80%;
+  border-radius: 5px;
+  border-style: none;
+  height: 25px;
+}
+input.date, input.time{
+  width: 20%;
+}
+.btn{
+  width: 100px;
+  height: 40px;
+}
+button#search{
+  margin-left:10px;
+  border: solid 1px white;
+}
+input{
+  box-sizing: border-box;
+  //max-width: 160px;
+  width:80%;
+  border-radius: 50px;
+  height: 25px;
+  background-color:transparent;
+  color: rgb(255,255,255, 0.6);
+  border: 1px solid rgb(255,255,255, 0.6);
+  text-align: left;
+  padding: 0px 10px;
+}
