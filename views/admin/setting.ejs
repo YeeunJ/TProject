@@ -1,6 +1,12 @@
 <div id="setting">
     <!--<form action="./setting" method="post" id="setting">-->
+    <div class="info" id="info_camera">
       <table>
+        <tr class="info_title">
+          <td>카메라 정보</td> <td><button class="edit" id="edit_camera">수정</button></td>
+        </tr>
+        <tr></tr>
+        <tr></tr>
         <tr>
           <td>카메라 해상도</td>
           <td><input type="text" id="res_cw" name = "res_cw" class="input" placeholder="width" required></td>
@@ -20,39 +26,52 @@
               <option value="3" class="input">3</option>
             </select>
           </td>
+          <td><button class="confirm" id="confirm_camera">확인</button></td>
         </tr>
-        <tr>
-          <td>저장간격</td>
-          <td>
-            <select id="save_interval" name="저장간격">
-              <option value="10(초)" class="input">10(초)</option>
-              <option value="20(초)" class="input">20(초)</option>
-              <option value="30(초)" class="input">30(초)</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td>최대저장갯수</td>
-          <td>
-            <select id="max_cnt" name="최대저장갯수">
-              <option value="100(개)" class="input">100(개)</option>
-              <option value="200(개)" class="input">200(개)</option>
-              <option value="300(개)" class="input">300(개)</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td>최대저장기간</td>
-          <td>
-            <select id="max_term" name="최대저장기간">
-              <option value="10(개월)" class="input">10(개월)</option>
-              <option value="20(개월)" class="input">20(개월)</option>
-              <option value="30(개월)" class="input">30(개월)</option>
-            </select>
-          </td>
-        </tr>
-      </table>
+        </table>
+      </div>
+      <div class="info" id="info_image">
+        <table>
+          <tr class="info_title">
+            <td>이미지 저장 정보</td> <td><button class="edit" id="edit_image">수정</button></td>
+          </tr>
+          <tr></tr>
+          <tr></tr>
+         <tr>
+           <td>저장 간격</td>
+           <td>
+             <select id="save_interval" name="저장간격">
+               <option value="10(초)" class="input">10(초)</option>
+               <option value="20(초)" class="input">20(초)</option>
+               <option value="30(초)" class="input">30(초)</option>
+             </select>
+           </td>
+         </tr>
+         <tr>
+           <td>최대 저장 갯수</td>
+           <td>
+             <select id="max_cnt" name="최대저장갯수">
+               <option value="100(개)" class="input">100(개)</option>
+               <option value="200(개)" class="input">200(개)</option>
+               <option value="300(개)" class="input">300(개)</option>
+             </select>
+           </td>
+         </tr>
+         <tr>
+           <td>최대 저장 기간</td>
+           <td>
+             <select id="max_term" name="최대저장기간">
+               <option value="10(개월)" class="input">10(개월)</option>
+               <option value="20(개월)" class="input">20(개월)</option>
+               <option value="30(개월)" class="input">30(개월)</option>
+             </select>
+           </td>
+           <td><button class="confirm" id="confirm_image">확인</button></td>
+         </tr>
+       </table>
+       </div>
+       <!--
+       <button class="btn" id="change">정보 수정</button>
+       <button class="submit btn" id="confirm">확인</button>-->
   </div>
-  <button class="btn" id="change">정보 수정</button>
-  <button class="submit btn" id="confirm">확인</button>
   <!--</form>-->
