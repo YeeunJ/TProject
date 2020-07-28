@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="./public/css/admin.css">
     <script type="text/javascript" src="./public/js/cropper.js"></script>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
   </head>
   <body>
     <div id = "header">
@@ -13,8 +14,11 @@
         <img src="./public/images/technonia_logo.png" id="header" />
       </div>
     </div>
-    <%- include('./setting') %>
-    <%- include('./roi') %>
+    <div id="main">
+      <%- include('./setting') %>
+      <%- include('./roi') %>
+    </div>
     <script src="./public/js/admin.js"></script>
+    <script src="/setting.js"></script>
   </body>
 </html>
