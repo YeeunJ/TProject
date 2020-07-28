@@ -96,33 +96,3 @@ body{
     opacity: 0.5;
     filter: alpha(opacity = 50);
 }
-
-/* setting 관련 정보 */
-
-div#setting, div#search{
-  background: #42453d;
-  padding: 30px;
-  color: white;
-  margin-bottom: 30px;
-}
-table{
-  width:100%;
-  border-spacing: 10px;
-}
-input, select{
-  width:80%;
-  border-radius: 5px;
-  border-style: none;
-  height: 25px;
-}
-input.date, input.time{
-  width: 20%;
-}
-.btn{
-  width: 100px;
-  height: 40px;
-}
-button#search{
-  margin-left:10px;
-  border: solid 1px white;
-}

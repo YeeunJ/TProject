@@ -1,0 +1,64 @@
+/* setting 관련 정보 */
+
+#main {
+  text-align : center;
+}
+div#setting, div#search{
+  display: inline-block;
+  width: 80%;
+  padding: 30px;
+  //border-radius: 0 0 20px 20px;
+  border-radius: 5px;
+  background-color: #1b1b21;
+  min-width: 1000px;
+  margin-top: 30px;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.info{
+  width:50%;
+  height:100%;
+  float: left;
+  text-align:left;
+}
+
+table{
+  width:100%;
+  border-spacing: 10px;
+  color: rgba( 255, 255, 255, 0.6);
+}
+.info_title{
+  color: white;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.space{
+  height:10px;
+  border: solid 2px red;
+}
+input, select{
+  box-sizing: border-box;
+  max-width: 160px;
+  width:80%;
+  border-radius: 50px;
+  height: 25px;
+  background-color:transparent;
+  color:white;
+  border: 1px solid rgb(255,255,255, 0.3);
+  text-align: center;
+  padding: 0px 20px;
+}
+
+input.date, input.time{
+  width: 20%;
+}
+.btn{
+  width: 100px;
+  height: 40px;
+}
+button#search{
+  margin-left:10px;
+  border: solid 1px white;
+}
