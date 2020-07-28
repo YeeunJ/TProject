@@ -62,3 +62,30 @@ button#search{
   margin-left:10px;
   border: solid 1px white;
 }
+
+button.edit{
+  box-sizing: border-box;
+  max-width: 80px;
+  width:40%;
+  font-size:1px;
+  border-radius: 50px;
+  height: 25px;
+  background-color:transparent;
+  color:#4abd9e;
+  border: 1px solid #4abd9e;
+  text-align: center;
+  //padding: 0px 20px;
+}
+button.confirm{
+  box-sizing: border-box;
+  max-width: 160px;
+  width:80%;
+  border-radius: 50px;
+  height: 25px;
+  background-color:transparent;
+  color:#131419;
+  background-color: #4abd9e;
+  border: 1px solid #4abd9e;
+  text-align: center;
+  padding: 0px 20px;
+}
