@@ -35,7 +35,7 @@ document.querySelector('#confirm').addEventListener('click', function(){
     document.getElementById('adminROI').style.display = 'block';
   });
 });
-document.getElementById('adminROI').style.display = 'none';
+//document.getElementById('adminROI').style.display = 'none';
 
 document.getElementById('image1').onload = function() {
   new Cropper(this, {
