@@ -37,6 +37,20 @@ router.post('/setting1', function (req, res, next) {
     });
     res.redirect('/');
 });
+
+router.post('/setting2', function (req, res, next) {
+    var {sizeW, sizeH, resizeW, resizeH, camNum, savePeriod, saveInterval, saveNum} = req.body;
+    const query = `update setting
+    set sizeW = ${sizeW}, sizeH = ${sizeH}, resizeW = ${resizeW}, resizeH = ${resizeH},
+    camNum = ${camNum}, savePeriod = ${savePeriod}, saveInterval = ${saveInterval}, saveNum = ${saveNum}, regDate = datetime('now', 'localtime')
+    where id = 1;`;
+    console.log(query);
+    db.serialize();
+    db.each(query, (err, row) => {
+        if(err) return res.json(err);
+    });
+    res.redirect('/');
+});
 /*
 router.post('/setting', function(req, res){
   const {sizeW, sizeH, resizeW, resizeH, camNum, savePeriod, saveInterval, saveNum} = req.body;
