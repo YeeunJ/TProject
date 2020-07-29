@@ -30,11 +30,23 @@ router.post('/setting1', function (req, res, next) {
     set sizeW = ${sizeW}, sizeH = ${sizeH}, resizeW = ${resizeW}, resizeH = ${resizeH},
     camNum = ${camNum}, savePeriod = ${savePeriod}, saveInterval = ${saveInterval}, saveNum = ${saveNum}, regDate = datetime('now', 'localtime')
     where id = 1;`;
+    const cam_query = `select * from camera;`;
     console.log(query);
-    db.serialize();
-    db.each(query, (err, row) => {
-        if(err) return res.json(err);
+    console.log(cam_query);
+    db.serialize(() => {
+      // Queries scheduled here will be serialized.
+      db.run(query)
+        .each(cam_query, (err, row) => {
+          if (err){
+            throw err;
+          }
+          console.log(row);
+          res.json(row);
+        });
     });
+    /*db.each(query, (err, row) => {
+        if(err) return res.json(err);
+    });*/
     res.redirect('/');
 });
 
@@ -68,9 +80,10 @@ router.post('/setting', function(req, res){
   // 서버에서는 JSON.stringify 필요없음
 });*/
 
-router.post('/submit', function(req, res){
+router.get('/submit', function(req, res){
   const {camID, leftX, leftY, rightX, rightY} = req.body;
-  const query = `insert into roi(camID, leftX, leftY, rightX, rightY)
+  console.log(req.body);
+  /*const query = `insert into roi(camID, leftX, leftY, rightX, rightY)
     values ("${camID}", "${leftX}", "${leftY}", "${rightX}", "${rightY}");`;
   console.log(query);
   db.serialize();
@@ -78,7 +91,7 @@ router.post('/submit', function(req, res){
         if(err) return res.json(err);
         res.redirect('/basic');
         console.log(res);
-    });
+    });*/
     res.redirect('/basic');
   //var responseData = {'result' : 'ok', 'email' : req.body.email}
   //res.json(responseData);
