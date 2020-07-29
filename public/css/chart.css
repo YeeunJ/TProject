@@ -28,7 +28,9 @@ body{
 .chartContent{
   display: inline-block;
   background-color: #1b1b21;
-  width: 84%;
+  width: 80%;
+  padding: 20px;
+  min-width: 1000px;
   border-radius: 20px;
 }
 .chartTab{
@@ -38,29 +40,32 @@ body{
 }
 .CameraNumber{
   color: white;
-  font-size: 20px;
-  padding: 20px 40px;
+  font-size: 1em;
+  font-weight: bold;
   text-align: left;
 }
 .chartCrt{
-
+  display: inline-block;
 }
 .criteria{
   display: inline-block;
-  color: rgba(255, 255, 255, 0.6);
+  color: #606060;
   border: 1px solid rgba(255, 255, 255, 0.6);
   padding: 5px 10px;
   margin-right: 20px;
   border-radius: 18px;
+  font-size: 0.8em;
 }
 
 .clickedCriteria{
   display: inline-block;
-  color: #131419;
+  color: #131419 !important;
   background-color: #4abd9e;
+  border: none !important;
   padding: 5px 10px;
   margin-right: 20px;
   border-radius: 18px;
+  font-size: 0.8em;
 }
 .chart{
   width: 90%;
