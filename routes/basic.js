@@ -19,17 +19,17 @@ router.get('/', function(req, res) {
   const query5 = `select cameraID, substr(regDate, 1, 16) as date, avg(peopleCNT) as people from cam_image where strftime('%H', regDate) > strftime('%H', datetime('now', 'localtime'), '-1 hours') and strftime('%j', regDate) > strftime('%j', datetime('now', 'localtime'), '-1 days') GROUP BY strftime('%M', regDate), cameraID;`;
 
   db.parallelize(() => {
-    db.all(query1, (err, rows1) => {
+    db.each(query1, (err, rows1) => {
       db.all(query2, (err, rows2) => {
         db.all(query3, (err, rows3) => {
           db.all(query4, (err, rows4) => {
             db.all(query5, (err, rows5) => {
+              console.log(rows1.id);
               console.log(rows1);
               console.log(rows2);
               console.log(rows3);
               console.log(rows4);
               console.log(rows5);
-
               res.render('basic/index', {
                 data1: rows1,
                 data2: rows2,
