@@ -17,7 +17,7 @@
           %>
           <%
             if(d.cameraID != prev) {
-              top_pos += prev*312;
+              top_pos += prev*332;
               prev++;
           %>
              <button id="right<%= d.cameraID %>" style="top:<%= top_pos %>px;" class="right" type="button" value="<%= d.cameraID %>" onclick="moveLeftScroll(this.value)"><i class="fa fa-angle-right" aria-hidden="true"></i></button>
@@ -31,12 +31,6 @@
            %>
               <div class="img_date">
                 <img src="./resources/images/<%= d.name %>" alt="" value="<%= d.cameraID %>" onclick="showDetail('<%= d.name %>', '<%= d.cameraID %>', '<%= d.regDate %>', '<%= d.peopleCNT %>' );" />
-
-                <div id="name" style="display:none"><%= d.name %></div>
-                <div id="cameraID" style="display:none"><%= d.cameraID %></div>
-                <div id="regDate" style="display:none"><%= d.regDate %></div>
-                <div id="peopleCNT" style="display:none"><%= d.peopleCNT %></div>
-
                 <p><%= d.regDate %></p>
               </div>
             <%
@@ -119,7 +113,7 @@
     var camera = document.getElementsByClassName('cam_t'+real_value);
 
 
-    var position = Number(312)*Number(value-1);
+    var position = Number(332)*Number(value-1);
     // console.log(position);
 
     if(real_value==row_count) {

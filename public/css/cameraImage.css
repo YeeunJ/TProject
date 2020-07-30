@@ -12,10 +12,7 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
     width: 1200px;
     overflow: hidden;
   }
-  #cont::-webkit-scrollbar {
-    height:5px;
-    background-color: white;
-  }
+
 
   [id *= "row"] {
     /* position: relative; */
@@ -40,11 +37,7 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
     opacity: 1;
   }
 
-  /* #row1 {
-    width: 90%;
-    overflow-x: scroll;
-    white-space:nowrap;
-  } */
+
 
   .right {
     position: absolute;
@@ -66,29 +59,32 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
     position: relative;
     overflow-x: scroll;
     white-space:nowrap;
-    width:90%; height:195px;
+    width:90%; height:215px;
     margin: 0 50px 0 55px;
     padding-bottom: 30px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   }
-  .total_wrapper1 {
-    position: relative;
-    overflow-x: scroll;
-    white-space:nowrap;
-    width:90%; height:195px;
-    margin: 0 50px 0 55px;
-    padding-bottom: 30px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  }
-  [id *= "row"] .img_wrapper {
-    /* margin: 0 50px; */
-    /* overflow-x: scroll;
-    white-space:nowrap;
-    width:90%;
 
-    padding-bottom: 30px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2); */
+  /* scrollbar 속성 변경 */
+  [class *= "total_wrapper"]::-webkit-scrollbar {
+        width: 6px;  /* 세로축 스크롤바 길이 */
+        height: 6px;  /* 가로축 스크롤바 길이 */
   }
+  [class *= "total_wrapper"]::-webkit-scrollbar-track-piece {
+    background-color: transparent;
+  }
+  [class *= "total_wrapper"]::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  [class *= "total_wrapper"]::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+  }
+
+
+
+
 
   .img_date p {
     color: rgba(255, 255, 255, 0.6);

@@ -7,9 +7,10 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
     color: rgba(255, 255, 255, 0.5);
   }
   #info_wrapper {
-    width:1200px;
     margin: 35px auto;
     overflow: hidden;
+    width: 83%;
+    min-width: 1040px;
   }
   .info_table {
     border-collapse: separate;
@@ -53,7 +54,7 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
     border-radius: 50px;
     background: none;
     float: left;
-    position: absolute; top: 8px; right: 75px;
+    position: absolute; top: 8px; right: 32px;
   }
 
   .cam_info {
