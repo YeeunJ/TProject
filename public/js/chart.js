@@ -1,40 +1,7 @@
 //var ctx = document.getElementById('myChart1').getContext('2d');
-console.log(data3);
-var chart1 = {
-  labels: ['7월 14일(화)', '7월 15일(수)', '7월 16일(목)', '7월 17일(금)', '7월 18일(토)', '7월 19일(일)', '오늘(월)'],
-  datasets: [{
-      label: '카메라 1',
-      borderColor: color[0],
-      backgroundColor: color[0],
-      fill: false,
-      data: [65, 79, 120, 110, 132, 55, 87],
-      yAxisID: 'y-axis-1',
-    }, {
-      label: '카메라 2',
-      borderColor: color[1],
-      backgroundColor: color[1],
-      fill: false,
-      data: [95, 101, 78, 72, 115, 62, 63],
-      yAxisID: 'y-axis-1'
-    },
-    {
-      label: '카메라 3',
-      borderColor: color[2],
-      backgroundColor: color[2],
-      fill: false,
-      data: [90, 100, 72, 68, 103, 83, 80],
-      yAxisID: 'y-axis-1',
-    },
-    {
-      label: '총인원',
-      borderColor: color[3],
-      backgroundColor: color[3],
-      fill: false,
-      data: [250, 280, 270, 250, 350, 200, 230],
-      yAxisID: 'y-axis-1',
-    }
-  ]
-};
+var color = ['#4abd9e', '#4097f5', '#f68645', '#dd497d', '#febe27', '#a14cfc', '#84c460', '#fa4cd7', '#3ed4de', '#fc5551'];
+console.log(data1);
+
 var chart2 = {
   labels: ['0~3시', '3~6시', '6~9시', '9~12시', '12~15시', '15~18시', '18~21시', '18~21시'],
   datasets: [{
