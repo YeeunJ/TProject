@@ -46,3 +46,7 @@ input{
 ::-webkit-calendar-picker-indicator {
     filter: invert(0.6);
 }
+
+button.submit{
+  all: unset;
+}
