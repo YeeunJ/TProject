@@ -20,53 +20,97 @@
     </div>
 </div>
 <script type="text/javascript">
+  Date.prototype.format = function (f) {
+    if (!this.valueOf()) return " ";
+    //var weekKorName = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+    var weekKorShortName = ["일", "월", "화", "수", "목", "금", "토"];
+    //var weekEngName = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    //var weekEngShortName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    var d = this;
+
+    return f.replace(/(yyyy|yy|MM|dd|KS|KL|ES|EL|HH|hh|mm|ss|a\/p)/gi, function ($1) {
+
+        switch ($1) {
+            case "yyyy": return d.getFullYear(); // 년 (4자리)
+            case "yy": return (d.getFullYear() % 1000).zf(2); // 년 (2자리)
+            case "MM": return (d.getMonth() + 1).zf(2); // 월 (2자리)
+            case "dd": return d.getDate().zf(2); // 일 (2자리)
+            case "KS": return weekKorShortName[d.getDay()]; // 요일 (짧은 한글)
+            case "HH": return d.getHours().zf(2); // 시간 (24시간 기준, 2자리)
+            case "hh": return ((h = d.getHours() % 12) ? h : 12).zf(2); // 시간 (12시간 기준, 2자리)
+            case "mm": return d.getMinutes().zf(2); // 분 (2자리)
+            case "ss": return d.getSeconds().zf(2); // 초 (2자리)
+            default: return $1;
+        }
+    });
+};
+
+String.prototype.string = function (len) { var s = '', i = 0; while (i++ < len) { s += this; } return s; };
+String.prototype.zf = function (len) { return "0".string(len - this.length) + this; };
+Number.prototype.zf = function (len) { return this.toString().zf(len); };
+
+
+
   var color = ['#4abd9e', '#4097f5', '#f68645', '#dd497d', '#febe27', '#a14cfc', '#84c460', '#fa4cd7', '#3ed4de', '#fc5551'];
+  var today = new Date();
+  var dateD1 = new Date();
+  var dateTemp = new Date();
+  var data1 = [];
+  var data2 = [];
   var data3 = [];
-  var data4 = [];
-  var data5 = [];
+
+  for(var i=0; i<= <%=data1.camNum%>; i++){
+    data1[i] = [0,0,0,0,0,0,0];
+  }
   <% data3.forEach(function(d) { %>
-      data3.push([<%=d.cameraID%>, '<%=d.date%>', <%=d.people%>]);
+    var date = "<%=d.date%>";
+    date = date.replace('-','/').replace('-','/');
+    dateTemp = new Date(date);
+    data1[<%=d.cameraID%>-1][Math.floor((today.getTime() - dateTemp.getTime()) / (1000*60*60*24))] = <%=d.people%>;
+    data1[<%=data1.camNum%>][Math.floor((today.getTime() - dateTemp.getTime()) / (1000*60*60*24))] += <%=d.people%>;
   <% }) %>
+console.log(data1);
+  var label = [];
+  label[6]= dateD1.format('MM월 dd일(KS)')
+  for(var i=1; i<7; i++){
+    dateD1.setDate(dateD1.getDate()-1);
+    console.log(dateD1.format('MM월 dd일(KS)'));
+    label[7-i-1] = dateD1.format('MM월 dd일(KS)');
+  }
+  console.log(label);
+var datasets = [];
+  for(var i=0; i< <%=data1.camNum%>; i++){
+    var dataset = {
+        label: '카메라 ' + (i+1),
+        borderColor: color[i],
+        backgroundColor: color[i],
+        fill: false,
+        data: data1[i],
+        yAxisID: 'y-axis-1',
+      };
+    datasets.push(dataset);
+  }
+
+  var dataset = {
+      label: '총인원',
+      borderColor: color[<%=data1.camNum%>],
+      backgroundColor: color[<%=data1.camNum%>],
+      fill: false,
+      data: data1[<%=data1.camNum%>],
+      yAxisID: 'y-axis-1',
+    };
+  datasets.push(dataset);
+console.log(datasets);
+  var chart1 = {
+    labels: label,
+    datasets: datasets
+  };
+  
   <% data4.forEach(function(d) { %>
-      data4.push([<%=d.cameraID%>, '<%=d.date%>', <%=d.people%>]);
+      data2.push([<%=d.cameraID%>, '<%=d.date%>', <%=d.people%>]);
   <% }) %>
   <% data5.forEach(function(d) { %>
-      data5.push([<%=d.cameraID%>, '<%=d.date%>', <%=d.people%>]);
+      data3.push([<%=d.cameraID%>, '<%=d.date%>', <%=d.people%>]);
   <% }) %>
-  var chart1 = {
-    labels: ['7월 14일(화)', '7월 15일(수)', '7월 16일(목)', '7월 17일(금)', '7월 18일(토)', '7월 19일(일)', '오늘(월)'],
-    datasets: [{
-        label: '카메라 1',
-        borderColor: color[0],
-        backgroundColor: color[0],
-        fill: false,
-        data: [65, 79, 120, 110, 132, 55, 87],
-        yAxisID: 'y-axis-1',
-      }, {
-        label: '카메라 2',
-        borderColor: color[1],
-        backgroundColor: color[1],
-        fill: false,
-        data: [95, 101, 78, 72, 115, 62, 63],
-        yAxisID: 'y-axis-1'
-      },
-      {
-        label: '카메라 3',
-        borderColor: color[2],
-        backgroundColor: color[2],
-        fill: false,
-        data: [90, 100, 72, 68, 103, 83, 80],
-        yAxisID: 'y-axis-1',
-      },
-      {
-        label: '총인원',
-        borderColor: color[3],
-        backgroundColor: color[3],
-        fill: false,
-        data: [250, 280, 270, 250, 350, 200, 230],
-        yAxisID: 'y-axis-1',
-      }
-    ]
-  };
 </script>
 <script src="./public/js/chart.js"></script>
