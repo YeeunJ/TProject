@@ -3,22 +3,22 @@
     <div id="cont">
 
         <%
-        var prev = 0;
+        var prev_ID = 0;
         var top_pos=180;
         data2.forEach(function(d) { %>
           <%
-            if(d.cameraID != prev && prev!=0) {
+            if(d.cameraID != prev_ID && prev_ID!=0) {
           %>
+                </div>
               </div>
             </div>
-          </div>
           <%
             }
           %>
           <%
-            if(d.cameraID != prev) {
-              top_pos += prev*332;
-              prev++;
+            if(d.cameraID != prev_ID) {
+              top_pos += prev_ID*332;
+              prev_ID++;
           %>
              <button id="right<%= d.cameraID %>" style="top:<%= top_pos %>px;" class="right" type="button" value="<%= d.cameraID %>" onclick="moveLeftScroll(this.value)"><i class="fa fa-angle-right" aria-hidden="true"></i></button>
              <button id="left<%= d.cameraID %>" style="top:<%= top_pos %>px;" class="left" type="button" value="<%= d.cameraID %>" onclick="moveRightScroll(this.value)"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
@@ -33,40 +33,38 @@
                 <img src="./resources/images/<%= d.name %>" alt="" value="<%= d.cameraID %>" onclick="showDetail('<%= d.name %>', '<%= d.cameraID %>', '<%= d.regDate %>', '<%= d.peopleCNT %>' );" />
                 <p><%= d.regDate %></p>
               </div>
-            <%
-            if(d.id == data2.length ) {
-            %>
-                </div>
-              </div>
-            </div>
-            <%
-            }
-            %>
+
+
         <% }) %>
 
-
-      <div id="detail" style="float:left">
-        <div class="detail_wrapper" style="width:82%; margin: 0 auto;">
-          <p style="margin:20px 0">선택된 사진</p>
-          <img src="" width="100%" height="170px" alt="" id="image">
-          <div class="text" >
-            <div class="info" style="width:60%">
-              <p style="color: rgba(255, 255, 255, 0.6)">카메라</p>
-              <p style="margin-bottom:10px;" id="cam_num"></p>
-            </div>
-            <div class="info" style="width:60%">
-              <p style="color: rgba(255, 255, 255, 0.6)">일시</p>
-              <p style="font-size: 12px;" id="date">2020년 08월 20일 20시 20분</p>
-            </div>
-            <div style="width:40%" class="person">
-              <p style="padding-bottom:10px; color: rgba(255, 255, 255, 0.6)">인원수</p>
-              <p style="font:55px bold; display:inline; color:#4abd9e" id="people">2</p><p style="display:inline">명</p>
             </div>
           </div>
-          <span onclick="imgModalClose();" class="close">닫기</span>
         </div>
-      </div>
-      </div>
+
+        <!-- detail -->
+        <div id="detail" style="float:left">
+          <div class="detail_wrapper" style="width:82%; margin: 0 auto;">
+            <p style="margin:20px 0">선택된 사진</p>
+            <img src="" width="100%" height="170px" alt="" id="image">
+            <div class="text" >
+              <div class="info" style="width:60%">
+                <p style="color: rgba(255, 255, 255, 0.6)">카메라</p>
+                <p style="margin-bottom:10px;" id="cam_num"></p>
+              </div>
+              <div class="info" style="width:60%">
+                <p style="color: rgba(255, 255, 255, 0.6)">일시</p>
+                <p style="font-size: 12px;" id="date">2020년 08월 20일 20시 20분</p>
+              </div>
+              <div style="width:40%" class="person">
+                <p style="padding-bottom:10px; color: rgba(255, 255, 255, 0.6)">인원수</p>
+                <p style="font:55px bold; display:inline; color:#4abd9e" id="people">2</p><p style="display:inline">명</p>
+              </div>
+            </div>
+            <span onclick="imgModalClose();" class="close">닫기</span>
+          </div>
+        </div>
+
+
   </div>
 </div>
 
@@ -135,7 +133,6 @@
     // 모달 창 보이게 설정
     // cont.style.width=70%;
 
-    console.log(this.src);
     modal.style.display='block';
     content.src = './resources/images/'+name;
     document.getElementById('cam_num').innerHTML = cameraID;
