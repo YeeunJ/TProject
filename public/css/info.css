@@ -1,0 +1,80 @@
+body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,table,th,td,tr,textarea,button,form,figure,figcaption{margin:0; padding:0;}
+  /* information */
+
+  th, td {
+    padding-bottom: 10px;
+    font-weight: normal;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  #info_wrapper {
+    width:1200px;
+    margin: 35px auto;
+    overflow: hidden;
+  }
+  .info_table {
+    border-collapse: separate;
+    border-spacing: 0 15px;
+  }
+  .site_info {
+    background:#1b1b21;
+    height: 200px; width:24.5%;
+    margin-right:1.5%;
+    float:left;
+    border-radius: 15px;
+    color: white;
+  }
+  .info_row {
+    overflow:hidden;
+    position: relative;
+  }
+  .info_div {
+    padding-top: 15px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+  }
+  .thumbnail {
+    display: inline-block;
+    width:35px; height:35px;
+    border-radius:50px;
+    background: url(../../public/images/rain.jpg);
+    background-size: cover;
+    margin-bottom: 15px;
+    float:left;
+  }
+  .store {
+    color: #4abd9e; float:left;
+    padding: 8px 15px;
+    font-size: 18px;
+  }
+  .setting {
+    border: 0.75px solid #7f7f7f;
+    color: #7f7f7f;
+    padding: 2px 8px;
+    border-radius: 50px;
+    background: none;
+    float: left;
+    position: absolute; top: 8px; right: 75px;
+  }
+
+  .cam_info {
+    background:#1b1b21;
+    height: 200px; width:74%;
+    float:left;
+    border-radius: 15px;
+    color: white;
+  }
+  .cam_info th, .cam_info td:not(.last) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 10px;
+  }
+
+
+  .table_wrapper {
+    overflow: scroll;
+    white-space: nowrap;
+    width: 92%;
+    margin: 0 auto;
+  }
+  .site_wrapper {
+    padding-left: 20px;
+  }
