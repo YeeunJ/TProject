@@ -68,7 +68,16 @@ window.onload = function() {
           ticks: {
             stepSize: 5
           }
-        }
+        },
+        legend: {
+                 display: true,
+                 position: 'top',
+                 align: 'start',
+                 labels: {
+                  usePointStyle: 'true',
+                  boxWidth: 20
+              }
+             }
       }
     });
   });
@@ -103,7 +112,16 @@ window.onload = function() {
           ticks: {
             stepSize: 5
           }
-        }
+        },
+        legend: {
+                 display: true,
+                 position: 'top',
+                 align: 'start',
+                 labels: {
+                  usePointStyle: 'true',
+                  boxWidth: 20
+              }
+             }
       }
     });
   });
@@ -141,7 +159,16 @@ window.onload = function() {
             ticks: {
               stepSize: 5
             }
-          }
+          },
+          legend: {
+                   display: true,
+                   position: 'top',
+                   align: 'start',
+                   labels: {
+                    usePointStyle: 'true',
+                    boxWidth: 20
+                }
+               }
         }
       });
     });

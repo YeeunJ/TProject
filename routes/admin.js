@@ -59,29 +59,24 @@ router.post('/setting2', function (req, res, next) {
     set sizeW = ${sizeW}, sizeH = ${sizeH}, resizeW = ${resizeW}, resizeH = ${resizeH},
     camNum = ${camNum}, savePeriod = ${savePeriod}, saveInterval = ${saveInterval}, saveNum = ${saveNum}, regDate = datetime('now', 'localtime')
     where id = 1;`;
+    const cam_query = `select * from camera;`;
+    const query2 = `select * from setting where id = 1;`;
     console.log(query);
-    db.serialize();
-    db.each(query, (err, row) => {
-        if(err) return res.json(err);
+    db.serialize(() => {
+      // Queries scheduled here will be serialized.
+      db.run(query)
+        .all(cam_query, (err, row1) => {
+          if (err){
+            throw err;
+          }
+          db.each(query2, function(err, row){
+            if(err) return res.json(err);
+            res.render('admin/index', {data: row, data2: row1});
+            console.log(row1);
+          });
+        });
     });
-    res.redirect('/');
 });
-/*
-router.post('/setting', function(req, res){
-  const {sizeW, sizeH, resizeW, resizeH, camNum, savePeriod, saveInterval, saveNum} = req.body;
-  console.log(req.body);
-  const cam_query = `select * from camera;`;
-  console.log(cam_query);
-  db.serialize();
-  db.all(cam_query, (err, rows) => {
-      //res.json(rows);
-      console.log("row" + rows);
-      res.render('admin/index', {data: row});
-  });
-  //var responseData = {'result' : 'ok', 'email' : req.body.email}
-  //res.json(responseData);
-  // 서버에서는 JSON.stringify 필요없음
-});*/
 
 router.get('/submit', function(req, res){
   const {camID, leftX, leftY, rightX, rightY} = req.body;
@@ -98,9 +93,6 @@ router.get('/submit', function(req, res){
         console.log(res);
     });*/
     res.redirect('/basic');
-  //var responseData = {'result' : 'ok', 'email' : req.body.email}
-  //res.json(responseData);
-  // 서버에서는 JSON.stringify 필요없음
 })
 
 module.exports = router;

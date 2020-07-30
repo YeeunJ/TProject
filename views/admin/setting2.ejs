@@ -25,15 +25,10 @@
               <% i %>
             <% } %>
             <select id="camNum" name="camNum">
-              <% for(var i = 1; i < data.camNum; i++) {%>
-                <option value="<%= i %>" class="input"><%= i %></option>
-              <% } %>
               <option selected value="<%= data.camNum %>" class="input"><%= data.camNum %></option>
-              <!--
               <option value="1" class="input">1</option>
               <option value="2" class="input">2</option>
               <option value="3" class="input">3</option>
-              -->
             </select>
           </td>
           <td><button class="confirm btn submit" id="confirm">확인</button></td>
