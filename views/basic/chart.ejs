@@ -78,7 +78,7 @@ console.log(data1);
     label[7-i-1] = dateD1.format('MM월 dd일(KS)');
   }
   console.log(label);
-var datasets = [];
+var datasets1 = [];
   for(var i=0; i< <%=data1.camNum%>; i++){
     var dataset = {
         label: '카메라 ' + (i+1),
@@ -88,7 +88,7 @@ var datasets = [];
         data: data1[i],
         yAxisID: 'y-axis-1',
       };
-    datasets.push(dataset);
+    datasets1.push(dataset);
   }
 
   var dataset = {
@@ -99,18 +99,88 @@ var datasets = [];
       data: data1[<%=data1.camNum%>],
       yAxisID: 'y-axis-1',
     };
-  datasets.push(dataset);
-console.log(datasets);
+  datasets1.push(dataset);
+  console.log('datasets1');
+console.log(datasets1);
+
   var chart1 = {
     labels: label,
-    datasets: datasets
+    datasets: datasets1
   };
-  
+/* 차트 2*/
+for(var i=0; i<= <%=data1.camNum%>; i++){
+  data2[i] = [0,0,0,0,0,0,0,0];
+}
   <% data4.forEach(function(d) { %>
+    var date = "<%=d.date%>";
+    date = date.replace('-','/').replace('-','/');
+    dateTemp = new Date(date);
+    data2[<%=d.cameraID%>-1][Math.floor((today.getTime() - dateTemp.getTime()) / (1000*60*60*3))] = <%=d.people%>;
+    data2[<%=data1.camNum%>][Math.floor((today.getTime() - dateTemp.getTime()) / (1000*60*60*3))] += <%=d.people%>;
       data2.push([<%=d.cameraID%>, '<%=d.date%>', <%=d.people%>]);
+      console.log(Math.floor((today.getTime() - dateTemp.getTime()) / (1000*60*60*3)));
   <% }) %>
+  var datasets2 = [];
+    for(var i=0; i< <%=data1.camNum%>; i++){
+
+      var dataset = {
+          label: '카메라 ' + (i+1),
+          borderColor: color[i],
+          backgroundColor: color[i],
+          fill: false,
+          data: data2[i],
+          yAxisID: 'y-axis-1',
+        };
+      datasets2.push(dataset);
+    }
+
+    var dataset = {
+        label: '총인원',
+        borderColor: color[<%=data1.camNum%>],
+        backgroundColor: color[<%=data1.camNum%>],
+        fill: false,
+        data: data2[<%=data1.camNum%>],
+        yAxisID: 'y-axis-1',
+      };
+    datasets2.push(dataset);
+    console.log('datasets2');
+  console.log(datasets2);
+
+  var chart2 = {
+    labels: ['0~3시', '3~6시', '6~9시', '9~12시', '12~15시', '15~18시', '18~21시', '21~24시'],
+    datasets:datasets2
+  };
+
+  for(var i=0; i<= <%=data1.camNum%>; i++){
+    data3[i] = [0,0,0,0];
+  }
   <% data5.forEach(function(d) { %>
+      var date = "<%=d.date%>";
+      date = date.replace('-','/').replace('-','/');
+      dateTemp = new Date(date);
+      data3[<%=d.cameraID%>-1][Math.floor((today.getTime() - dateTemp.getTime()) / (1000*60*60))] = <%=d.people%>;
+      data3[<%=data1.camNum%>][Math.floor((today.getTime() - dateTemp.getTime()) / (1000*60*60))] += <%=d.people%>;
       data3.push([<%=d.cameraID%>, '<%=d.date%>', <%=d.people%>]);
+      console.log(Math.floor((today.getTime() - dateTemp.getTime()) / (1000*60*60*3)));
   <% }) %>
+  var datasets3 = [];
+    for(var i=0; i< <%=data1.camNum%>; i++){
+
+      var dataset = {
+          label: '카메라 ' + (i+1),
+          borderColor: color[i],
+          backgroundColor: color[i],
+          fill: false,
+          data: data3[i],
+          yAxisID: 'y-axis-1',
+        };
+      datasets3.push(dataset);
+    }
+
+  console.log(datasets1);
+  var chart3 = {
+    labels: ['5분', '10분', '30분', '1시간'],
+    datasets: datasets3
+  };
 </script>
 <script src="./public/js/chart.js"></script>
