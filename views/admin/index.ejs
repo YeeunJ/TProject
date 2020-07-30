@@ -16,11 +16,13 @@
       </div>
     </div>
     <div id="main">
-      <%- include('./setting1') %>
+      <% if(data2) { %>
       <%- include('./setting2') %>
       <%- include('./roi') %>
+      <% }else{ %>
+        <%- include('./setting1') %>
+        <%}%>
     </div>
-    <script src="./public/js/admin.js"></script>
     <script src="./public/js/setting.js"></script>
   </body>
 </html>

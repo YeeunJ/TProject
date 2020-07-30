@@ -4,74 +4,56 @@
       ROI 설정
     </div>
     <div id="roiContent">
-      <div class="roiTab">
-        <div class="roiCam" id="cam1">CAMERA 1</div><br/>
-        <div class="roiCam" id="cam2">CAMERA 2</div>
+      <div id="roiTab">
+        <%data2.forEach(function(d) {%>
+        <div class="roiCam" id="cam<%= d.id%>">CAMERA <%= d.id%></div><br/>
+        <% })%>
       </div>
-      <div class="roiImage">
-        <div id="camera1"><img src="./config/images/1.jpeg" id="image1" class = "image"/></div>
-        <div id="camera2"><img src="./config/images/2.jpeg" id="image2" class = "image"/></div>
+      <div id="roiImage">
+        <%data2.forEach(function(d) {%>
+        <div id="camera<%= d.id%>"><img src="./config/images/<%= d.image%>" id="image<%= d.id%>" class = "image"/></div>
+        <% })%>
       </div>
       <div class="button">
-        <a href = "/submit"><button type="button" id = "submit">확인</button></a>
+        <form id="roi-form" action = "./submit">
+          <%data2.forEach(function(d) {%>
+          <input type="text" name="x<%= d.id%>" id="x<%= d.id%>" value="0" hidden>
+          <input type="text" name="y<%= d.id%>" id="y<%= d.id%>" value="0" hidden>
+          <input type="text" name="w<%= d.id%>" id="w<%= d.id%>" value="0" hidden>
+          <input type="text" name="h<%= d.id%>" id="h<%= d.id%>" value="0" hidden>
+          <% })%>
+          <button id = "submit">확인</button>
+        </form>
       </div>
     </div>
   </div>
   <br>
   <br>
   <br>
-  <form class="form-horizontal" hidden>
-    <div class="form-group">
-      <label class="col-xs-5 control-label"><em>x</em> coordinate</label>
-      <div class="col-xs-7">
-        <input type="text" name="x" id="x" class="form-control" value="0">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-xs-5 control-label"><em>y</em> coordinate</label>
-      <div class="col-xs-7">
-        <input type="text" name="y" id="y" class="form-control" value="0">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-xs-5 control-label">Selected <em>width</em></label>
-      <div class="col-xs-7">
-        <input type="text" name="width" id="width" class="form-control" value="0">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-xs-5 control-label">Selected <em>height</em></label>
-      <div class="col-xs-7">
-        <input type="text" name="height" id="height" class="form-control" value="0">
-      </div>
-    </div>
-  </form>
-  <br>
-  <br>
-  <form class="form-horizontal" hidden>
-    <div class="form-group">
-      <label class="col-xs-5 control-label"><em>x</em> coordinate</label>
-      <div class="col-xs-7">
-        <input type="text" name="x" id="x2" class="form-control" value="0">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-xs-5 control-label"><em>y</em> coordinate</label>
-      <div class="col-xs-7">
-        <input type="text" name="y" id="y2" class="form-control" value="0">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-xs-5 control-label">Selected <em>width</em></label>
-      <div class="col-xs-7">
-        <input type="text" name="width" id="width2" class="form-control" value="0">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-xs-5 control-label">Selected <em>height</em></label>
-      <div class="col-xs-7">
-        <input type="text" name="height" id="height2" class="form-control" value="0">
-      </div>
-    </div>
-  </form>
 </div>
+<script type="text/javascript">
+  var id = "";
+  <%data2.forEach(function(d) {%>
+  document.getElementById('image<%= d.id%>').onload = function() {
+    new Cropper(this, {
+      update: function(coordinates) {
+        // your code here!
+        document.getElementById('x<%= d.id%>').value = this.coordinates.x;
+        document.getElementById('y<%= d.id%>').value = this.coordinates.y;
+        document.getElementById('w<%= d.id%>').value = this.coordinates.width;
+        document.getElementById('h<%= d.id%>').value = this.coordinates.height;
+      }
+    });
+  }
+  document.getElementById('cam<%= d.id%>').addEventListener('click', function() {
+    if(id){
+      document.getElementById(id).style.display = 'none';
+    }
+    document.getElementById('camera<%= d.id%>').style.display = 'block';
+    id = "camera<%= d.id%>";
+  });
+  if(<%= d.id%> != 1){
+    document.getElementById('camera<%= d.id%>').display = 'none';
+  }
+  <% })%>
+</script>

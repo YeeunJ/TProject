@@ -51,7 +51,7 @@ body{
   grid-template-columns: 2fr 5fr 2fr;
       padding: 30px;
 }
-.roiTab{
+#roiTab{
   display: inline-block;
   font-size: 1.1em;
   padding: 3px 0 3px 0;
@@ -59,7 +59,7 @@ body{
   text-align: left;
   vertical-align: top;
 }
-.roiImage{
+#roiImage{
   display: inline-block;
   text-align: center;
 }

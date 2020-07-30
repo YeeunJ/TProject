@@ -12,12 +12,12 @@ const db = new sqlite3.Database('./resources/db/information.db', sqlite3.OPEN_RE
 
 router.get('/', function(req, res){
   const query = `select * from setting where id = 1;`;
-  console.log(query);
+  console.log(req);
   db.serialize();
 
   db.each(query, function(err, row){
     if(err) return res.json(err);
-    res.render('admin/index', {data: row});
+    res.render('admin/index', {data: row, data2: ""});
     console.log(row);
   });
 
@@ -30,24 +30,27 @@ router.post('/setting1', function (req, res, next) {
     camNum = ${camNum}, savePeriod = ${savePeriod}, saveInterval = ${saveInterval}, saveNum = ${saveNum}, regDate = datetime('now', 'localtime')
     where id = 1;`;
     const cam_query = `select * from camera;`;
+    const query2 = `select * from setting where id = 1;`;
     console.log(query);
     console.log(cam_query);
 
     db.serialize(() => {
       // Queries scheduled here will be serialized.
       db.run(query)
-        .all(cam_query, (err, row) => {
+        .all(cam_query, (err, row1) => {
           if (err){
             throw err;
           }
-          console.log(row);
-          res.json(row);
+          db.each(query2, function(err, row){
+            if(err) return res.json(err);
+            res.render('admin/index', {data: row, data2: row1});
+            console.log(row1);
+          });
         });
     });
     /*db.each(query, (err, row) => {
         if(err) return res.json(err);
     });*/
-    //res.redirect('/');
 });
 
 router.post('/setting2', function (req, res, next) {
@@ -82,7 +85,9 @@ router.post('/setting', function(req, res){
 
 router.get('/submit', function(req, res){
   const {camID, leftX, leftY, rightX, rightY} = req.body;
-  console.log(req.body);
+  console.log("submit");
+  console.log(req.query[0]);
+
   /*const query = `insert into roi(camID, leftX, leftY, rightX, rightY)
     values ("${camID}", "${leftX}", "${leftY}", "${rightX}", "${rightY}");`;
   console.log(query);

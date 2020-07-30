@@ -15,10 +15,10 @@ div#setting1, div#setting2, div#search{
   color: white;
   margin-bottom: 30px;
 }
-
+/*
 div#setting2{
   display:none;
-}
+}*/
 
 .info{
   width:50%;
