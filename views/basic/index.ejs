@@ -14,12 +14,26 @@
   <body>
     <div id = "header">
       <div id="logo">
-        <img src="./public/images/technonia_logo.png" id="header" />
+        <img src="./public/images/technonia_logo.png" id="header" style = "width: 150px;"/>
       </div>
     </div>
     <%- include('./info') %>
     <%- include('./chart') %>
     <%- include('./cameraImage') %>
+    <script type="text/javascript">
+      var data3 = [];
+      var data4 = [];
+      var data5 = [];
+      <% data3.forEach(function(d) { %>
+          data3.push([<%=d.cameraID%>, '<%=d.date%>', <%=d.people%>]);
+      <% }) %>
+      <% data4.forEach(function(d) { %>
+          data4.push([<%=d.cameraID%>, '<%=d.date%>', <%=d.people%>]);
+      <% }) %>
+      <% data5.forEach(function(d) { %>
+          data5.push([<%=d.cameraID%>, '<%=d.date%>', <%=d.people%>]);
+      <% }) %>
+    </script>
     <script src="./public/js/chart.js"></script>
     <script src="./public/js/search.js"></script>
   </body>

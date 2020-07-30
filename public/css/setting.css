@@ -3,7 +3,7 @@
 #main {
   text-align : center;
 }
-div#setting, div#search{
+div#setting1, div#setting2, div#search{
   display: inline-block;
   width: 80%;
   padding: 30px;
@@ -14,6 +14,10 @@ div#setting, div#search{
   margin-top: 30px;
   color: white;
   margin-bottom: 30px;
+}
+
+div#setting2{
+  display:none;
 }
 
 .info{
@@ -88,4 +92,12 @@ button.confirm{
   border: 1px solid #4abd9e;
   text-align: center;
   padding: 0px 20px;
+}
+
+button#confirm1{
+  max-width: 100px;
+  width:50%;
+  float:right;
+  margin-top:20px;
+  margin-right:50px;
 }

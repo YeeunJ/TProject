@@ -1,6 +1,6 @@
 //var ctx = document.getElementById('myChart1').getContext('2d');
 var color = ['#4abd9e', '#4097f5', '#f68645', '#dd497d', '#febe27', '#a14cfc', '#84c460', '#fa4cd7', '#3ed4de', '#fc5551'];
-
+console.log(data3);
 var chart1 = {
   labels: ['7월 14일(화)', '7월 15일(수)', '7월 16일(목)', '7월 17일(금)', '7월 18일(토)', '7월 19일(일)', '오늘(월)'],
   datasets: [{
@@ -108,7 +108,7 @@ window.onload = function() {
       hoverMode: 'index',
       stacked: false,
       title: {
-        display: true,
+        display: false,
       },
       scales: {
         yAxes: [{
@@ -132,6 +132,9 @@ window.onload = function() {
     document.getElementById('myChart3').style.display = 'none';
     document.getElementById('myChart2').style.display = 'none';
     document.getElementById('myChart1').style.display = 'block';
+    document.getElementById('chartBtn1').className = 'clickedCriteria';
+    document.getElementById('chartBtn2').className = 'criteria';
+    document.getElementById('chartBtn3').className = 'criteria';
     var ctx = document.getElementById('myChart1').getContext('2d');
     window.myLine = Chart.Line(ctx, {
       data: chart1,
@@ -140,7 +143,7 @@ window.onload = function() {
         hoverMode: 'index',
         stacked: false,
         title: {
-          display: true,
+          display: false,
         },
         scales: {
           yAxes: [{
@@ -164,6 +167,9 @@ window.onload = function() {
     document.getElementById('myChart1').style.display = 'none';
     document.getElementById('myChart3').style.display = 'none';
     document.getElementById('myChart2').style.display = 'block';
+    document.getElementById('chartBtn2').className = 'clickedCriteria';
+    document.getElementById('chartBtn1').className = 'criteria';
+    document.getElementById('chartBtn3').className = 'criteria';
     var ctx = document.getElementById('myChart2').getContext('2d');
     window.myLine = Chart.Line(ctx, {
       data: chart2,
@@ -172,7 +178,7 @@ window.onload = function() {
         hoverMode: 'index',
         stacked: false,
         title: {
-          display: true,
+          display: false,
         },
         scales: {
           yAxes: [{
@@ -196,7 +202,12 @@ window.onload = function() {
       document.getElementById('myChart1').style.display = 'none';
       document.getElementById('myChart2').style.display = 'none';
       document.getElementById('myChart3').style.display = 'block';
+      document.getElementById('chartBtn3').className = 'clickedCriteria';
+      document.getElementById('chartBtn1').className = 'criteria';
+      document.getElementById('chartBtn2').className = 'criteria';
+
       var ctx = document.getElementById('myChart3').getContext('2d');
+
       window.myLine = Chart.Line(ctx, {
         data: chart3,
         options: {
@@ -204,7 +215,7 @@ window.onload = function() {
           hoverMode: 'index',
           stacked: false,
           title: {
-            display: true,
+            display: false,
             text: '최근 일정 시간 평균 인원수 차트'
           },
           scales: {

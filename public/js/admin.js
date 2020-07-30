@@ -8,7 +8,7 @@ document.querySelector('#confirm').addEventListener('click', function(){
   console.log(inputdata);
   // content-type을 설정하고 데이터 송신
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'http://localhost/roiImage');
+  xhr.open('POST', 'http://localhost/setting1');
   xhr.setRequestHeader('Content-type', "application/json");
   xhr.send(data);
 
