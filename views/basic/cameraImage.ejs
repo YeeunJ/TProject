@@ -1,0 +1,198 @@
+<!-- picture -->
+  <div id="wrapper">
+    <div id="cont">
+
+        <%
+        var prev = 0;
+        var top_pos=180;
+        data2.forEach(function(d) { %>
+          <%
+            if(d.cameraID != prev && prev!=0) {
+          %>
+              </div>
+            </div>
+          </div>
+          <%
+            }
+          %>
+          <%
+            if(d.cameraID != prev) {
+              top_pos += prev*312;
+              prev++;
+          %>
+             <button id="right<%= d.cameraID %>" style="top:<%= top_pos %>px;" class="right" type="button" value="<%= d.cameraID %>" onclick="moveLeftScroll(this.value)"><i class="fa fa-angle-right" aria-hidden="true"></i></button>
+             <button id="left<%= d.cameraID %>" style="top:<%= top_pos %>px;" class="left" type="button" value="<%= d.cameraID %>" onclick="moveRightScroll(this.value)"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
+             <p class="cam_t<%= d.cameraID %>">CAMERA<%= d.cameraID %></p>
+             <div id="row<%= d.cameraID %>" class="first" >
+               <div class="total_wrapper<%= d.cameraID %>">
+                 <div class="img_wrapper">
+           <%
+            }
+           %>
+              <div class="img_date">
+                <img src="./resources/images/<%= d.name %>" alt="" value="<%= d.cameraID %>" onclick="showDetail('<%= d.name %>', '<%= d.cameraID %>', '<%= d.regDate %>', '<%= d.peopleCNT %>' );" />
+
+                <div id="name" style="display:none"><%= d.name %></div>
+                <div id="cameraID" style="display:none"><%= d.cameraID %></div>
+                <div id="regDate" style="display:none"><%= d.regDate %></div>
+                <div id="peopleCNT" style="display:none"><%= d.peopleCNT %></div>
+
+                <p><%= d.regDate %></p>
+              </div>
+            <%
+            if(d.id == data2.length ) {
+            %>
+                </div>
+              </div>
+            </div>
+            <%
+            }
+            %>
+        <% }) %>
+
+
+      <div id="detail" style="float:left">
+        <div class="detail_wrapper" style="width:82%; margin: 0 auto;">
+          <p style="margin:20px 0">선택된 사진</p>
+          <img src="" width="100%" height="170px" alt="" id="image">
+          <div class="text" >
+            <div class="info" style="width:60%">
+              <p style="color: rgba(255, 255, 255, 0.6)">카메라</p>
+              <p style="margin-bottom:10px;" id="cam_num"></p>
+            </div>
+            <div class="info" style="width:60%">
+              <p style="color: rgba(255, 255, 255, 0.6)">일시</p>
+              <p style="font-size: 12px;" id="date">2020년 08월 20일 20시 20분</p>
+            </div>
+            <div style="width:40%" class="person">
+              <p style="padding-bottom:10px; color: rgba(255, 255, 255, 0.6)">인원수</p>
+              <p style="font:55px bold; display:inline; color:#4abd9e" id="people">2</p><p style="display:inline">명</p>
+            </div>
+          </div>
+          <span onclick="imgModalClose();" class="close">닫기</span>
+        </div>
+      </div>
+      </div>
+  </div>
+</div>
+
+<script>
+
+
+  function showDetail( name, cameraID, regDate, peopleCNT ) {
+
+    var row_count = document.querySelectorAll('div[id*="row"]').length;
+    var modal = document.getElementById('detail');
+    var content = document.getElementById('image');
+    var cont = document.getElementById('cont');
+    var value = cameraID;
+    var real_value = cameraID;
+
+
+    if(value == row_count) {
+      value = Number(row_count)-Number(1);
+    }
+    var next = Number(value) + Number(1);
+    var small1 = "row"+value;
+    var small2 = "row"+next;
+    for(var j=1 ; j<=row_count ; j++) {
+      var r = "row"+j;
+      var b = "right"+j;
+      var cam = "cam_t"+j;
+
+      var Row = document.getElementById(r);
+      var Button = document.getElementById(b);
+      var Camera = document.getElementsByClassName(cam);
+
+      Camera[0].style.color = '#ffffff';
+      Camera[0].style.borderColor = '#ffffff';
+      Button.style.right = '15px';
+      Row.style.width = '100%';
+    }
+
+
+    var row1 = document.getElementById(small1);
+    var row2 = document.getElementById(small2);
+    var detail = document.getElementById('detail');
+    var button1 = document.getElementById('right'+value);
+    var button2 = document.getElementById('right'+next);
+    var camera = document.getElementsByClassName('cam_t'+real_value);
+
+
+    var position = Number(312)*Number(value-1);
+    // console.log(position);
+
+    if(real_value==row_count) {
+      detail.style.top = 'initial';
+      detail.style.bottom = 20+"px";
+    } else {
+      detail.style.bottom = 'initial';
+      detail.style.top = position+"px";
+    }
+    // console.log(detail.style.top);
+    row1.style.width='70%';
+    row2.style.width='70%';
+    button1.style.right = '343px';
+    button2.style.right = '343px';
+    camera[0].style.color = '#4abd9e';
+    camera[0].style.borderColor = '#4abd9e';
+    // cam_t.style.color = '#4abd9e';
+
+    // 모달 창 보이게 설정
+    // cont.style.width=70%;
+
+    console.log(this.src);
+    modal.style.display='block';
+    content.src = './resources/images/'+name;
+    document.getElementById('cam_num').innerHTML = cameraID;
+    document.getElementById('date').innerHTML = regDate;
+    document.getElementById('people').innerHTML = peopleCNT;
+  }
+
+
+
+  /* close 버튼 클릭시*/
+  function imgModalClose(){
+    var row_count = document.querySelectorAll('div[id*="row"]').length;
+      for(var j=1 ; j<=row_count ; j++) {
+        var r = "row"+j;
+        var b = "right"+j;
+        var cam = "cam_t"+j;
+        var Row = document.getElementById(r);
+        var Button = document.getElementById(b);
+        var Camera = document.getElementsByClassName(cam);
+        Row.style.width = '100%';
+        Button.style.right = '15px';
+        Camera[0].style.color = '#ffffff';
+        Camera[0].style.borderColor = '#ffffff';
+      }
+
+      var modal = document.getElementById('detail');
+      var content = document.getElementById('image');
+      var cont = document.getElementById('cont');
+
+
+      modal.style.display="none";
+      cont.style.width = '100%';
+      content.src = '';
+  }
+
+  /* jQuery */
+  /* scroll control button */
+
+  moveLeftScroll = function(id) {
+    var wrapper = '.total_wrapper'+id;
+    console.log(wrapper);
+    var pos = $(wrapper).scrollLeft();
+    $(wrapper).scrollLeft(pos + 200);
+  };
+  moveRightScroll = function(id) {
+    var wrapper = '.total_wrapper'+id;
+    console.log(wrapper);
+    var pos = $(wrapper).scrollLeft();
+    $(wrapper).scrollLeft(pos - 200);
+  };
+
+
+
+</script>

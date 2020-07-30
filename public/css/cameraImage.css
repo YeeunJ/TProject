@@ -1,0 +1,140 @@
+body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,table,th,td,tr,textarea,button,form,figure,figcaption{margin:0; padding:0;}
+
+  /* ::-webkit-scrollbar { width: 10px } */
+  /* picture */
+  #wrapper {
+    width:1200px;
+    margin: 0 auto;
+  }
+  #cont {
+    position: relative;
+    background: #26262c;
+    width: 1200px;
+    overflow: hidden;
+  }
+  #cont::-webkit-scrollbar {
+    height:5px;
+    background-color: white;
+  }
+
+  [id *= "row"] {
+    /* position: relative; */
+    /* width: 100%; */
+    margin-bottom: 15px;
+  }
+  [id *= row]:last-child {
+    border: none;
+  }
+
+
+  [id *= "row"] div {
+    display: inline-block;
+  }
+
+  [id *= "row"] img {
+    margin: 0 10px;
+    height:170px; width: 270px;
+    opacity: 0.7;
+  }
+  [id *= "row"] img:hover {
+    opacity: 1;
+  }
+
+  /* #row1 {
+    width: 90%;
+    overflow-x: scroll;
+    white-space:nowrap;
+  } */
+
+  .right {
+    position: absolute;
+    right:15px;
+    background: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 30px;
+    border: none;
+  }
+  .left {
+    position: absolute;
+    left: 15px;
+    background: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 30px;
+    border: none;
+  }
+  [class *= "total_wrapper"] {
+    position: relative;
+    overflow-x: scroll;
+    white-space:nowrap;
+    width:90%; height:195px;
+    margin: 0 50px 0 55px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  .total_wrapper1 {
+    position: relative;
+    overflow-x: scroll;
+    white-space:nowrap;
+    width:90%; height:195px;
+    margin: 0 50px 0 55px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  [id *= "row"] .img_wrapper {
+    /* margin: 0 50px; */
+    /* overflow-x: scroll;
+    white-space:nowrap;
+    width:90%;
+
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); */
+  }
+
+  .img_date p {
+    color: rgba(255, 255, 255, 0.6);
+    padding: 3px 0 0 10px;
+    font-size: 13px;
+  }
+
+  [class *= "cam_t"] {
+    color: #ffffff;
+    border-radius: 50px;
+    border: 1px solid #ffffff;
+    padding: 5px 18px;
+    display: inline-block;
+    margin: 20px 0 15px 54px;
+    opacity: 0.8;
+  }
+  .cam_t1 {
+    margin-top: 40px;
+  }
+
+    #detail {
+      position: absolute;
+      top:0; right:0;
+      color: #ffffff;
+      background:#323237;
+      height: 500px;
+      width: 27%;
+      display: none;
+      transition: all ease 0.3s;
+    }
+    .text{
+      overflow: hidden;
+      position: relative;
+      margin-top: 30px;
+    }
+    .person {
+      position: absolute;
+      width: 40%;
+      top:0; right:10px;
+      text-align: right;
+    }
+    .close{
+      border: 1px solid #ffffff;
+      border-radius: 50px;
+      padding: 3px 30px;
+      float: right;
+      margin-top: 85px;
+      font-size: 13px;
+    }
