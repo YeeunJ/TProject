@@ -11,7 +11,6 @@ const db = new sqlite3.Database('./resources/db/information.db', sqlite3.OPEN_RE
 });
 
 router.get('/', function(req, res){
-  console.log(req.file);
   const query = `select * from setting where id = 1;`;
   console.log(query);
   db.serialize();
@@ -33,10 +32,11 @@ router.post('/setting1', function (req, res, next) {
     const cam_query = `select * from camera;`;
     console.log(query);
     console.log(cam_query);
+
     db.serialize(() => {
       // Queries scheduled here will be serialized.
       db.run(query)
-        .each(cam_query, (err, row) => {
+        .all(cam_query, (err, row) => {
           if (err){
             throw err;
           }
@@ -47,7 +47,7 @@ router.post('/setting1', function (req, res, next) {
     /*db.each(query, (err, row) => {
         if(err) return res.json(err);
     });*/
-    res.redirect('/');
+    //res.redirect('/');
 });
 
 router.post('/setting2', function (req, res, next) {

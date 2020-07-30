@@ -1,14 +1,34 @@
-document.querySelector('#confirm').addEventListener('click', function(){
+document.querySelector('#confirm1').addEventListener('click', function(){
     // 입력값 위치를 찾아 변수에 담고
-    var inputdata = document.forms[0]/*.elements[0].value*/;
-    // sendAjax 함수를 만들고 URL과 data를 전달
-    // 입력값을 변수에 담고 문자열 형태로 변환
-  var data = {'email' : data};
+    var sizeW= document.forms[0].elements[0].value;
+    var sizeH= document.forms[0].elements[1].value;
+    var resizeW = document.forms[0].elements[2].value;
+    var resizeH = document.forms[0].elements[3].value;
+    var camNum = document.forms[0].elements[4].value;
+    var savePeriod = document.forms[0].elements[5].value;
+    var saveInterval = document.forms[0].elements[6].value;
+    var saveNum = document.forms[0].elements[7].value;
+    var inputdata = {
+      sizeW: sizeW,
+      sizeH: sizeH,
+      resizeW: resizeW,
+      resizeH: resizeH,
+      camNum: camNum,
+      savePeriod: savePeriod,
+      saveInterval: saveInterval,
+      saveNum: saveNum
+    };
+    console.log(inputdata);
+    sendAjax('http://localhost:3000/setting1', inputdata)
+});
+//document.getElementById('adminROI').style.display = 'none';
+function sendAjax(url, data){
+  // 입력값을 변수에 담고 문자열 형태로 변환
   data = JSON.stringify(data);
-  console.log(inputdata);
+
   // content-type을 설정하고 데이터 송신
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'http://localhost/setting1');
+  xhr.open('POST', url);
   xhr.setRequestHeader('Content-type', "application/json");
   xhr.send(data);
 
@@ -16,7 +36,7 @@ document.querySelector('#confirm').addEventListener('click', function(){
   xhr.addEventListener('load', function(){
     // 문자열 형식으로 변환
     var result = JSON.parse(xhr.responseText);
-    console.log(result[0]);
+    console.log(result);
     for(var i=1; i<= result.length; i++){
       console.log(result[i-1].image);
 
@@ -34,8 +54,7 @@ document.querySelector('#confirm').addEventListener('click', function(){
     }
     document.getElementById('adminROI').style.display = 'block';
   });
-});
-//document.getElementById('adminROI').style.display = 'none';
+}
 
 document.getElementById('image1').onload = function() {
   new Cropper(this, {
