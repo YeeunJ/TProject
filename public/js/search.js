@@ -3,6 +3,29 @@ $(search).click(function (){
    alert("검색..");
 });
 
+const btn1 = document.querySelector('#chartBtn1');
+const btn2 = document.querySelector('#chartBtn2');
+const btn3 = document.querySelector('#chartBtn3');
+
+$(btn1).click(function(){
+  var result_from = $('#date_from').val()+" "+$('#time_from').val();
+  $('#result_from').val(result_from);
+  var result_to = $('#date_to').val()+" "+$('#time_to').val();
+  $('#result_to').val(result_to);
+});
+$(btn2).click(function(){
+  var result_from = $('#date_from').val()+" "+$('#time_from').val();
+  $('#result_from').val(result_from);
+  var result_to = $('#date_to').val()+" "+$('#time_to').val();
+  $('#result_to').val(result_to);
+});
+$(btn3).click(function(){
+  var result_from = $('#date_from').val()+" "+$('#time_from').val();
+  $('#result_from').val(result_from);
+  var result_to = $('#date_to').val()+" "+$('#time_to').val();
+  $('#result_to').val(result_to);
+});
+
 //Time 지정 검색
 var now = new Date();
 getDefaultSetting(now);
