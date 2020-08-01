@@ -6,7 +6,7 @@ var app = express();
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname));
 app.use(bodyParser.json({limit:5000000}));
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({limit:5000000, extended:true, parameterLimit: 5000000}));
 // Routes
 app.use('/', require('./routes/admin'));
 app.use('/basic', require('./routes/basic'));
