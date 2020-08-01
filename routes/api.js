@@ -61,6 +61,7 @@ router.post('/admin/roi-image', uploadSetting.single('file'), function (req, res
   const query = `insert into camera(ip, image) values ("iip", "3.jpeg");`;
     console.log(query);
     db.serialize();
+    console.log(req);
     db.each(query, (err, row) => {
         if(err) return res.json(err);
         res.status(201).json(
@@ -76,9 +77,8 @@ router.get('/test', function (req, res){
   db.serialize();
     db.all(query2, function(err, row){
       if(err) return res.json(err);
-      res.json(row);
+      res.render('admin/index', {data: row});
   });
-  res.status(200).json(user);
 });
 
 router.get('/admin/roi-info', function (req, res){
