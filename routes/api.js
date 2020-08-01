@@ -57,11 +57,13 @@ router.get('/admin/setting', function (req, res){
 router.post('/admin/roi-image', function (req, res){
   //const ip = req.body.ip;
   //const image = req.file.originalname;
+  /*
   var base64Data = req.rawBody.replace(/^data:image\/png;base64,/, "");
   require("fs").writeFile("config/images/"+req.body.ip+"_out.png", base64Data, 'base64', function(err) {
     console.log(err);
   });
   const query = `insert into camera(ip, image) values ("${req.body.ip}", "${req.body.ip}_out.png");`;
+  */
   console.log(req.body);
     db.each(query, (err, row) => {
         if(err) return res.json(err);
