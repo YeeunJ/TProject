@@ -64,7 +64,7 @@ router.post('/admin/roi-image', function (req, res){
   });
   const query = `insert into camera(ip, image) values ("${req.body.ip}", "${req.body.ip}_out.png");`;
   */
-  console.log(req.body);
+  console.log(req);
   const query = `insert into camera(ip, image) values ("${req.body.ip}", "${req.body.ip}_out.png");`;
   db.run(query, function(err) {
   if (err) {
@@ -75,16 +75,6 @@ router.post('/admin/roi-image', function (req, res){
       res.status(201).json(
         {
           "success1": "succeess"
-        }
-      );
-      res.status(204).json(
-        {
-          "success4": "succeess"
-        }
-      );
-      res.status(200).json(
-        {
-          "success0": "succeess"
         }
       );
 });
