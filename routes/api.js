@@ -46,8 +46,7 @@ router.get('/admin/setting', function (req, res){
             "id": row.id,
             "sizeW": row.sizeW,
             "sizeH": row.sizeH,
-            "resizeW": row.resizeW,
-            "resizeH": row.resizeH,
+            "resize": row.resize,
             "camNum": row.camNum
           }
         );
@@ -56,21 +55,30 @@ router.get('/admin/setting', function (req, res){
 });
 
 router.post('/admin/roi-image', uploadSetting.single('file'), function (req, res){
-  const ip = req.body.ip;
-  const image = req.file.originalname;
+  //const ip = req.body.ip;
+  //const image = req.file.originalname;
 
-  const query = `insert into camera(ip, image) values ("${ip}", "${image}");`;
+  const query = `insert into camera(ip, image) values ("iip", "3.jpeg");`;
     console.log(query);
     db.serialize();
     db.each(query, (err, row) => {
         if(err) return res.json(err);
         res.status(201).json(
           {
-              "ip": ip,
-              "image": image,
-           }
+            "success": "succeess"
+          }
         );
   });
+});
+
+router.get('/test', function (req, res){
+  const query = `select * from camera;`;
+  db.serialize();
+    db.all(query2, function(err, row){
+      if(err) return res.json(err);
+      res.json(row);
+  });
+  res.status(200).json(user);
 });
 
 router.get('/admin/roi-info', function (req, res){
