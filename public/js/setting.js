@@ -12,3 +12,10 @@ document.querySelector('#edit_camera').addEventListener('click', function(){
   var edit = document.getElementById("setting2");
   edit.style.display = "inline-block";
 });
+
+document.querySelector('#edit_image').addEventListener('click', function(){
+  var view = document.getElementById("setting3");
+  view.style.display = "none";
+  var edit = document.getElementById("setting2");
+  edit.style.display = "inline-block";
+});
