@@ -6,32 +6,6 @@ var fs = require('fs');
 var mime = require('mime');
 //var api = require('./apiController');
 
-//roi에 필요한 이미지 받기
-var settingStorage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, 'config/images/')
-  },
-  filename: function(req, file, cb) {
-    cb(null, file.originalname);
-  }
-})
-var uploadSetting = multer({
-  storage: settingStorage
-})
-
-//결과 값에 필요한 이미지 받기!!
-var resultStorage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, 'resources/images/')
-  },
-  filename: function(req, file, cb) {
-    cb(null, file.originalname + '-' + Date.now());
-  }
-})
-var uploadResult = multer({
-  storage: resultStorage
-})
-
 const db = new sqlite3.Database('./resources/db/information.db', sqlite3.OPEN_READWRITE, (err) => {
   if (err) {
     console.log(err);
@@ -102,7 +76,13 @@ router.get('/admin/roi-info', function(req, res) {
 router.post('/basic/image-info', function(req, res) {
   const {cameraID, originalDate, image} = req.body;
   var base64Data = image.replace(/^data:image\/jpeg;base64,/, "");
-  require("fs").writeFile("resources/images/" + originalDate + "_"+cameraID+".jpeg", base64Data, 'base64', function(err) {
+  var filename = originalDate + "_"+cameraID+".jpeg";
+  console.log(filename);
+  filename = filename.replace(/ /gi, "");
+  filename = filename.replace(/:/g,"");
+  filename = filename.replace(/-/g,"");
+  console.log(filename);
+  require("fs").writeFile("resources/images/result/" + filename, base64Data, 'base64', function(err) {
     console.log(err);
   });
   const query1 = `insert into cam_image (name, originalDate, cameraID)
