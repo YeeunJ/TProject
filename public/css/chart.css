@@ -37,7 +37,7 @@ body{
 .chartTab{
   width: 100%;
   border-radius: 3px;
-  padding: 30px;
+  margin-top: 20px;
   text-align: justify;
 }
 .CameraNumber{
@@ -48,6 +48,8 @@ body{
 }
 .chartCrt{
   display: inline-block;
+  width: 39%;
+  text-align: right;
 }
 .criteria{
   display: inline-block;
