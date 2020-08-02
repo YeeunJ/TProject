@@ -10,17 +10,17 @@
         <tr></tr>
         <tr>
           <td>카메라 해상도</td>
-          <td><input type="text" id="sizeW" value="<%= data.sizeW %>" name = "sizeW" class="input" placeholder="width" required></td>
+          <td class="info_camera_middle"><input type="text" id="sizeW" value="<%= data.sizeW %>" name = "sizeW" class="input" placeholder="width" required></td>
           <td><input type="text" id="sizeH" name = "sizeH" value="<%= data.sizeH %>" placeholder="height" required></td>
         </tr>
         <tr>
           <td>리사이즈 해상도</td>
-          <td><input type="text" id="resizeW" value="<%= data.resizeW %>" name = "resizeW" class="input" placeholder="width" required></td>
+          <td class="info_camera_middle"><input type="text" id="resizeW" value="<%= data.resizeW %>" name = "resizeW" class="input" placeholder="width" required></td>
           <td><input type="text" id="resizeH" value="<%= data.resizeH %>" name = "resizeH" placeholder="height" required></td>
         </tr>
         <tr>
           <td>카메라 숫자</td>
-          <td>
+          <td class="info_camera_middle">
             <% for(var i = 0; i < data.camNum; i++) {%>
               <% i %>
             <% } %>
@@ -42,12 +42,12 @@
       <div class="info" id="info_image">
         <table>
           <tr class="info_title">
-            <td>이미지 저장 정보</td>
+            <td class="info_image_left">이미지 저장 정보</td>
           </tr>
           <tr></tr>
           <tr></tr>
          <tr>
-           <td>저장 간격</td>
+           <td class="info_image_left">저장 간격</td>
            <td>
              <select id="saveInterval" name="saveInterval">
                <option value="<%= data.saveInterval %>" class="input"><%= data.saveInterval %>초</option>
@@ -58,7 +58,7 @@
            </td>
          </tr>
          <tr>
-           <td>최대 저장 갯수</td>
+           <td class="info_image_left">최대 저장 갯수</td>
            <td>
              <select id="saveNum" name="saveNum">
                <option value="<%= data.saveNum %>" class="input"><%= data.saveNum %>개</option>
@@ -69,7 +69,7 @@
            </td>
          </tr>
          <tr>
-           <td>최대 저장 기간</td>
+           <td class="info_image_left">최대 저장 기간</td>
            <td>
              <select id="savePeriod" name="savePeriod">
                <option value="<%= data.savePeriod %>" class="input"><%= data.savePeriod %>개월</option>

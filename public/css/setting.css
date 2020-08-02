@@ -15,17 +15,25 @@ div#setting1, div#setting2, div#setting3, div#search{
   margin-bottom: 30px;
 }
 
-div#setting2{
+div#setting2, div#setting4{
   display:none;
 }
 
 .info{
-  width:50%;
+  width: 50%;
   height:100%;
   float: left;
   text-align:left;
 }
 
+.info_image_left{
+  //border: solid 1px red;
+  width:30%;
+}
+
+td, th{
+  //border: solid 1px red;
+}
 table{
   width:100%;
   border-spacing: 10px;
@@ -35,16 +43,18 @@ table{
   color: white;
   font-weight: bold;
   font-size: 1.1em;
+  height:25px;
 }
-
+.info_camera_middle{
+  width:30%;
+}
 .space{
   height:10px;
   border: solid 2px red;
 }
 input, select{
   box-sizing: border-box;
-  max-width: 160px;
-  width:80%;
+  width: 160px;
   border-radius: 50px;
   height: 25px;
   background-color:transparent;
@@ -52,6 +62,10 @@ input, select{
   border: 1px solid rgb(255,255,255, 0.3);
   text-align: center;
   padding: 0px 20px;
+}
+
+div#setting3 input{
+  color:grey;
 }
 
 input.date, input.time{
@@ -69,15 +83,14 @@ button#search{
 button.edit{
   box-sizing: border-box;
   max-width: 80px;
-  width:40%;
-  font-size:1px;
+  font-size:10px;
   border-radius: 50px;
   height: 25px;
   background-color:transparent;
   color:#4abd9e;
+  width:100%;
   border: 1px solid #4abd9e;
   text-align: center;
-  //padding: 0px 20px;
 }
 button.confirm{
   box-sizing: border-box;
@@ -93,7 +106,7 @@ button.confirm{
   padding: 0px 20px;
 }
 
-button#confirm1{
+button#confirm{
   max-width: 100px;
   width:50%;
   float:right;
