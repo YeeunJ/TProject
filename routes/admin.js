@@ -23,6 +23,24 @@ router.get('/first', function(req, res){
 
 });
 
+router.get('/update', function (req, res, next) {
+    const cam_query = `select * from camera;`;
+    const query2 = `select * from setting where id = 1;`;
+
+    db.serialize(() => {
+      db.all(cam_query, (err, row1) => {
+          if (err){
+            throw err;
+          }
+          db.each(query2, function(err, row){
+            if(err) return res.json(err);
+            res.render('admin/index', {data: row, data2: row1});
+            console.log(row1);
+          });
+        });
+    });
+});
+
 router.post('/update', function (req, res, next) {
     var {sizeW, sizeH, resizeW, resizeH, camNum, savePeriod, saveInterval, saveNum} = req.body;
     const query = `update setting
