@@ -3,11 +3,10 @@
 #main {
   text-align : center;
 }
-div#setting1, div#setting2, div#search{
+div#setting1, div#setting2, div#setting3, div#search{
   display: inline-block;
   width: 80%;
   padding: 30px;
-  //border-radius: 0 0 20px 20px;
   border-radius: 5px;
   background-color: #1b1b21;
   min-width: 1000px;
@@ -15,10 +14,10 @@ div#setting1, div#setting2, div#search{
   color: white;
   margin-bottom: 30px;
 }
-/*
+
 div#setting2{
   display:none;
-}*/
+}
 
 .info{
   width:50%;
