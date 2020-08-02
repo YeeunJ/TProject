@@ -24,7 +24,7 @@ router.get('/', function(req, res) {
         db.all(query3, (err, rows3) => {
           db.all(query4, (err, rows4) => {
             db.all(query5, (err, rows5) => {
-              db.all(query6, (err, rows5) => {
+              db.all(query6, (err, rows6) => {
                 console.log(rows1.id);
                 console.log(rows1);
                 console.log(rows2);
