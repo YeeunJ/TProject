@@ -10,7 +10,7 @@ const db = new sqlite3.Database('./resources/db/information.db', sqlite3.OPEN_RE
     }
 });
 
-router.get('/', function(req, res){
+router.get('/first', function(req, res){
   const query = `select * from setting where id = 1;`;
   console.log(req);
   db.serialize();
@@ -92,7 +92,7 @@ router.get('/submit', function(req, res){
         res.redirect('/basic');
         console.log(res);
     });*/
-    res.redirect('/basic');
+    res.redirect('/');
 })
 
 module.exports = router;
