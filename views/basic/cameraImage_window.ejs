@@ -29,7 +29,7 @@
             }
            %>
               <div class="img_date">
-                <img src="./resources/images/<%= d.name %>" alt="" value="<%= d.cameraID %>" onclick="showDetail('<%= d.name %>', '<%= d.cameraID %>', '<%= d.regDate %>', '<%= d.peopleCNT %>' );" />
+                <img src="./resources/images/result/<%= d.name %>" alt="" value="<%= d.cameraID %>" onclick="showDetail('<%= d.name %>', '<%= d.cameraID %>', '<%= d.regDate %>', '<%= d.peopleCNT %>' );" />
                 <p><%= d.regDate %></p>
               </div>
 
@@ -40,9 +40,58 @@
           </div>
         </div>
 
+
+		<!-- /////////////////// -->
+		<!-- <button id="right3" style="top:840px;" class="right" type="button" value="3" onclick="moveLeftScroll(this.value)"><i class="fa fa-angle-right" aria-hidden="true"></i></button>
+		             <button id="left3" style="top:840px;" class="left" type="button" value="3" onclick="moveRightScroll(this.value)"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
+		             <p class="cam_t1">CAMERA3</p>
+		             <div id="row3" class="first" >
+		               <div class="total_wrapper3">
+		                 <div class="img_wrapper">
+
+		              <div class="img_date">
+		                <img src="./resources/images/20200705174547_2.jpeg" alt="" value="3" onclick="showDetail('20200705174547_2.jpeg', '3', '2020-07-30 16:40:10', '14' );" />
+		                <p>2020-07-30 16:40:10</p>
+		              </div>
+
+
+
+
+
+		              <div class="img_date">
+		                <img src="./resources/images/20200705174547_2.jpeg" alt="" value="3" onclick="showDetail('20200705174547_2.jpeg', '3', '2020-07-30 16:45:10', '5' );" />
+		                <p>2020-07-30 16:45:10</p>
+		              </div>
+
+
+
+
+
+		              <div class="img_date">
+		                <img src="./resources/images/20200705174547_2.jpeg" alt="" value="3" onclick="showDetail('20200705174547_2.jpeg', '3', '2020-07-30 16:48:10', '4' );" />
+		                <p>2020-07-30 16:48:10</p>
+		              </div>
+
+
+
+
+
+		              <div class="img_date">
+		                <img src="./resources/images/20200705174547_2.jpeg" alt="" value="3" onclick="showDetail('20200705174547_2.jpeg', '3', '2020-07-30 16:55:10', '20' );" />
+		                <p>2020-07-30 16:55:10</p>
+		              </div>
+
+
+
+
+		                </div>
+		              </div>
+		            </div>
+ -->
+
         <!-- detail -->
         <div id="detail" style="float:left; font-size: ">
-          <div class="detail_wrapper" style="width:82%; margin: 0 auto;">
+          <div class="detail_wrapper" style="width:82%; margin: 0 auto; padding-top: 18px">
             <p style="margin:20px 0">선택된 사진</p>
             <img src="" width="100%" height="170px" alt="" id="image">
             <div class="text" >
@@ -132,7 +181,7 @@
     // cont.style.width=70%;
 
     modal.style.display='block';
-    content.src = './resources/images/'+name;
+    content.src = './resources/images/result/'+name;
     document.getElementById('cam_num').innerHTML = cameraID;
     document.getElementById('date').innerHTML = regDate;
     document.getElementById('people').innerHTML = peopleCNT;
@@ -162,7 +211,7 @@
 
 
       modal.style.display="none";
-      cont.style.width = '1040px';
+      cont.style.width = '83.1%';
       content.src = '';
   }
 

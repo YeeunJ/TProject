@@ -6,7 +6,7 @@
       <div class="info_row">
         <div class="thumbnail" ></div>
         <span class="store"><%= data1.companyName %></span><br>
-        <button class="setting" type="button" name="button">수정</button>
+        <button id="setting" type="button" name="button" onclick="location.href='/setting/update'">수정</button>
       </div>
       <div class="info_div">
         <span><%= data1.phone %></span><br>
@@ -17,12 +17,12 @@
   </div>
   <div class="cam_info">
     <div class="cam_wrapper">
-      <p style="font-weight: bold; margin: 25px 0 10px 40px">카메라 정보</p>
+      <p style="font-weight: bold; margin: 25px 0 10px 20px">카메라 정보</p>
       <div class="table_wrapper">
         <table class="info_table" style="margin: 0 auto" width="95%">
           <tr class="table_row">
             <th>카메라 번호</th>
-            <th>1시간 동안 전송한 이미지 수</th>
+            <th>전송 이미지 수(1시간)</th>
             <th>최근 값</th>
             <th>일정시간 평균 값</th>
           </tr>

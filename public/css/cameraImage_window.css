@@ -2,12 +2,20 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
 
   /* ::-webkit-scrollbar { width: 10px } */
   /* picture */
+  #cont_wrapper {
+	  position: absolute
+  }
   #cont {
     position: relative;
     background: #26262c;
-    width: 1040px;
+    width: 83.1%;
+	/* padding:20px; */
+	min-width: 1040px;
 	margin: 0 auto;
     overflow: hidden;
+	border-radius: 0 0 15px 15px;
+	margin-bottom: 35px;
+	/* z-index: -1; */
   }
 
 
