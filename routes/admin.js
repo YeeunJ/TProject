@@ -23,7 +23,7 @@ router.get('/', function(req, res){
 
 });
 
-router.post('/setting1', function (req, res, next) {
+router.post('/update', function (req, res, next) {
     var {sizeW, sizeH, resizeW, resizeH, camNum, savePeriod, saveInterval, saveNum} = req.body;
     const query = `update setting
     set sizeW = ${sizeW}, sizeH = ${sizeH}, resizeW = ${resizeW}, resizeH = ${resizeH},
