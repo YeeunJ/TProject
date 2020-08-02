@@ -99,6 +99,7 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
     display: inline-block;
     margin: 20px 0 15px 54px;
     opacity: 0.8;
+	font-size: 14px;
   }
   .cam_t1 {
     margin-top: 40px;
@@ -113,6 +114,7 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
       width: 27%;
       display: none;
       transition: all ease 0.3s;
+	  font-size: 14px;
     }
     .text{
       overflow: hidden;
@@ -132,7 +134,7 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
       float: right;
       margin-top: 85px;
       font-size: 13px;
-	  cursor: pointer;
+	  cursor:pointer;
     }
 	.close:hover {
 		border-color: rgb(74, 189, 158);

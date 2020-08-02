@@ -41,7 +41,7 @@
         </div>
 
         <!-- detail -->
-        <div id="detail" style="float:left">
+        <div id="detail" style="float:left; font-size: ">
           <div class="detail_wrapper" style="width:82%; margin: 0 auto;">
             <p style="margin:20px 0">선택된 사진</p>
             <img src="" width="100%" height="170px" alt="" id="image">
@@ -55,8 +55,8 @@
                 <p style="font-size: 12px;" id="date">2020년 08월 20일 20시 20분</p>
               </div>
               <div style="width:40%" class="person">
-                <p style="padding-bottom:10px; color: rgba(255, 255, 255, 0.6)">인원수</p>
-                <p style="font:55px bold; display:inline; color:#4abd9e" id="people">2</p><p style="display:inline">명</p>
+                <p style="font-padding-bottom:10px; color: rgba(255, 255, 255, 0.6)">인원수</p>
+                <p style="font:48px bold; display:inline; color:#4abd9e" id="people">2</p><p style="display:inline">명</p>
               </div>
             </div>
             <span onclick="imgModalClose();" class="close">닫기</span>
@@ -121,8 +121,9 @@
     // console.log(detail.style.top);
     row1.style.width='70%';
     row2.style.width='70%';
-    button1.style.right = '343px';
-    button2.style.right = '343px';
+	// fix
+    button1.style.right = '300px';
+    button2.style.right = '300px';
     camera[0].style.color = '#4abd9e';
     camera[0].style.borderColor = '#4abd9e';
     // cam_t.style.color = '#4abd9e';
