@@ -1,4 +1,4 @@
-<div id="setting3"> <!-- view -->
+<div id="setting_view"> <!-- view -->
     <form action="./update" method="post">
     <div class="info" id="info_camera">
       <table>
@@ -81,7 +81,7 @@
   </div>
 
 
-  <div id="setting2"> <!--수정 하는 곳-->
+  <div id="setting_camera"> <!--카메라 수정 하는 곳-->
       <form action="../setting/update" method="post">
       <div class="info" id="info_camera">
         <table>
@@ -113,7 +113,7 @@
                 <option value="3" class="input">3</option>
               </select>
             </td>
-            <!--<td><button class="confirm btn submit" id="confirm">확인</button></td>-->
+            <td><button class="confirm btn submit" id="confirm_camera">확인</button></td>
           </tr>
           </table>
         </div>
@@ -161,8 +161,92 @@
          </table>
          </div>
          <div id="space"></div>
-         <td><button class="confirm btn submit" id="confirm">확인</button></td>
+         <!--<td><button class="confirm btn submit" id="confirm">확인</button></td>-->
          </form>
     </div>
+
+    <div id="setting_image"> <!--이미지 수정 하는 곳-->
+        <form action="../setting/update" method="post">
+        <div class="info" id="info_camera">
+          <table>
+            <tr class="info_title">
+              <td>카메라 정보</td>
+            </tr>
+            <tr></tr>
+            <tr></tr>
+            <tr>
+              <td>카메라 해상도</td>
+              <td class="info_camera_middle"><input type="text" id="sizeW" value="<%= data.sizeW %>" name = "sizeW" class="input" placeholder="width" required readonly></td>
+              <td><input type="text" id="sizeH" name = "sizeH" value="<%= data.sizeH %>" placeholder="height" required readonly></td>
+            </tr>
+            <tr>
+              <td>리사이즈 해상도</td>
+              <td class="info_camera_middle"><input type="text" id="resizeW" value="<%= data.resizeW %>" name = "resizeW" class="input" placeholder="width" required readonly></td>
+              <td><input type="text" id="resizeH" value="<%= data.resizeH %>" name = "resizeH" placeholder="height" required readonly></td>
+            </tr>
+            <tr>
+              <td>카메라 숫자</td>
+              <td class="info_camera_middle">
+                <% for(var i = 0; i < data.camNum; i++) {%>
+                  <% i %>
+                <% } %>
+                <select id="camNum" name="camNum">
+                  <option selected value="<%= data.camNum %>" class="input"><%= data.camNum %></option>
+                  <option value="1" class="input">1</option>
+                  <option value="2" class="input">2</option>
+                  <option value="3" class="input">3</option>
+                </select>
+              </td>
+              <!--<td><button class="confirm btn submit" id="confirm_camera">확인</button></td>-->
+            </tr>
+            </table>
+          </div>
+          <div class="info" id="info_image">
+            <table>
+              <tr class="info_title">
+                <td class="info_image_left">이미지 저장 정보</td>
+              </tr>
+              <tr></tr>
+              <tr></tr>
+             <tr>
+               <td class="info_image_left">저장 간격</td>
+               <td>
+                 <select id="saveInterval" name="saveInterval">
+                   <option value="<%= data.saveInterval %>" class="input"><%= data.saveInterval %>초</option>
+                   <option value="10" class="input">10초</option>
+                   <option value="20" class="input">20초</option>
+                   <option value="30" class="input">30초</option>
+                 </select>
+               </td>
+             </tr>
+             <tr>
+               <td class="info_image_left">최대 저장 갯수</td>
+               <td>
+                 <select id="saveNum" name="saveNum">
+                   <option value="<%= data.saveNum %>" class="input"><%= data.saveNum %>개</option>
+                   <option value="100" class="input">100개</option>
+                   <option value="200" class="input">200개</option>
+                   <option value="300" class="input">300개</option>
+                 </select>
+               </td>
+             </tr>
+             <tr>
+               <td class="info_image_left">최대 저장 기간</td>
+               <td>
+                 <select id="savePeriod" name="savePeriod">
+                   <option value="<%= data.savePeriod %>" class="input"><%= data.savePeriod %>개월</option>
+                   <option value="10" class="input">10개월</option>
+                   <option value="20" class="input">20개월</option>
+                   <option value="30" class="input">30개월</option>
+                 </select>
+               </td>
+               <!--<td><button class="confirm btn submit" id="confirm_image">확인</button></td>-->
+             </tr>
+           </table>
+           </div>
+           <div id="space"></div>
+           <td><button class="confirm btn submit" id="confirm_image">확인</button></td>
+           </form>
+      </div>
 
 <script src="../public/js/setting.js"></script>

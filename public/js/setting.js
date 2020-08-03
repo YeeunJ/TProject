@@ -7,15 +7,15 @@ document.querySelector('#confirm1').addEventListener('click', function(){
 });*/
 
 document.querySelector('#edit_camera').addEventListener('click', function(){
-  var view = document.getElementById("setting3");
+  var view = document.getElementById("setting_view");
   view.style.display = "none";
-  var edit = document.getElementById("setting2");
+  var edit = document.getElementById("setting_camera");
   edit.style.display = "inline-block";
 });
 
 document.querySelector('#edit_image').addEventListener('click', function(){
-  var view = document.getElementById("setting3");
+  var view = document.getElementById("setting_view");
   view.style.display = "none";
-  var edit = document.getElementById("setting2");
+  var edit = document.getElementById("setting_image");
   edit.style.display = "inline-block";
 });

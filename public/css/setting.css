@@ -3,7 +3,7 @@
 #main {
   text-align : center;
 }
-div#setting1, div#setting2, div#setting3, div#search{
+div#setting1, div#setting_image, div#setting_camera, div#setting_view, div#search{
   display: inline-block;
   width: 80%;
   padding: 20px;
@@ -15,7 +15,7 @@ div#setting1, div#setting2, div#setting3, div#search{
   margin-bottom: 30px;
 }
 
-div#setting2, div#setting4{
+div#setting_image, div#setting_camera{
   display:none;
 }
 
@@ -106,7 +106,7 @@ button.confirm{
   padding: 0px 20px;
 }
 
-button#confirm{
+button#confirm, button#confirm_image{
   max-width: 100px;
   width:50%;
   float:right;
