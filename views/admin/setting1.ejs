@@ -21,20 +21,7 @@
         <tr>
           <td>카메라 숫자</td>
           <td class="info_camera_middle">
-            <% for(var i = 0; i < data.camNum; i++) {%>
-              <% i %>
-            <% } %>
-            <select id="camNum" name="camNum">
-              <% for(var i = 1; i < data.camNum; i++) {%>
-                <option value="<%= i %>" class="input"><%= i %></option>
-              <% } %>
-              <option selected value="<%= data.camNum %>" class="input"><%= data.camNum %></option>
-              <!--
-              <option value="1" class="input">1</option>
-              <option value="2" class="input">2</option>
-              <option value="3" class="input">3</option>
-              -->
-            </select>
+            <input type="text" id="camNum" value="<%= data.camNum %>" name = "camNum" class="input" placeholder="camNum" required>
           </td>
         </tr>
         </table>
@@ -49,34 +36,19 @@
          <tr>
            <td class="info_image_left">저장 간격</td>
            <td>
-             <select id="saveInterval" name="saveInterval">
-               <option value="<%= data.saveInterval %>" class="input"><%= data.saveInterval %>초</option>
-               <option value="10" class="input">10초</option>
-               <option value="20" class="input">20초</option>
-               <option value="30" class="input">30초</option>
-             </select>
+              <input class="info_camera" type="text" id="saveInterval" value="<%= data.saveInterval %>초" name = "saveInterval" class="input" placeholder="saveInterval" required>
            </td>
          </tr>
          <tr>
            <td class="info_image_left">최대 저장 갯수</td>
            <td>
-             <select id="saveNum" name="saveNum">
-               <option value="<%= data.saveNum %>" class="input"><%= data.saveNum %>개</option>
-               <option value="100" class="input">100개</option>
-               <option value="200" class="input">200개</option>
-               <option value="300" class="input">300개</option>
-             </select>
+              <input class="info_camera" type="text" id="saveNum" value="<%= data.saveNum %>개" name = "saveNum" class="input" placeholder="saveNum" required>
            </td>
          </tr>
          <tr>
            <td class="info_image_left">최대 저장 기간</td>
            <td>
-             <select id="savePeriod" name="savePeriod">
-               <option value="<%= data.savePeriod %>" class="input"><%= data.savePeriod %>개월</option>
-               <option value="10" class="input">10개월</option>
-               <option value="20" class="input">20개월</option>
-               <option value="30" class="input">30개월</option>
-             </select>
+             <input class="info_camera" type="text" id="savePeriod" value="<%= data.savePeriod %>개월" name = "savePeriod" class="input" placeholder="savePeriod" required>
            </td>
            <!--<td><button class="confirm btn submit" id="confirm_image">확인</button></td>-->
          </tr>

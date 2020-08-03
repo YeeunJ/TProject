@@ -1,21 +1,81 @@
-div#search{
+/* setting 관련 정보 */
+
+#main {
+  text-align : center;
+}
+div#setting1, div#setting_image, div#setting_camera, div#setting_view, div#search{
+  display: inline-block;
+  width: 80%;
+  padding: 20px;
+  min-width: 1000px;
+  border-radius: 5px;
+  background-color: #1b1b21;
+  margin-top: 30px;
   color: white;
   margin-bottom: 30px;
-  float:left;
-  width:60%;
-  //border:solid 1px red;
+}
+
+div#setting_image, div#setting_camera{
+  display:none;
+}
+
+.info{
+  width: 50%;
+  height:100%;
+  float: left;
+  text-align:left;
+}
+
+.info_image_left{
+  //border: solid 1px red;
+  width:30%;
+}
+
+td, th{
+  //border: solid 1px red;
+}
+table{
+  width:100%;
+  border-spacing: 10px;
+  color: rgba( 255, 255, 255, 0.6);
+}
+.info_title{
+  color: white;
+  font-weight: bold;
+  font-size: 1.1em;
+  height:25px;
+}
+.info_camera_middle{
+  width:30%;
+}
+.space{
+  height:10px;
+  border: solid 2px red;
 }
 input, select{
-  //width:80%;
-  border-radius: 5px;
-  border-style: none;
+  box-sizing: border-box;
+  width: 160px;
+  border-radius: 50px;
   height: 25px;
+  background-color:transparent;
+  color:white;
+  border: 1px solid rgb(255,255,255, 0.3);
+  text-align: center;
+  padding: 0px 20px;
 }
-input.date{
-  width:170px;
+
+div#setting_view input{
+  color:grey;
 }
-input.time{
-  width:130px;
+div#setting_image div#info_camera input{
+  color:grey;
+}
+div#setting_camera div#info_image input{
+  color:grey;
+}
+
+input.date, input.time{
+  width: 20%;
 }
 .btn{
   width: 100px;
@@ -25,24 +85,41 @@ button#search{
   margin-left:10px;
   border: solid 1px white;
 }
-input{
+
+button.edit{
   box-sizing: border-box;
-  width: 500px;
-  //max-width: 500px;
-  //width:100%;
+  max-width: 80px;
+  font-size:10px;
   border-radius: 50px;
   height: 25px;
   background-color:transparent;
-  color: rgb(255,255,255, 0.6);
-  border: 1px solid rgb(255,255,255, 0.6);
-  text-align: left;
-  padding: 0px 10px;
+  color:#4abd9e;
+  width:100%;
+  border: 1px solid #4abd9e;
+  text-align: center;
+}
+button.confirm{
+  box-sizing: border-box;
+  max-width: 160px;
+  width:80%;
+  border-radius: 50px;
+  height: 25px;
+  background-color:transparent;
+  color:#131419;
+  background-color: #4abd9e;
+  border: 1px solid #4abd9e;
+  text-align: center;
+  padding: 0px 20px;
 }
 
-::-webkit-calendar-picker-indicator {
-    filter: invert(0.6);
+button#confirm, button#confirm_image{
+  max-width: 100px;
+  width:50%;
+  float:right;
+  margin-top:20px;
+  margin-right:50px;
 }
 
-button.submit{
-  all: unset;
+.info_camera{
+  text-align:left;
 }
