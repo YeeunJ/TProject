@@ -87,7 +87,7 @@ div#setting input, div#info_company input{
 button.edit{
   box-sizing: border-box;
   max-width: 80px;
-  font-size:10px;
+  font-size:12px;
   border-radius: 50px;
   height: 25px;
   background-color:transparent;
