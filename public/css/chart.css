@@ -48,7 +48,7 @@ body{
 }
 .chartCrt{
   display: inline-block;
-  width: 39%;
+  width: 34%;
   text-align: right;
 }
 .criteria{
@@ -56,7 +56,7 @@ body{
   color: #606060;
   border: 1px solid rgba(255, 255, 255, 0.6);
   padding: 5px 10px;
-  margin-right: 20px;
+  margin-right: 10px;
   border-radius: 18px;
   font-size: 0.8em;
 }
@@ -67,7 +67,7 @@ body{
   background-color: #4abd9e;
   border: none !important;
   padding: 5px 10px;
-  margin-right: 20px;
+  margin-right: 10px;
   border-radius: 18px;
   font-size: 0.8em;
 }
