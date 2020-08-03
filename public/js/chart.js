@@ -22,16 +22,19 @@ window.onload = function() {
           }
         }],
         ticks: {
-          stepSize: 5
+          stepSize: 10,
+          beginAtZero: false,
+					fontSize : 16,
+          padding: '80px',
         }
       },
       legend: {
                display: true,
+               fontSize : 20,
                position: 'top',
                align: 'start',
                labels: {
-                usePointStyle: 'true',
-                boxWidth: 20
+                usePointStyle: 'true'
             }
            }
     }
