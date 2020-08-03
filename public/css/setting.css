@@ -3,7 +3,7 @@
 #main {
   text-align : center;
 }
-div#setting1, div#setting_image, div#setting_camera, div#setting_view, div#search{
+div#info, div#setting1, div#setting, div#search{
   display: inline-block;
   width: 80%;
   padding: 20px;
@@ -12,11 +12,17 @@ div#setting1, div#setting_image, div#setting_camera, div#setting_view, div#searc
   background-color: #1b1b21;
   margin-top: 30px;
   color: white;
-  margin-bottom: 30px;
+  margin-bottom: 0px;
 }
 
-div#setting_image, div#setting_camera{
-  display:none;
+#info_company{
+  width:40%;
+}
+#info_company .info_company_left{
+  width: 30%;
+}
+#info_company .info_company_right{
+  width: 70%;
 }
 
 .info{
@@ -63,27 +69,19 @@ input, select{
   text-align: center;
   padding: 0px 20px;
 }
-
-div#setting_view input{
-  color:grey;
-}
-div#setting_image div#info_camera input{
-  color:grey;
-}
-div#setting_camera div#info_image input{
-  color:grey;
+#info_company input{
+  width: 250px;
+  text-overflow: ellipsis;
+  text-align:center;
 }
 
-input.date, input.time{
-  width: 20%;
+div#setting input{
+  color:grey;
 }
+
 .btn{
   width: 100px;
   height: 40px;
-}
-button#search{
-  margin-left:10px;
-  border: solid 1px white;
 }
 
 button.edit{
@@ -113,13 +111,15 @@ button.confirm{
 }
 
 button#confirm, button#confirm_image{
-  max-width: 100px;
-  width:50%;
+  width: 100px;
   float:right;
   margin-top:20px;
   margin-right:50px;
 }
 
+button#confirm_camera, button#confirm_image{
+  display:none;
+}
 .info_camera{
   text-align:left;
 }
