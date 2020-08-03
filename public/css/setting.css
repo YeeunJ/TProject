@@ -113,13 +113,15 @@ button.confirm{
 }
 
 button#confirm, button#confirm_image{
-  max-width: 100px;
-  width:50%;
+  width: 100px;
   float:right;
   margin-top:20px;
   margin-right:50px;
 }
 
+button#confirm_camera, button#confirm_image{
+  display:none;
+}
 .info_camera{
   text-align:left;
 }
