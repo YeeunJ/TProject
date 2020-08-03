@@ -3,28 +3,23 @@
     <div class="CameraNumber">
       ROI 설정
     </div>
+    설정하려고 하는 카메라 버튼을 클릭한 뒤 사진에서 원하는 범위를 드래그해주세요.<br> 모두 드래그했다면 확인을 눌러주시면 됩니다.
     <div id="roiContent">
       <div id="roiTab">
         <%data2.forEach(function(d) {%>
-        <div class="roiCam" id="cam<%= d.id%>">CAMERA <%= d.id%></div><br/>
+        <div class="roiCam" id="cam<%= d.id%>">CAMERA <%= d.id%></div><br />
         <% })%>
       </div>
       <div id="roiImage">
         <%data2.forEach(function(d) {%>
-        <div id="camera<%= d.id%>" class = "eachCamera">
-          <img src="../config/images/<%= d.image%>" id="image<%= d.id%>" class = "image" draggable="false"/>
+        <div id="camera<%= d.id%>" class="eachCamera">
+          <img src="../config/images/<%= d.image%>" id="image<%= d.id%>" class="image" draggable="false" />
         </div>
         <% })%>
       </div>
       <div class="button">
-        <form id="roi_form" method="post" >
-          <input type="text" id="count" value="0" hidden>
-          <%data2.forEach(function(d) {%>
-            <div id="formcamera<%= d.id%>"></div>
-          <% }) %>
-          <button id = "submit">확인</button>
-          <button type = "button" id = "cancel">취소</button>
-        </form>
+        <button type= 'button' id="submit">확인</button><br/>
+        <button type="button" id="cancel">취소</button>
       </div>
     </div>
   </div>
@@ -33,124 +28,109 @@
   <br>
 </div>
 <script type="text/javascript">
-  var x1=0,y1=0,x2=0,y2=0;
+  var x1 = 0,
+    y1 = 0,
+    x2 = 0,
+    y2 = 0;
   var count = 0;
   var id = "camera1";
   var button = "cam1";
-<%data2.forEach(function(d) {%>
-  $( "#camera<%= d.id%>" ).selectable({
-    start: function( event, ui ) {
-      var offset = $(this).offset();
-    	x1 = (event.pageX - offset.left);
-    	y1 = (event.pageY - offset.top);
-    },
-    stop: function( event, ui ) {
-      var offset = $(this).offset();
-    	x2 = (event.pageX - offset.left);
-    	y2 = (event.pageY - offset.top);
-      console.log("X1: " + x1 + "  Y1: " + y1);
-      console.log("X2: " + x2 + "  Y2: " + y2);
-      count++;
-      $('#roi-form #count').val(count);
-      $("#formcamera<%= d.id %>").append('<input type="text" id="<%= d.id %>_'+count+'_x1" value="'+x1+'" hidden>');
-      $("#formcamera<%= d.id %>").append('<input type="text" id="<%= d.id %>_'+count+'_y1" value="'+y1+'" hidden>');
-      $("#formcamera<%= d.id %>").append('<input type="text" id="<%= d.id %>_'+count+'_x2" value="'+x2+'" hidden>');
-      $("#formcamera<%= d.id %>").append('<input type="text" id="<%= d.id %>_'+count+'_y2" value="'+y2+'" hidden>');
-      if(y1 <= y2 && x1 <= x2)
-        $("#camera<%= d.id %>").append('<div class = "blurRoi" style="left: '+x1+'px;top: '+y1+'px;width: '+Math.abs(x2-x1)+'px;height: '+Math.abs(y2-y1)+'px;"></div>');
-      else if(y1 <= y2){
-        $("#camera<%= d.id %>").append('<div class = "blurRoi" style="left: '+x2+'px;top: '+y1+'px;width: '+Math.abs(x2-x1)+'px;height: '+Math.abs(y2-y1)+'px;"></div>');
-      }else if(x1 > x2){
-        $("#camera<%= d.id %>").append('<div class = "blurRoi" style="left: '+x2+'px;top: '+y2+'px;width: '+Math.abs(x2-x1)+'px;height: '+Math.abs(y2-y1)+'px;"></div>');
-      }else
-        $("#camera<%= d.id %>").append('<div class = "blurRoi" style="left: '+x1+'px;top: '+y2+'px;width: '+Math.abs(x2-x1)+'px;height: '+Math.abs(y2-y1)+'px;"></div>');
-    }
-  });
-  document.getElementById('cam<%= d.id%>').addEventListener('click', function() {
-    if(id){
-      document.getElementById(button).className = 'roiCam';
-      document.getElementById(id).style.display = 'none';
-    }
-    document.getElementById('cam<%= d.id%>').className = 'clickedCam';
-    document.getElementById('camera<%= d.id%>').style.display = 'block';
-    id = "camera<%= d.id%>";
-    button = "cam<%= d.id%>";
-  });
-  document.getElementById('camera<%= d.id%>').style.display = 'none';
-  <% })%>
-  document.getElementById('camera1').style.display = 'block';
+  var roiForm = document.createElement('form');
+  roiForm.name = 'roiForm';
+  roiForm.method = 'post';
+  roiForm.action = './submit';
+
+  <% data2.forEach(function(d) {
+      %>
+      $("#camera<%= d.id%>").selectable({
+        start: function(event, ui) {
+          var offset = $(this).offset();
+          x1 = (event.pageX - offset.left);
+          y1 = (event.pageY - offset.top);
+        },
+        stop: function(event, ui) {
+          var offset = $(this).offset();
+          x2 = (event.pageX - offset.left);
+          y2 = (event.pageY - offset.top);
+          console.log("X1: " + x1 + "  Y1: " + y1);
+          console.log("X2: " + x2 + "  Y2: " + y2);
+          count++;
+
+          var input = document.createElement('input');
+          input.setAttribute("type", "hidden");
+          input.setAttribute("name", "data");
+          input.setAttribute("value", [<%= d.id %>,x1,x2,y1,y2]);
+          roiForm.appendChild(input);
+
+          if (y1 <= y2 && x1 <= x2)
+            $("#camera<%= d.id %>").append('<div class = "blurRoi" style="left: ' + x1 + 'px;top: ' + y1 + 'px;width: ' + Math.abs(x2 - x1) + 'px;height: ' + Math.abs(y2 - y1) + 'px;"></div>');
+          else if (y1 <= y2) {
+            $("#camera<%= d.id %>").append('<div class = "blurRoi" style="left: ' + x2 + 'px;top: ' + y1 + 'px;width: ' + Math.abs(x2 - x1) + 'px;height: ' + Math.abs(y2 - y1) + 'px;"></div>');
+          } else if (x1 > x2) {
+            $("#camera<%= d.id %>").append('<div class = "blurRoi" style="left: ' + x2 + 'px;top: ' + y2 + 'px;width: ' + Math.abs(x2 - x1) + 'px;height: ' + Math.abs(y2 - y1) + 'px;"></div>');
+          } else
+            $("#camera<%= d.id %>").append('<div class = "blurRoi" style="left: ' + x1 + 'px;top: ' + y2 + 'px;width: ' + Math.abs(x2 - x1) + 'px;height: ' + Math.abs(y2 - y1) + 'px;"></div>');
+        }
+      });
+      document.getElementById('cam<%= d.id%>').addEventListener('click', function() {
+        if (!($('#' + button).hasClass('completeCam'))) {
+          document.getElementById(button).className = 'roiCam';
+        }
+        document.getElementById(id).style.display = 'none';
+        if (!($('#' +'cam<%= d.id%>').hasClass('completeCam'))) {
+          document.getElementById('cam<%= d.id%>').className = 'clickedCam';
+        }
+        document.getElementById('camera<%= d.id%>').style.display = 'block';
+        id = "camera<%= d.id%>";
+        button = "cam<%= d.id%>";
+      });
+      document.getElementById('camera<%= d.id%>').style.display = 'none';
+      <% }) %>
+    document.getElementById('camera1').style.display = 'block';
   document.getElementById('cam1').className = 'clickedCam';
 
-/*cancel button click */
+  /*cancel button click */
   document.getElementById('cancel').addEventListener('click', function() {
     document.getElementById(button).className = 'clickedCam';
-    $('#'+id).selectable( "enable" );
-    $('#roi-form #count').val(count - $('#'+id).children('div').length/4);
-    $('#'+id).children('div').remove();
-    document.getElementById('form'+id).remove();
+    $('#' + id).selectable("enable");
+    $('#roi-form #count').val(count - $('#' + id).children('div').length / 4);
+    $('#' + id).children('div').remove();
+    document.getElementById('form' + id).remove();
   });
 
-/*submit button click*/
-/*
+  /*submit button click*/
   document.getElementById('submit').addEventListener('click', function() {
-    document.getElementById(button).className = 'completeCam';
-    $('#'+id).selectable( "disable" );
-    document.getElementById(id).style.display = 'none';
-    var flag = 0;
-    var i, tid, tbutton;
+        document.getElementById(button).className = 'completeCam';
+        $('#' + id).selectable("disable");
+        document.getElementById(id).style.display = 'none';
+        var flag = 0;
+        var i, tid, tbutton;
 
-    for(i=0; i< $('#roiImage').children().length; i++){
-      console.log(i);
-      tid = $('#roiImage').children().eq(i).attr('id');
-      tbutton = "cam"+ tid[tid.length-1];;
-      console.log(tid);
-      console.log(tbutton);
-      console.log($('#'+tbutton).hasClass('completeCam'));
-      if(!($('#'+tbutton).hasClass('completeCam'))){
-        flag = 1; break;
-      }
-    }
-    if(flag == 1){
-      id = $('#roiImage').children().eq(i).attr('id');
-      button = "cam"+ id[id.length-1];
-      document.getElementById(button).className = 'clickedCam';
-      document.getElementById(id).style.display = 'block';
-    }else {
-      $('#roi_form').submit();
-    }
-  });*/
-  $( "#roi_form" ).submit(function( event ) {
-    document.getElementById(button).className = 'completeCam';
-    $('#'+id).selectable( "disable" );
-    document.getElementById(id).style.display = 'none';
-    var flag = 0;
-    var i, tid, tbutton;
-
-    for(i=0; i< $('#roiImage').children().length; i++){
-      console.log(i);
-      tid = $('#roiImage').children().eq(i).attr('id');
-      tbutton = "cam"+ tid[tid.length-1];;
-      console.log(tid);
-      console.log(tbutton);
-      console.log($('#'+tbutton).hasClass('completeCam'));
-      if(!($('#'+tbutton).hasClass('completeCam'))){
-        flag = 1; break;
-      }
-    }
-    if(flag == 1){
-      id = $('#roiImage').children().eq(i).attr('id');
-      button = "cam"+ id[id.length-1];
-      document.getElementById(button).className = 'clickedCam';
-      document.getElementById(id).style.display = 'block';
-    }else {
-      var data = $(this).serializeArray();
-      console.log(data);
-      data = data.concat([{name:"userId",value:1}]);
-/*
-      $.post( "//jsonplaceholder.typicode.com/posts", data )
-      .done(function( data ) {
-        console.log( data );
-      });*/
-    }
-});
+        for (i = 0; i < $('#roiImage').children().length; i++) {
+          console.log(i);
+          tid = $('#roiImage').children().eq(i).attr('id');
+          tbutton = "cam" + tid[tid.length - 1];;
+          console.log(tid);
+          console.log(tbutton);
+          console.log($('#' + tbutton).hasClass('completeCam'));
+          if (!($('#' + tbutton).hasClass('completeCam'))) {
+            flag = 1;
+            break;
+          }
+        }
+        if (flag == 1) {
+          id = $('#roiImage').children().eq(i).attr('id');
+          button = "cam" + id[id.length - 1];
+          document.getElementById(button).className = 'clickedCam';
+          document.getElementById(id).style.display = 'block';
+        } else {
+          var input = document.createElement('input');
+          input.setAttribute("type", "hidden");
+          input.setAttribute("name", "count");
+          input.setAttribute("value", count);
+          roiForm.appendChild(input);
+          document.body.appendChild(roiForm);
+          roiForm.submit();
+        }
+      });
 </script>

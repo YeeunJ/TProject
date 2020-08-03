@@ -73,19 +73,20 @@ router.post('/update', function (req, res, next) {
 });
 
 router.post('/submit', function(req, res){
-  //const {camID, leftX, leftY, rightX, rightY} = req.body;
   console.log("submit");
-  console.log(req.body);
-
-  /*const query = `insert into roi(camID, leftX, leftY, rightX, rightY)
-    values ("${camID}", "${leftX}", "${leftY}", "${rightX}", "${rightY}");`;
-  console.log(query);
-  db.serialize();
-    db.each(query, (err, row) => {
-        if(err) return res.json(err);
-        res.redirect('/basic');
-        console.log(res);
-    });*/
+  console.log(req.body.data);
+  db.parallelize(() => {
+    for(var i=0; i<req.body.count; i++){
+      var arr = req.body.data[i].split(',');
+      var query = `insert into roi(camID, leftX, leftY, rightX, rightY)
+        values (${arr[0]}, ${arr[1]}, ${arr[2]}, ${arr[3]}, ${arr[4]});`;
+      db.get(query, (err, row) => {
+        if (err) {
+          console.error(err.message);
+        }
+      });
+    }
+});
     res.redirect('/');
 })
 
