@@ -1,5 +1,33 @@
-<div id="setting_view"> <!-- view -->
-    <form action="./update" method="post" id="form_setting">
+<form action="./update" method="post" id="form_setting">
+
+<div id="info">
+  <div class="info" id="info_company">
+    <table>
+      <tr class="info_title">
+        <td>업체 정보</td> <td><button class="edit btn" id="edit_company" type="button">수정</button></td>
+      </tr>
+      <tr></tr>
+      <tr></tr>
+      <tr>
+        <td class="info_company_left">업체명</td>
+        <td class="info_company_right"><input type="text" id="companyName" value="<%= data.companyName %>" name = "companyName" class="input" placeholder="width" required readonly></td>
+      </tr>
+      <tr>
+        <td class="info_company_left">전화번호</td>
+        <td class="info_company_right"><input type="text" id="phone" value="<%= data.phone %>" name = "phone" class="input" placeholder="width" required readonly></td>
+      </tr>
+      <tr>
+        <td class="info_company_left">주소</td>
+        <td class="info_company_right"><input type="text" id="location" value="<%= data.location %>" name = "location" class="input" placeholder="width" required readonly></td>
+      </tr>
+      <!--농협 양덕지점 -> companyName
+      //010-8377-2259 -> phone
+      //주소 ->location-->
+    </table>
+  </div>
+</div>
+
+<div id="setting"> <!-- view -->
     <div class="info" id="info_camera">
       <table>
         <tr class="info_title">
