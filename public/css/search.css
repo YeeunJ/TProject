@@ -9,13 +9,14 @@ input, select{
   //width:80%;
   border-radius: 5px;
   border-style: none;
+  font-size: 12px;
   height: 25px;
 }
 input.date{
-  width:170px;
+  width:160px;
 }
 input.time{
-  width:130px;
+  width:120px;
 }
 .btn{
   width: 100px;
