@@ -17,10 +17,10 @@
         <% })%>
       </div>
       <div class="button">
-        <form id="roi-form" action = "./submit">
+        <form id="roi-form" action = "./submit" style = "margin-right: 20px;">
           <input type="text" id="count" value="0" hidden>
           <button id = "submit">확인</button>
-          <button type = "button" id = "cancel">확인</button>
+          <button type = "button" id = "cancel">취소</button>
         </form>
       </div>
     </div>
@@ -33,7 +33,7 @@
   //var x1=0,y1=0,x2=0,y2=0;
   var count = 0;
   var id = "camera1";
-  var id = "cam1";
+  var button = "cam1";
 <%data2.forEach(function(d) {%>
   $( "#camera<%= d.id%>" ).selectable({
     start: function( event, ui ) {
