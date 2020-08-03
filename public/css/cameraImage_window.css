@@ -8,13 +8,14 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
   #cont {
     position: relative;
     background: #26262c;
-    width: 83.1%;
+    width: 100%;
 	/* padding:20px; */
 	min-width: 1040px;
 	margin: 0 auto;
     overflow: hidden;
 	border-radius: 0 0 15px 15px;
 	margin-bottom: 35px;
+	box-shadow: 3px 3px 1px 1px rgba(0, 0,0,0.4);
 	/* z-index: -1; */
   }
 
@@ -46,18 +47,18 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
 
   .right {
     position: absolute;
-    right:15px;
+    right:13px; padding-right: 15px;
     background: none;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.5);
     font-size: 30px;
     border: none;
 	cursor: pointer;
   }
   .left {
     position: absolute;
-    left: 15px;
+    left: 24px; padding-left:13px;
     background: none;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.5);
     font-size: 30px;
     border: none;
 	cursor: pointer;
@@ -105,7 +106,7 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
     border: 1px solid #ffffff;
     padding: 5px 18px;
     display: inline-block;
-    margin: 20px 0 15px 54px;
+    margin: 15px 0 20px 34px;
     opacity: 0.8;
 	font-size: 14px;
   }
@@ -119,10 +120,10 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
       color: #ffffff;
       background:#323237;
       height: 500px;
-      width: 27%;
+      width: 285px;
       display: none;
       transition: all ease 0.3s;
-	  font-size: 14px;
+	  font-size: 15px;
     }
     .text{
       overflow: hidden;
@@ -132,7 +133,7 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
     .person {
       position: absolute;
       width: 40%;
-      top:0; right:10px;
+      top:0; right:0px;
       text-align: right;
     }
     .close{
@@ -141,7 +142,7 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
       padding: 3px 30px;
       float: right;
       margin-top: 85px;
-      font-size: 13px;
+      font-size: 15px;
 	  cursor:pointer;
     }
 	.close:hover {

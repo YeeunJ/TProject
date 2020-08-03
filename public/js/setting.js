@@ -13,6 +13,8 @@ document.querySelector('#edit_camera').addEventListener('click', function(){
   edit_camera.style.display = "none";
   var edit_image = document.getElementById("edit_image");
   edit_image.style.display = "none";
+  var edit_company = document.getElementById("edit_company");
+  edit_company.style.display = "none";
   var f=document.getElementById("form_setting");
   f.sizeW.readOnly = false;
   f.sizeH.readOnly = false;
@@ -33,6 +35,8 @@ document.querySelector('#edit_image').addEventListener('click', function(){
   edit_camera.style.display = "none";
   var edit_image = document.getElementById("edit_image");
   edit_image.style.display = "none";
+  var edit_company = document.getElementById("edit_company");
+  edit_company.style.display = "none";
   var f=document.getElementById("form_setting");
   f.saveNum.readOnly = false;
   f.savePeriod.readOnly = false;
@@ -40,4 +44,22 @@ document.querySelector('#edit_image').addEventListener('click', function(){
   f.saveNum.style.color= "white";
   f.savePeriod.style.color= "white";
   f.saveInterval.style.color= "white";
+});
+
+document.querySelector('#edit_company').addEventListener('click', function(){
+  var btn = document.getElementById("confirm_company");
+  btn.style.display = "inline-block";
+  var edit_camera = document.getElementById("edit_camera");
+  edit_camera.style.display = "none";
+  var edit_image = document.getElementById("edit_image");
+  edit_image.style.display = "none";
+  var edit_company = document.getElementById("edit_company");
+  edit_company.style.display = "none";
+  var f=document.getElementById("form_setting");
+  f.companyName.readOnly = false;
+  f.phone.readOnly = false;
+  f.location.readOnly = false;
+  f.companyName.style.color= "white";
+  f.phone.style.color= "white";
+  f.location.style.color= "white";
 });

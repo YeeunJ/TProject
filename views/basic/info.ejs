@@ -5,7 +5,7 @@
       <p style="font-weight: bold; padding:17px 0;">사이트 정보</p>
       <div class="info_row">
         <div class="thumbnail" ></div>
-        <span class="store"><%= data1.companyName %></span><br>
+        <span class="store"><%= data1.companyName %></span>
         <button id="setting" type="button" name="button" onclick="location.href='/setting/update'">수정</button>
       </div>
       <div class="info_div">
@@ -17,27 +17,51 @@
   </div>
   <div class="cam_info">
     <div class="cam_wrapper">
-      <p style="font-weight: bold; margin: 25px 0 10px 20px">카메라 정보</p>
+      <p style="font-weight: bold; margin: 17px 0 10px 34px">카메라 정보</p>
       <div class="table_wrapper">
         <table class="info_table" style="margin: 0 auto" width="95%">
-          <tr class="table_row">
-            <th>카메라 번호</th>
-            <th>전송 이미지 수(1시간)</th>
-            <th>최근 값</th>
-            <th>일정시간 평균 값</th>
-          </tr>
-          <tr class="table_row" align="center">
+	          <tr class="table_row">
+	            <th>카메라 번호</th>
+	            <th>전송 이미지 수(1시간)</th>
+	            <th>최근 값</th>
+	            <th>일정시간 평균 값</th>
+	          </tr>
+		  <% data6.forEach(function(d) { %>
+			  <%
+			  	if(d.length == d.camearID) {
+			  %>
+			  <tr class="table_row" align="center">
+				  <td class="last"><%= d.cameraID %></td>
+				  <td class="last">30</td>
+				  <td class="last"><%= d.peopleCNT %></td>
+				  <td class="last">28</td>
+			  </tr>
+			  <%
+		  		} else{
+			  %>
+			  <tr class="table_row" align="center">
+  				<td><%= d.cameraID %></td>
+  	            <td>30</td>
+  	            <td><%= d.peopleCNT %></td>
+  	            <td>28</td>
+    		 </tr>
+			  <%
+		  		}
+			  %>
+
+          <% }) %>
+          <!-- <tr class="table_row" align="center">
             <td>1</td>
             <td>30</td>
             <td>27</td>
             <td>28</td>
-          </tr>
-          <tr class="table_row" align="center">
+          </tr> -->
+          <!-- <tr class="table_row" align="center">
             <td class="last">2</td>
             <td class="last">30</td>
             <td class="last">27</td>
             <td class="last">28</td>
-          </tr>
+          </tr> -->
         </table>
       </div>
     </div>

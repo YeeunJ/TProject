@@ -75,7 +75,7 @@ input, select{
   text-align:center;
 }
 
-div#setting input{
+div#setting input, div#info_company input{
   color:grey;
 }
 
@@ -87,7 +87,7 @@ div#setting input{
 button.edit{
   box-sizing: border-box;
   max-width: 80px;
-  font-size:10px;
+  font-size:12px;
   border-radius: 50px;
   height: 25px;
   background-color:transparent;
@@ -116,8 +116,12 @@ button#confirm, button#confirm_image{
   margin-top:20px;
   margin-right:50px;
 }
+button#confirm_company{
+  text-align: center;
+  width: 80px;
+}
 
-button#confirm_camera, button#confirm_image{
+button#confirm_camera, button#confirm_image, button#confirm_company{
   display:none;
 }
 .info_camera{

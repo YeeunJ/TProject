@@ -11,11 +11,12 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
     overflow: hidden;
     width: 83%;
     min-width: 1040px;
+	padding: 4px 3px 4px 0;
   }
   .info_table {
     border-collapse: separate;
     border-spacing: 0 15px;
-	font-size: 13px;
+	font-size: 15px;
   }
   .site_info {
     background:#1b1b21;
@@ -24,6 +25,7 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
     float:left;
     border-radius: 15px;
     color: white;
+	box-shadow: 3px 3px 1px 1px rgba(0, 0,0,0.4);
   }
   .info_row {
     overflow:hidden;
@@ -33,13 +35,13 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
     padding-top: 23px;
     color: rgba(255, 255, 255, 0.6);
 	/* fix */
-    font-size: 12px;
+    font-size: 14px;
   }
   .thumbnail {
     display: inline-block;
     width:35px; height:35px;
     border-radius:50px;
-    background: url(../../public/images/technonia_logo.png);
+    background: url(../../public/images/shopimage.png);
     background-size: cover;
     margin-bottom: 15px;
     float:left;
@@ -48,7 +50,7 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
     color: #4abd9e; float:left;
     padding: 8px 15px;
 	/* fix */
-	font-size: 15px;
+	font-size: 17px;
   }
 
   #setting {
@@ -58,9 +60,9 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
     border-radius: 50px;
     background: none;
     float: left;
-    position: absolute; top: 8px; right: 60px;
-	font-size: 12px;
+	font-size: 13px;
 	cursor: pointer;
+	margin-top: 9px;
   }
 
   .cam_info {
@@ -69,6 +71,7 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
     float:left;
     border-radius: 15px;
     color: white;
+	box-shadow: 3px 3px 1px 1px rgba(0, 0,0,0.4);
   }
   .cam_info th, .cam_info td:not(.last) {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -103,5 +106,5 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
 	height: 0;
   }
   .site_wrapper {
-    padding-left: 20px;
+    padding-left: 34px;
   }
