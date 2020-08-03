@@ -12,13 +12,16 @@
       <div id="roiImage">
         <%data2.forEach(function(d) {%>
         <div id="camera<%= d.id%>" class = "eachCamera">
-          <img src="../config/images/<%= d.image%>" id="image<%= d.id%>" class = "image" draggable="false"/>
+          <img src="../config/images/<%= d.image%>" id="image<%= d.id%>" class = "image"/>
         </div>
         <% })%>
       </div>
       <div class="button">
         <form id="roi-form" action = "./submit" style = "margin-right: 20px;">
           <input type="text" id="count" value="0" hidden>
+          <%data2.forEach(function(d) {%>
+            <div id="formcamera<%= d.id%>"></div>
+          <% }) %>
           <button id = "submit">확인</button>
           <button type = "button" id = "cancel">취소</button>
         </form>
@@ -30,7 +33,7 @@
   <br>
 </div>
 <script type="text/javascript">
-  //var x1=0,y1=0,x2=0,y2=0;
+  var x1=0,y1=0,x2=0,y2=0;
   var count = 0;
   var id = "camera1";
   var button = "cam1";
@@ -38,23 +41,29 @@
   $( "#camera<%= d.id%>" ).selectable({
     start: function( event, ui ) {
       var offset = $(this).offset();
-    	var x1 = (event.pageX - offset.left);
-    	var y1 = (event.pageY - offset.top);
-      count++;
-    	console.log("X1: " + x1 + "  Y1: " + y1);
-      $("#roi-form").append('<input type="text" id="<%= d.id %>_'+count+'_x1" value="'+x1+'" hidden>');
-      $("#roi-form").append('<input type="text" id="<%= d.id %>_'+count+'_y1" value="'+y1+'" hidden>');
+    	x1 = (event.pageX - offset.left);
+    	y1 = (event.pageY - offset.top);
     },
     stop: function( event, ui ) {
       var offset = $(this).offset();
-    	var x2 = (event.pageX - offset.left);
-    	var y2 = (event.pageY - offset.top);
+    	x2 = (event.pageX - offset.left);
+    	y2 = (event.pageY - offset.top);
+      console.log("X1: " + x1 + "  Y1: " + y1);
       console.log("X2: " + x2 + "  Y2: " + y2);
+      count++;
       $('#roi-form #count').val(count);
-      console.log($('#roi-form #count').val());
-      $("#roi-form").append('<input type="text" id="<%= d.id %>_'+count+'_x2" value="'+x2+'" hidden>');
-      $("#roi-form").append('<input type="text" id="<%= d.id %>_'+count+'_y2" value="'+y2+'" hidden>');
-      $("#camera<%= d.id %>").append('<div class = "blurRoi" style="left: '+$("#<%= d.id %>_"+count+"_x1").val()+'px;top: '+$("#<%= d.id %>_"+count+"_y1").val()+'px;width: '+($("#<%= d.id %>_"+count+"_x2").val()-$("#<%= d.id %>_"+count+"_x1").val())+'px;height: '+($("#<%= d.id %>_"+count+"_y2").val()-$("#<%= d.id %>_"+count+"_y1").val())+'px;"></div>');
+      $("#formcamera<%= d.id %>").append('<input type="text" id="<%= d.id %>_'+count+'_x1" value="'+x1+'" hidden>');
+      $("#formcamera<%= d.id %>").append('<input type="text" id="<%= d.id %>_'+count+'_y1" value="'+y1+'" hidden>');
+      $("#formcamera<%= d.id %>").append('<input type="text" id="<%= d.id %>_'+count+'_x2" value="'+x2+'" hidden>');
+      $("#formcamera<%= d.id %>").append('<input type="text" id="<%= d.id %>_'+count+'_y2" value="'+y2+'" hidden>');
+      if(y1 <= y2 && x1 <= x2)
+        $("#camera<%= d.id %>").append('<div class = "blurRoi" style="left: '+x1+'px;top: '+y1+'px;width: '+Math.abs(x2-x1)+'px;height: '+Math.abs(y2-y1)+'px;"></div>');
+      else if(y1 <= y2){
+        $("#camera<%= d.id %>").append('<div class = "blurRoi" style="left: '+x2+'px;top: '+y1+'px;width: '+Math.abs(x2-x1)+'px;height: '+Math.abs(y2-y1)+'px;"></div>');
+      }else if(x1 > x2){
+        $("#camera<%= d.id %>").append('<div class = "blurRoi" style="left: '+x2+'px;top: '+y2+'px;width: '+Math.abs(x2-x1)+'px;height: '+Math.abs(y2-y1)+'px;"></div>');
+      }else
+        $("#camera<%= d.id %>").append('<div class = "blurRoi" style="left: '+x1+'px;top: '+y2+'px;width: '+Math.abs(x2-x1)+'px;height: '+Math.abs(y2-y1)+'px;"></div>');
     }
   });
   document.getElementById('cam<%= d.id%>').addEventListener('click', function() {
@@ -72,4 +81,26 @@
   document.getElementById('camera1').style.display = 'block';
   document.getElementById('cam1').className = 'clickedCam';
 
+/*cancel button click */
+  document.getElementById('cancel').addEventListener('click', function() {
+    document.getElementById(button).className = 'clickedCam';
+
+
+    $('#'+id).children('div').remove();
+    document.getElementById('form'+id).remove();
+  });
+
+/*submit button click*/
+/*
+  document.getElementById('submit').addEventListener('click', function() {
+    if(id){
+      document.getElementById(button).className = 'roiCam';
+      document.getElementById(id).style.display = 'none';
+    }
+    document.getElementById('cam').className = 'clickedCam';
+    document.getElementById('camera').style.display = 'block';
+    id = "camera";
+    button = "cam";
+  });
+*/
 </script>
