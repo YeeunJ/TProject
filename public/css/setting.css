@@ -6,7 +6,7 @@
 div#info, div#setting1, div#setting, div#search{
   display: inline-block;
   width: 80%;
-  padding: 20px;
+  padding: 30px;
   min-width: 1000px;
   border-radius: 5px;
   background-color: #1b1b21;
