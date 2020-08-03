@@ -28,7 +28,7 @@ div#setting_image, div#setting_camera{
 
 .info_image_left{
   //border: solid 1px red;
-  width:30%;
+  width:35%;
 }
 
 td, th{
@@ -64,7 +64,13 @@ input, select{
   padding: 0px 20px;
 }
 
-div#setting3 input{
+div#setting_view input{
+  color:grey;
+}
+div#setting_image div#info_camera input{
+  color:grey;
+}
+div#setting_camera div#info_image input{
   color:grey;
 }
 
@@ -112,4 +118,8 @@ button#confirm, button#confirm_image{
   float:right;
   margin-top:20px;
   margin-right:50px;
+}
+
+.info_camera{
+  text-align:left;
 }
