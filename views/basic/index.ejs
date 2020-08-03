@@ -12,14 +12,17 @@
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
   </head>
   <body>
-    <div id = "header">
-      <div id="logo">
-        <img src="./public/images/technonia_logo.png" id="header" style = "width: 150px;"/>
-      </div>
-    </div>
-    <%- include('./info') %>
-    <%- include('./chart') %>
-    <%- include('./cameraImage_window') %>
+	<div id="wrapper" style="margin:0 auto; width: 80%; min-width: 1040px;">
+		<div id = "header">
+	      <div id="logo">
+	        <img src="./public/images/technonia_logo.png" id="header" style = "width: 150px;"/>
+	      </div>
+	    </div>
+	    <%- include('./info') %>
+	    <%- include('./chart') %>
+	    <%- include('./cameraImage_window') %>
+	</div>
+
     <script type="text/javascript">
       var data3 = [];
       var data4 = [];

@@ -3,7 +3,7 @@
 
         <%
         var prev_ID = 0;
-        var top_pos=180;
+        var top_pos=157;
         data2.forEach(function(d) { %>
           <%
             if(d.cameraID != prev_ID && prev_ID!=0) {
@@ -11,6 +11,7 @@
                 </div>
               </div>
             </div>
+
           <%
             }
           %>
@@ -30,7 +31,8 @@
            %>
               <div class="img_date">
                 <img src="./resources/images/result/<%= d.name %>" alt="" value="<%= d.cameraID %>" onclick="showDetail('<%= d.name %>', '<%= d.cameraID %>', '<%= d.regDate %>', '<%= d.peopleCNT %>' );" />
-                <p><%= d.regDate %></p>
+                <br><p style="display:inline-block;"><%= d.regDate %></p>
+				<p style="display: inline-block; float:right; padding-right: 10px;"><%= d.peopleCNT %>명</p>
               </div>
 
 
@@ -90,18 +92,18 @@
  -->
 
         <!-- detail -->
-        <div id="detail" style="float:left; font-size: ">
+        <div id="detail" style="float:left; ">
           <div class="detail_wrapper" style="width:82%; margin: 0 auto; padding-top: 18px">
             <p style="margin:20px 0">선택된 사진</p>
             <img src="" width="100%" height="170px" alt="" id="image">
             <div class="text" >
               <div class="info" style="width:60%">
                 <p style="color: rgba(255, 255, 255, 0.6)">카메라</p>
-                <p style="margin-bottom:10px;" id="cam_num"></p>
+                <p style="margin-bottom:10px; font-size: 14px" id="cam_num"></p>
               </div>
               <div class="info" style="width:60%">
                 <p style="color: rgba(255, 255, 255, 0.6)">일시</p>
-                <p style="font-size: 12px;" id="date">2020년 08월 20일 20시 20분</p>
+                <p style="font-size: 14px;" id="date">2020년 08월 20일 20시 20분</p>
               </div>
               <div style="width:40%" class="person">
                 <p style="font-padding-bottom:10px; color: rgba(255, 255, 255, 0.6)">인원수</p>
