@@ -42,6 +42,7 @@ router.get('/update', function (req, res, next) {
 });
 
 router.post('/update', function (req, res, next) {
+  console.log(req.body);
     var {sizeW, sizeH, resizeW, resizeH, camNum, savePeriod, saveInterval, saveNum} = req.body;
     const query = `update setting
     set sizeW = ${sizeW}, sizeH = ${sizeH}, resizeW = ${resizeW}, resizeH = ${resizeH},
@@ -71,10 +72,10 @@ router.post('/update', function (req, res, next) {
     });*/
 });
 
-router.get('/submit', function(req, res){
-  const {camID, leftX, leftY, rightX, rightY} = req.body;
+router.post('/submit', function(req, res){
+  //const {camID, leftX, leftY, rightX, rightY} = req.body;
   console.log("submit");
-  console.log(req.query[0]);
+  console.log(req.body);
 
   /*const query = `insert into roi(camID, leftX, leftY, rightX, rightY)
     values ("${camID}", "${leftX}", "${leftY}", "${rightX}", "${rightY}");`;

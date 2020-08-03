@@ -17,12 +17,12 @@
         <% })%>
       </div>
       <div class="button">
-        <form id="roi-form" action = "./submit" style = "margin-right: 20px;">
+        <form id="roi_form" method="post" >
           <input type="text" id="count" value="0" hidden>
           <%data2.forEach(function(d) {%>
             <div id="formcamera<%= d.id%>"></div>
           <% }) %>
-          <button type = "button" id = "submit">확인</button>
+          <button id = "submit">확인</button>
           <button type = "button" id = "cancel">취소</button>
         </form>
       </div>
@@ -91,7 +91,7 @@
   });
 
 /*submit button click*/
-
+/*
   document.getElementById('submit').addEventListener('click', function() {
     document.getElementById(button).className = 'completeCam';
     $('#'+id).selectable( "disable" );
@@ -116,7 +116,41 @@
       document.getElementById(button).className = 'clickedCam';
       document.getElementById(id).style.display = 'block';
     }else {
-      location.href = "./submit";
+      $('#roi_form').submit();
     }
-  });
+  });*/
+  $( "#roi_form" ).submit(function( event ) {
+    document.getElementById(button).className = 'completeCam';
+    $('#'+id).selectable( "disable" );
+    document.getElementById(id).style.display = 'none';
+    var flag = 0;
+    var i, tid, tbutton;
+
+    for(i=0; i< $('#roiImage').children().length; i++){
+      console.log(i);
+      tid = $('#roiImage').children().eq(i).attr('id');
+      tbutton = "cam"+ tid[tid.length-1];;
+      console.log(tid);
+      console.log(tbutton);
+      console.log($('#'+tbutton).hasClass('completeCam'));
+      if(!($('#'+tbutton).hasClass('completeCam'))){
+        flag = 1; break;
+      }
+    }
+    if(flag == 1){
+      id = $('#roiImage').children().eq(i).attr('id');
+      button = "cam"+ id[id.length-1];
+      document.getElementById(button).className = 'clickedCam';
+      document.getElementById(id).style.display = 'block';
+    }else {
+      var data = $(this).serializeArray();
+      console.log(data);
+      data = data.concat([{name:"userId",value:1}]);
+/*
+      $.post( "//jsonplaceholder.typicode.com/posts", data )
+      .done(function( data ) {
+        console.log( data );
+      });*/
+    }
+});
 </script>
