@@ -61,7 +61,7 @@ body{
 }
 #roiImage{
   display: inline-block;
-  text-align: center;
+  text-align: left;
 }
 .eachCamera{
   position: relative;
@@ -80,12 +80,23 @@ body{
 }
 .roiCam{
   display: inline-block;
-  color: rgba( 255, 255, 255, 0.8);
+  color: rgba( 255, 255, 255, 0.3);
   padding: 1px 15px;
   font-size: 0.8em;
   border-radius: 20px;
-  border: 2px solid rgba( 255, 255, 255, 0.8);
-  margin-bottom: 10px;
+  border: 2px solid rgba( 255, 255, 255, 0.3);
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.clickedCam{
+  display: inline-block;
+  color: rgba( 255, 255, 255, 0.8) !important;
+  padding: 1px 15px;
+  font-size: 0.8em;
+  border-radius: 20px;
+  border: 2px solid rgba( 255, 255, 255, 0.8) !important;
+  margin-bottom: 16px;
   cursor: pointer;
 }
 
@@ -96,7 +107,19 @@ body{
   display: inline-block;
   border-radius: 30px;
   border: none;
+  margin-bottom: 10px;
 }
+
+#cancel{
+  font-size: 15px;
+  padding: 5px 40px;
+  background-color: rgba( 255, 255, 255, 0.8);
+  display: inline-block;
+  border-radius: 30px;
+  border: none;
+  margin-bottom: 7px;
+}
+
 .cropper {
     position: relative;
     cursor: crosshair;

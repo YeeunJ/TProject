@@ -20,6 +20,7 @@
         <form id="roi-form" action = "./submit">
           <input type="text" id="count" value="0" hidden>
           <button id = "submit">확인</button>
+          <button type = "button" id = "cancel">확인</button>
         </form>
       </div>
     </div>
@@ -32,6 +33,7 @@
   //var x1=0,y1=0,x2=0,y2=0;
   var count = 0;
   var id = "camera1";
+  var id = "cam1";
 <%data2.forEach(function(d) {%>
   $( "#camera<%= d.id%>" ).selectable({
     start: function( event, ui ) {
@@ -56,15 +58,18 @@
     }
   });
   document.getElementById('cam<%= d.id%>').addEventListener('click', function() {
-    
     if(id){
+      document.getElementById(button).className = 'roiCam';
       document.getElementById(id).style.display = 'none';
     }
+    document.getElementById('cam<%= d.id%>').className = 'clickedCam';
     document.getElementById('camera<%= d.id%>').style.display = 'block';
     id = "camera<%= d.id%>";
+    button = "cam<%= d.id%>";
   });
   document.getElementById('camera<%= d.id%>').style.display = 'none';
   <% })%>
   document.getElementById('camera1').style.display = 'block';
+  document.getElementById('cam1').className = 'clickedCam';
 
 </script>
