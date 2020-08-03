@@ -4,7 +4,7 @@
   <div class="info" id="info_company">
     <table>
       <tr class="info_title">
-        <td>업체 정보</td> <td><button class="edit btn" id="edit_company" type="button">수정</button></td>
+        <td>업체 정보</td> <td><button class="edit btn" id="edit_company" type="button">수정</button><button class="confirm btn submit" id="confirm_company">확인</button></td>
       </tr>
       <tr></tr>
       <tr></tr>
@@ -20,9 +20,6 @@
         <td class="info_company_left">주소</td>
         <td class="info_company_right"><input type="text" id="location" value="<%= data.location %>" name = "location" class="input" placeholder="width" required readonly></td>
       </tr>
-      <!--농협 양덕지점 -> companyName
-      //010-8377-2259 -> phone
-      //주소 ->location-->
     </table>
   </div>
 </div>
@@ -90,7 +87,7 @@
        </div>
        <div id="space"></div>
        <td><button class="confirm btn submit" id="confirm_image">확인</button></td>
-       </form>
   </div>
+  </form>
 
 <script src="../public/js/setting.js"></script>
