@@ -11,17 +11,14 @@
       </div>
       <div id="roiImage">
         <%data2.forEach(function(d) {%>
-        <div id="camera<%= d.id%>"><img src="./config/images/<%= d.image%>" id="image<%= d.id%>" class = "image"/></div>
+        <div id="camera<%= d.id%>" class = "eachCamera">
+          <img src="../config/images/<%= d.image%>" id="image<%= d.id%>" class = "image" draggable="false"/>
+        </div>
         <% })%>
       </div>
       <div class="button">
         <form id="roi-form" action = "./submit">
-          <%data2.forEach(function(d) {%>
-          <input type="text" name="x<%= d.id%>" id="x<%= d.id%>" value="0" hidden>
-          <input type="text" name="y<%= d.id%>" id="y<%= d.id%>" value="0" hidden>
-          <input type="text" name="w<%= d.id%>" id="w<%= d.id%>" value="0" hidden>
-          <input type="text" name="h<%= d.id%>" id="h<%= d.id%>" value="0" hidden>
-          <% })%>
+          <input type="text" id="count" value="0" hidden>
           <button id = "submit">확인</button>
         </form>
       </div>
@@ -32,28 +29,42 @@
   <br>
 </div>
 <script type="text/javascript">
-  var id = "";
-  <%data2.forEach(function(d) {%>
-  document.getElementById('image<%= d.id%>').onload = function() {
-    new Cropper(this, {
-      update: function(coordinates) {
-        // your code here!
-        document.getElementById('x<%= d.id%>').value = this.coordinates.x;
-        document.getElementById('y<%= d.id%>').value = this.coordinates.y;
-        document.getElementById('w<%= d.id%>').value = this.coordinates.width;
-        document.getElementById('h<%= d.id%>').value = this.coordinates.height;
-      }
-    });
-  }
+  //var x1=0,y1=0,x2=0,y2=0;
+  var count = 0;
+  var id = "camera1";
+<%data2.forEach(function(d) {%>
+  $( "#camera<%= d.id%>" ).selectable({
+    start: function( event, ui ) {
+      var offset = $(this).offset();
+    	var x1 = (event.pageX - offset.left);
+    	var y1 = (event.pageY - offset.top);
+      count++;
+    	console.log("X1: " + x1 + "  Y1: " + y1);
+      $("#roi-form").append('<input type="text" id="<%= d.id %>_'+count+'_x1" value="'+x1+'" hidden>');
+      $("#roi-form").append('<input type="text" id="<%= d.id %>_'+count+'_y1" value="'+y1+'" hidden>');
+    },
+    stop: function( event, ui ) {
+      var offset = $(this).offset();
+    	var x2 = (event.pageX - offset.left);
+    	var y2 = (event.pageY - offset.top);
+      console.log("X2: " + x2 + "  Y2: " + y2);
+      $('#roi-form #count').val(count);
+      console.log($('#roi-form #count').val());
+      $("#roi-form").append('<input type="text" id="<%= d.id %>_'+count+'_x2" value="'+x2+'" hidden>');
+      $("#roi-form").append('<input type="text" id="<%= d.id %>_'+count+'_y2" value="'+y2+'" hidden>');
+      $("#camera<%= d.id %>").append('<div class = "blurRoi" style="left: '+$("#<%= d.id %>_"+count+"_x1").val()+'px;top: '+$("#<%= d.id %>_"+count+"_y1").val()+'px;width: '+($("#<%= d.id %>_"+count+"_x2").val()-$("#<%= d.id %>_"+count+"_x1").val())+'px;height: '+($("#<%= d.id %>_"+count+"_y2").val()-$("#<%= d.id %>_"+count+"_y1").val())+'px;"></div>');
+    }
+  });
   document.getElementById('cam<%= d.id%>').addEventListener('click', function() {
+    
     if(id){
       document.getElementById(id).style.display = 'none';
     }
     document.getElementById('camera<%= d.id%>').style.display = 'block';
     id = "camera<%= d.id%>";
   });
-  if(<%= d.id%> != 1){
-    document.getElementById('camera<%= d.id%>').display = 'none';
-  }
+  document.getElementById('camera<%= d.id%>').style.display = 'none';
   <% })%>
+  document.getElementById('camera1').style.display = 'block';
+
 </script>

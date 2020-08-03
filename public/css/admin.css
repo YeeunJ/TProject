@@ -63,6 +63,16 @@ body{
   display: inline-block;
   text-align: center;
 }
+.eachCamera{
+  position: relative;
+}
+
+.blurRoi{
+  position: absolute;
+  border: 1px solid #f84450;
+  background-color: rgba(248, 68, 80, 0.3);
+  display: inline-block;
+}
 .button{
   display: inline-block;
   text-align: right;
@@ -75,7 +85,8 @@ body{
   font-size: 0.8em;
   border-radius: 20px;
   border: 2px solid rgba( 255, 255, 255, 0.8);
-      margin-bottom: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
 #submit{
