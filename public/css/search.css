@@ -6,18 +6,16 @@ div#search{
   //border:solid 1px red;
 }
 input, select{
-  width:80%;
+  //width:80%;
   border-radius: 5px;
   border-style: none;
   height: 25px;
 }
 input.date{
-  max-width:170px;
-  width: 30%;
+  width:170px;
 }
 input.time{
-  max-width:140px;
-  width: 30%;
+  width:130px;
 }
 .btn{
   width: 100px;
