@@ -12,7 +12,7 @@
       <div id="roiImage">
         <%data2.forEach(function(d) {%>
         <div id="camera<%= d.id%>" class = "eachCamera">
-          <img src="../config/images/<%= d.image%>" id="image<%= d.id%>" class = "image"/>
+          <img src="../config/images/<%= d.image%>" id="image<%= d.id%>" class = "image" draggable="false"/>
         </div>
         <% })%>
       </div>
@@ -22,7 +22,7 @@
           <%data2.forEach(function(d) {%>
             <div id="formcamera<%= d.id%>"></div>
           <% }) %>
-          <button id = "submit">확인</button>
+          <button type = "button" id = "submit">확인</button>
           <button type = "button" id = "cancel">취소</button>
         </form>
       </div>
@@ -84,23 +84,39 @@
 /*cancel button click */
   document.getElementById('cancel').addEventListener('click', function() {
     document.getElementById(button).className = 'clickedCam';
-
-
+    $('#'+id).selectable( "enable" );
+    $('#roi-form #count').val(count - $('#'+id).children('div').length/4);
     $('#'+id).children('div').remove();
     document.getElementById('form'+id).remove();
   });
 
 /*submit button click*/
-/*
+
   document.getElementById('submit').addEventListener('click', function() {
-    if(id){
-      document.getElementById(button).className = 'roiCam';
-      document.getElementById(id).style.display = 'none';
+    document.getElementById(button).className = 'completeCam';
+    $('#'+id).selectable( "disable" );
+    document.getElementById(id).style.display = 'none';
+    var flag = 0;
+    var i, tid, tbutton;
+
+    for(i=0; i< $('#roiImage').children().length; i++){
+      console.log(i);
+      tid = $('#roiImage').children().eq(i).attr('id');
+      tbutton = "cam"+ tid[tid.length-1];;
+      console.log(tid);
+      console.log(tbutton);
+      console.log($('#'+tbutton).hasClass('completeCam'));
+      if(!($('#'+tbutton).hasClass('completeCam'))){
+        flag = 1; break;
+      }
     }
-    document.getElementById('cam').className = 'clickedCam';
-    document.getElementById('camera').style.display = 'block';
-    id = "camera";
-    button = "cam";
+    if(flag == 1){
+      id = $('#roiImage').children().eq(i).attr('id');
+      button = "cam"+ id[id.length-1];
+      document.getElementById(button).className = 'clickedCam';
+      document.getElementById(id).style.display = 'block';
+    }else {
+      location.href = "./submit";
+    }
   });
-*/
 </script>

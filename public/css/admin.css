@@ -105,11 +105,11 @@ body{
 
 .completeCam{
   display: inline-block;
-  color: rgba( 255, 255, 255, 0.8) !important;
+  color: #4abd9e !important;
   padding: 1px 15px;
   font-size: 0.8em;
   border-radius: 20px;
-  border: 2px solid rgba( 255, 255, 255, 0.8) !important;
+  border: 2px solid #4abd9e !important;
   margin-bottom: 16px;
   cursor: pointer;
   margin-left: 8px;
