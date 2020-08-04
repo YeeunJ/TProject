@@ -26,27 +26,29 @@
 	            <th>최근 값</th>
 	            <th>일정시간 평균 값</th>
 	          </tr>
-		  <% data6.forEach(function(d) { %>
+            <% var j = 0;%>
+		  <% for(var i = 1; i< data1.camNum; i++){}%>
+      <% data6.forEach(function(d) {%> <!--이거 지우고 코딩!!-->
 			  <%
-			  	if(d.length == d.camearID) {
+			  	if( data1.camNum == d.camearID) {
 			  %>
 			  <tr class="table_row" align="center">
-				  <td class="last"><%= d.cameraID %></td>
-				  <td class="last">30</td>
-				  <td class="last"><%= d.peopleCNT %></td>
-				  <td class="last">28</td>
+				  <td class="last"><%= i %></td>
+				  <td class="last imageCount">30</td>
+				  <td class="last"><%= data6[j].peopleCNT %></td>
+				  <td class="last avg"></td>
 			  </tr>
 			  <%
 		  		} else{
 			  %>
 			  <tr class="table_row" align="center">
-  				<td><%= d.cameraID %></td>
-  	            <td>30</td>
+  				<td><%= i %></td>
+  	            <td class = "imageCount">30</td>
   	            <td><%= d.peopleCNT %></td>
-  	            <td>28</td>
+  	            <td class = "avg"></td>
     		 </tr>
 			  <%
-		  		}
+        }
 			  %>
 
           <% }) %>
@@ -67,3 +69,10 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  <% for(var i = 0; i< data1.camNum; i++){%>
+    console.log(data3[i][3]);
+    document.getElementsByClassName('imageCount')[<%= i %>].innerHTML = data3[i][3];
+    document.getElementsByClassName('avg')[<%= i %>].innerHTML = data3[i][3];
+  <% } %>
+</script>

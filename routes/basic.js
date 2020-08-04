@@ -16,7 +16,7 @@ router.get('/', function(req, res) {
   const query2 = `select * from cam_image where peopleCNT is not null order by cameraID, regDate;`;
   const query3 = `select cameraID, substr(regDate, 1, 10) as date, sum(peopleCNT) as people from cam_image where peopleCNT is not null and strftime('%j', regDate) > strftime('%j', datetime('now', 'localtime'), '-7 days') GROUP BY strftime('%j', regDate), cameraID order by cameraID, date;`;
   const query4 = `select cameraID, substr(regDate, 1, 16) as date, sum(peopleCNT) as people from cam_image where peopleCNT is not null and strftime('%j', regDate) > strftime('%j', datetime('now', 'localtime'), '-1 days') GROUP BY strftime('%H', regDate), cameraID order by cameraID, date;;`;
-  const query5 = `select cameraID, substr(regDate, 1, 16) as date, avg(peopleCNT) as people from cam_image where peopleCNT is not null and strftime('%H', regDate) >= strftime('%H', datetime('now', 'localtime'), '-1 hours') and strftime('%j', regDate) > strftime('%j', datetime('now', 'localtime'), '-1 days') GROUP BY strftime('%M', regDate), cameraID order by cameraID, date;;`;
+  const query5 = `select cameraID, substr(regDate, 1, 16) as date, count(*) as count, avg(peopleCNT) as people from cam_image where peopleCNT is not null and strftime('%H', regDate) >= strftime('%H', datetime('now', 'localtime'), '-1 hours') and strftime('%j', regDate) > strftime('%j', datetime('now', 'localtime'), '-1 days') GROUP BY strftime('%M', regDate), cameraID order by cameraID, date;;`;
   const query6 = `select * from cam_image where peopleCNT is not null and regDate = (SELECT max(regDate) from cam_image where peopleCNT is not null);`;
   db.parallelize(() => {
     db.each(query1, (err, rows1) => {
