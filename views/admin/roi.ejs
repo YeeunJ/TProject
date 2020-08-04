@@ -1,10 +1,15 @@
 <div id="adminROI">
   <div class="roi">
-    <div class="CameraNumber">
-      ROI 설정
+    <div id = "titleContent">
     </div>
-    설정하려고 하는 카메라 버튼을 클릭한 뒤 사진에서 원하는 범위를 드래그해주세요.<br> 모두 드래그했다면 확인을 눌러주시면 됩니다.
     <div id="roiContent">
+      <div class="title">
+        ROI 설정
+      </div>
+      <div id="explain">
+        설정하려고 하는 카메라 버튼을 클릭한 뒤 사진에서 원하는 범위를 드래그한 뒤 저장해주세요.<br>
+        범위를 설정한 뒤에 저장 버튼이 생깁니다.
+      </div>
       <div id="roiTab">
         <%data2.forEach(function(d) {%>
         <div class="roiCam" id="cam<%= d.id%>">CAMERA <%= d.id%></div><br />
