@@ -4,8 +4,7 @@ var sqlite3 = require('sqlite3').verbose();
 var multer = require('multer');
 var fs = require('fs');
 var mime = require('mime');
-var exec = require('child_process').exec;
-
+//var exec = require('child_process').exec;
 //var api = require('./apiController');
 
 const db = new sqlite3.Database('./resources/db/information.db', sqlite3.OPEN_READWRITE, (err) => {
@@ -94,6 +93,7 @@ router.post('/basic/image-info', function(req, res) {
           "originalDate": row.date
         });
       });
+
     /*
   exec('./program ./programInputRedirect.txt', function callback(err, stdout, stderr){
     if (err){ console.error(err);
@@ -109,7 +109,7 @@ router.post('/basic/image-info', function(req, res) {
       });
     }
   });*/
-  
+
 
 });
 
