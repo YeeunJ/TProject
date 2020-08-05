@@ -26,32 +26,35 @@
 	            <th>최근 값</th>
 	            <th>일정시간 평균 값</th>
 	          </tr>
-            <% var j = 0;%>
-		  <% for(var i = 1; i< data1.camNum; i++){}%>
-      <% data6.forEach(function(d) {%> <!--이거 지우고 코딩!!-->
-			  <%
-			  	if( data1.camNum == d.camearID) {
-			  %>
-			  <tr class="table_row" align="center">
-				  <td class="last"><%= i %></td>
-				  <td class="last imageCount">30</td>
-				  <td class="last"><%= data6[j].peopleCNT %></td>
-				  <td class="last avg"></td>
-			  </tr>
-			  <%
-		  		} else{
-			  %>
-			  <tr class="table_row" align="center">
-  				<td><%= i %></td>
-  	            <td class = "imageCount">30</td>
-  	            <td><%= d.peopleCNT %></td>
-  	            <td class = "avg"></td>
-    		 </tr>
-			  <%
-        }
-			  %>
 
-          <% }) %>
+		  <%
+		   var j = 0;
+		   for(var i = 1; i<= data1.camNum; i++){
+		   %>
+
+		   <%
+			 if(i==data1.camNum){
+		   %>
+			   <tr class="table_row" align="center">
+				 <td class="last"><%= i %></td>
+				 <td class="last imageCount">30</td>
+				 <td class="last"><%= data6.length %></td>
+				 <td class="last avg"></td>
+			   </tr>
+		   <%
+	   		} else {
+		   %>
+			   <tr class="table_row" align="center">
+   				<td><%= i %></td>
+   	            <td class = "imageCount"></td>
+   	            <td><%= data6.length %></td>
+   	            <td class = "avg"></td>
+     		  </tr>
+
+		   <%
+			   }
+		   }
+		   %>
           <!-- <tr class="table_row" align="center">
             <td>1</td>
             <td>30</td>

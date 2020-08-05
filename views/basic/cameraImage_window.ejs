@@ -1,113 +1,76 @@
 <!-- picture -->
 <div id="cont">
+	<%
+	var top_pos=161;
+	var start = 0;
+	var img_check = new Array();
+	for(var i=0 ; i<data1.camNum ; i++) {
+		img_check[i] = 0;
+	}
 
-        <%
-        var prev_ID = 0;
-        var top_pos=157;
-        data2.forEach(function(d) { %>
-          <%
-            if(d.cameraID != prev_ID && prev_ID!=0) {
-          %>
-                </div>
-              </div>
-            </div>
+	for(var i=1 ; i<=data1.camNum ; i++) {
+	%>
+		<button id="right<%= i %>" style="top:<%= top_pos %>px;" class="right" type="button" value="<%= i %>" onclick="moveLeftScroll(this.value)"><i class="fa fa-angle-right" aria-hidden="true"></i></button>
+		<button id="left<%= i %>" style="top:<%= top_pos %>px;" class="left" type="button" value="<%= i %>" onclick="moveRightScroll(this.value)"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
+		<p class="cam_t<%= i %>">CAMERA<%= i %></p>
+		<div id="row<%= i %>" class="first" >
+		  <div class="total_wrapper<%= i %>">
+			<div class="img_wrapper">
+		<%
+		for(var j=start ; j<data2.length ; j++) {
+		%>
 
-          <%
-            }
-          %>
-          <%
-            if(d.cameraID != prev_ID) {
-              top_pos += prev_ID*332;
-              prev_ID++;
-          %>
-             <button id="right<%= d.cameraID %>" style="top:<%= top_pos %>px;" class="right" type="button" value="<%= d.cameraID %>" onclick="moveLeftScroll(this.value)"><i class="fa fa-angle-right" aria-hidden="true"></i></button>
-             <button id="left<%= d.cameraID %>" style="top:<%= top_pos %>px;" class="left" type="button" value="<%= d.cameraID %>" onclick="moveRightScroll(this.value)"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
-             <p class="cam_t<%= d.cameraID %>">CAMERA<%= d.cameraID %></p>
-             <div id="row<%= d.cameraID %>" class="first" >
-               <div class="total_wrapper<%= d.cameraID %>">
-                 <div class="img_wrapper">
-           <%
-            }
-           %>
-              <div class="img_date">
-                <img src="./resources/images/result/<%= d.name %>" alt="" value="<%= d.cameraID %>" onclick="showDetail('<%= d.name %>', '<%= d.cameraID %>', '<%= d.regDate %>', '<%= d.peopleCNT %>' );" />
-                <br><p style="display:inline-block;"><%= d.regDate %></p>
-				<p style="display: inline-block; float:right; padding-right: 10px;"><%= d.peopleCNT %>명</p>
-              </div>
+		<%
+		  if(data2[j].cameraID != i || j==data2.length-1) {
+		%>
+			  </div>
+			</div>
+		  </div>
+		<%
+			start = j;
+			if(j==data2.length-1)	start++;
+			break;
+		  }
+		  img_check[i-1] = 1;
+		%>
+		<div class="img_date">
+		   <img src="./resources/images/result/<%= data2[j].name %>" alt="" value="<%= data2[j].cameraID %>" onclick="showDetail('<%= data2[j].name %>', '<%= data2[j].cameraID %>', '<%= data2[j].regDate %>', '<%= data2[j].peopleCNT %>' );" />
+		   <br><p style="display:inline-block;"><%= data2[j].regDate %></p>
+		   <p style="display: inline-block; float:right; padding-right: 20px;"><%= data2[j].peopleCNT %>명</p>
+		 </div>
+		<%
 
+	  	}
+		top_pos += 321;
+		%>
 
-        <% }) %>
+	<%
+	}
+	%>
 
-            </div>
-          </div>
-        </div>
-
-
-		<!-- /////////////////// -->
-		<!-- <button id="right3" style="top:840px;" class="right" type="button" value="3" onclick="moveLeftScroll(this.value)"><i class="fa fa-angle-right" aria-hidden="true"></i></button>
-		             <button id="left3" style="top:840px;" class="left" type="button" value="3" onclick="moveRightScroll(this.value)"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
-		             <p class="cam_t1">CAMERA3</p>
-		             <div id="row3" class="first" >
-		               <div class="total_wrapper3">
-		                 <div class="img_wrapper">
-
-		              <div class="img_date">
-		                <img src="./resources/images/20200705174547_2.jpeg" alt="" value="3" onclick="showDetail('20200705174547_2.jpeg', '3', '2020-07-30 16:40:10', '14' );" />
-		                <p>2020-07-30 16:40:10</p>
-		              </div>
+			</div>
+		</div>
+	</div>
 
 
-
-
-
-		              <div class="img_date">
-		                <img src="./resources/images/20200705174547_2.jpeg" alt="" value="3" onclick="showDetail('20200705174547_2.jpeg', '3', '2020-07-30 16:45:10', '5' );" />
-		                <p>2020-07-30 16:45:10</p>
-		              </div>
-
-
-
-
-
-		              <div class="img_date">
-		                <img src="./resources/images/20200705174547_2.jpeg" alt="" value="3" onclick="showDetail('20200705174547_2.jpeg', '3', '2020-07-30 16:48:10', '4' );" />
-		                <p>2020-07-30 16:48:10</p>
-		              </div>
-
-
-
-
-
-		              <div class="img_date">
-		                <img src="./resources/images/20200705174547_2.jpeg" alt="" value="3" onclick="showDetail('20200705174547_2.jpeg', '3', '2020-07-30 16:55:10', '20' );" />
-		                <p>2020-07-30 16:55:10</p>
-		              </div>
-
-
-
-
-		                </div>
-		              </div>
-		            </div>
- -->
 
         <!-- detail -->
         <div id="detail" style="float:left; ">
           <div class="detail_wrapper" style="width:82%; margin: 0 auto; padding-top: 18px">
-            <p style="margin:20px 0">선택된 사진</p>
+            <p style="margin-bottom:20px">선택된 사진</p>
             <img src="" width="100%" height="170px" alt="" id="image">
             <div class="text" >
-              <div class="info" style="width:60%">
+              <div class="info" style="width:73%">
                 <p style="color: rgba(255, 255, 255, 0.6)">카메라</p>
                 <p style="margin-bottom:10px; font-size: 14px" id="cam_num"></p>
               </div>
-              <div class="info" style="width:60%">
+              <div class="info" style="width:65%">
                 <p style="color: rgba(255, 255, 255, 0.6)">일시</p>
-                <p style="font-size: 14px;" id="date">2020년 08월 20일 20시 20분</p>
+                <p style="font-size: 14px; display:block;" id="date">2020년 08월 20일 20시 20분</p>
               </div>
-              <div style="width:40%" class="person">
+              <div style="width:35%" class="person">
                 <p style="font-padding-bottom:10px; color: rgba(255, 255, 255, 0.6)">인원수</p>
-                <p style="font:48px bold; display:inline; color:#4abd9e" id="people">2</p><p style="display:inline">명</p>
+                <p style="font:40px bold; display:inline; color:#4abd9e" id="people">2</p><p style="display:inline">명</p>
               </div>
             </div>
             <span onclick="imgModalClose();" class="close">닫기</span>
@@ -146,7 +109,7 @@
 
       Camera[0].style.color = '#ffffff';
       Camera[0].style.borderColor = '#ffffff';
-      Button.style.right = '15px';
+      Button.style.right = '30px';
       Row.style.width = '100%';
     }
 
@@ -159,7 +122,7 @@
     var camera = document.getElementsByClassName('cam_t'+real_value);
 
 
-    var position = Number(332)*Number(value-1);
+    var position = Number(326)*Number(value-1);
     // console.log(position);
 
     if(real_value==row_count) {
@@ -232,6 +195,27 @@
     var pos = $(wrapper).scrollLeft();
     $(wrapper).scrollLeft(pos - 200);
   };
+
+
+  // 이미지가 없는 row 처리하는 부분
+
+  <%
+	for(var k=0 ; k<data1.camNum ; k++) {
+		%>console.log(<%= k %>);<%
+		if(img_check[k] == 0) {
+  %>
+  			var name = '.total_wrapper'+<%= k+1 %>+' .img_wrapper';
+			console.log("i: "+<%= k %>+"name: "+name);
+
+		    $('.total_wrapper'+<%= k+1 %>+' .img_wrapper').append('<img class="append" src="../../public/images/noimage.PNG" alt="">');
+			$('.total_wrapper'+<%= k+1 %>+' .img_wrapper').append('<img class="append" src="../../public/images/noimage.PNG" alt="">');
+			$('.total_wrapper'+<%= k+1 %>+' .img_wrapper').append('<img class="append" src="../../public/images/noimage.PNG" alt="">');
+			$('.total_wrapper'+<%= k+1 %>+' .img_wrapper').append('<img class="append" src="../../public/images/noimage.PNG" alt="">');
+
+  <%
+		}
+	}
+  %>
 
 
 
