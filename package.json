@@ -16,6 +16,7 @@
   "bugs": {
     "url": "https://github.com/YeeunJ/TProject/issues"
   },
+  "gypfile": true,
   "homepage": "https://github.com/YeeunJ/TProject#readme",
   "dependencies": {
     "bindings": "^1.5.0",

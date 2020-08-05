@@ -4,6 +4,7 @@ var sqlite3 = require('sqlite3').verbose();
 var multer = require('multer');
 var fs = require('fs');
 var mime = require('mime');
+var addon = require('bindings')('people-detector');
 //var exec = require('child_process').exec;
 //var api = require('./apiController');
 
@@ -88,12 +89,20 @@ router.post('/basic/image-info', function(req, res) {
   });
   const query2 = `select datetime('${originalDate}', (select saveInterval || ' seconds' from setting)) as date;`;
   db.each(query2, (err, row) => {
-        if (err) return res.json(err);
-        res.status(201).json({
-          "originalDate": row.date
-        });
-      });
-
+    if (err) return res.json(err);
+    res.status(201).json({
+      "originalDate": row.date
+    });
+  });
+  var obj = new addon.Yolo_cpu();
+  var people = obj.start("resources/images/result/" + filename, 416)
+  console.log(people); // people number
+  const query1 = `insert into cam_image (name, originalDate, cameraID, peopleCNT)
+    values ("${originalDate}_${cameraID}.jpeg", "${originalDate}", ${cameraID}, ${people});`;
+  db.each(query1, (err, row) => {
+    if (err) return res.json(err);
+    console.log('update success!!');
+  });
     /*
   exec('./program ./programInputRedirect.txt', function callback(err, stdout, stderr){
     if (err){ console.error(err);
