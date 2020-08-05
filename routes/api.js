@@ -94,7 +94,10 @@ router.post('/basic/image-info', function(req, res) {
           "originalDate": row.date
         });
       });
-  exec('./program ./programInputRedirect.txt', function callback(err, stdout, stderr){ if (err){ console.error(err); }
+    /*
+  exec('./program ./programInputRedirect.txt', function callback(err, stdout, stderr){
+    if (err){ console.error(err);
+    }
     //stdout 응답 : { success : true/false, data : .. }
     var result = JSON.parse(stdout);
     if(result.success){
@@ -105,7 +108,8 @@ router.post('/basic/image-info', function(req, res) {
         console.log('update success!!');
       });
     }
-  });
+  });*/
+  
 
 });
 
