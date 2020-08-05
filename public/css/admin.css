@@ -49,6 +49,7 @@ body{
 #explain {
   display: inline-block;
   color: white;
+  width: 578px;
   background-color: rgba(74, 189, 158, 0.1);
   padding: 30px;
   border: 1px solid rgb(74, 189,158);
