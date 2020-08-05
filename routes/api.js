@@ -4,6 +4,8 @@ var sqlite3 = require('sqlite3').verbose();
 var multer = require('multer');
 var fs = require('fs');
 var mime = require('mime');
+var exec = require('child_process').exec;
+
 //var api = require('./apiController');
 
 const db = new sqlite3.Database('./resources/db/information.db', sqlite3.OPEN_READWRITE, (err) => {
@@ -85,18 +87,24 @@ router.post('/basic/image-info', function(req, res) {
   require("fs").writeFile("resources/images/result/" + filename, base64Data, 'base64', function(err) {
     console.log(err);
   });
-  const query1 = `insert into cam_image (name, originalDate, cameraID)
-    values ("${originalDate}_${cameraID}.jpeg", "${originalDate}", ${cameraID});`;
   const query2 = `select datetime('${originalDate}', (select saveInterval || ' seconds' from setting)) as date;`;
-  db.serialize(() => {
-    // Queries scheduled here will be serialized.
-    db.run(query1)
-      .each(query2, (err, row) => {
+  db.each(query2, (err, row) => {
         if (err) return res.json(err);
         res.status(201).json({
           "originalDate": row.date
         });
       });
+  exec('./program ./programInputRedirect.txt', function callback(err, stdout, stderr){ if (err){ console.error(err); }
+    //stdout 응답 : { success : true/false, data : .. }
+    var result = JSON.parse(stdout);
+    if(result.success){
+      const query1 = `insert into cam_image (name, originalDate, cameraID, peopleCNT)
+        values ("${originalDate}_${cameraID}.jpeg", "${originalDate}", ${cameraID}, ${result.data});`;
+      db.each(query1, (err, row) => {
+        if (err) return res.json(err);
+        console.log('update success!!');
+      });
+    }
   });
 
 });
