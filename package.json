@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "tproject",
   "version": "1.0.0",
   "description": "",
@@ -27,21 +26,8 @@
     "mime": "^2.4.6",
     "multer": "^1.4.2",
     "sqlite3": "^5.0.0"
+    "bindings": "~1.2.1",
+    "node-addon-api": "^3.0.0"
   }
 }
-=======
-    "name": "people-detector",
-    "version": "0.0.0",
-    "description": "people-detector",
-    "main": "test.js",
-    "private": true,
-    "gypfile": true,
-    "engines": {
-      "node": "~10 >=10.20 || >=12.17"
-    },
-    "dependencies": {
-      "bindings": "~1.2.1",
-      "node-addon-api": "^3.0.0"
-    }
-  }
->>>>>>> 63871ccaf0a6ce88c45e9e5296be68c7c0667cb3
+
