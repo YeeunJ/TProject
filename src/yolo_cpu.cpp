@@ -41,37 +41,28 @@ Napi::Value Yolo_cpu::start(const Napi::CallbackInfo& info) {
     string arg0 = info[0].As<Napi::String>().Utf8Value();
     string arg1 = info[1].As<Napi::String>().Utf8Value();
     int arg2 = info[2].As<Napi::Number>().Int32Value();
+    string arg3 = " ";
+    if (info.Length() == 4)
+        arg3 = info[3].As<Napi::String>().Utf8Value();
     
-    int result = this->doInference(arg0, arg1, arg2);
+    int result = this->doInference(arg0, arg1, arg2, arg3);
 
     Napi::Number ret = Napi::Number::New(env, result);
     return ret;
 }
 
-int Yolo_cpu::doInference(const string inputImagePath, const string outputImagePath, const int resize) {
+int Yolo_cpu::doInference(const string inputImagePath, const string outputImagePath, const int resize, const string roiInfo) {
     Mat frame = imread(inputImagePath, IMREAD_COLOR); 
     vector<Mat> outs;
-    
-//Mark: Pre-process
-    imagePadding(frame);
-    static Mat blob = blobFromImage(frame, 
-                                    1, // scalarfactor: double
-                                    Size(resize, resize), // resizeRes: Size
-                                    Scalar(), 
-                                    true, // swapRB: bool
-                                    false, 
-                                    CV_8U);
+    int camID = inputImagePath[inputImagePath.size()-6]; // "...$(ID).jpeg"
 
-    net.setInput(blob,
-                 "", 
-                 1/255.0, // scale: double
-                 Scalar()); // mean: Scalar
+//Mark: Pre-process
+    preProcess(frame, roiInfo, camID);
 
 //Mark: Go inference
     net.forward(outs, outNames);
 
 //Mark: Post-process
-    
     int peopleNum = postProcess(frame, outs);
 
 //Mark: Draw rect and other info in output image.
@@ -86,6 +77,51 @@ int Yolo_cpu::doInference(const string inputImagePath, const string outputImageP
 
     imwrite(outputImagePath, frame);
     return peopleNum;
+}
+
+void Yolo_cpu::preProcess(Mat& frame, const int& cameID, const string& roiInfo) {
+    //Mark: remove roi image
+    Json::Reader reader;
+    Json::Value root;
+    reader.parse(roiInfo, root);
+    Json::Value infoArray = root[/** 배열의 이름*/];
+    for (int i=0; i<infoArray.size(); i++) {
+        if (infoArray[i]["id"].asInt() == camID) {
+            int leftTopX = infoArray[i]["leftTopX"].asInt();
+            int leftTopY = infoArray[i]["leftTopY"].asInt();
+            int rightBottomX = infoArray[i]["rightBottomX"].asInt();
+            int rightBottomY = infoArray[i]["rightBottomY"].asInt();
+            rectangle(frame, Point(leftTopX, leftTopY), Point(rightBottomX, rightBottomY), Scalar(255, 255, 255), FILLED);
+        }
+    }
+
+    //Mark: Image padding
+    if (frame.rows == frame.cols)
+        return;
+
+    int length = frame.cols > frame.rows ? frame.cols : frame.rows;
+    if (frame.cols < length) {
+        Mat pad (length, length - frame.cols, frame.type(), Scalar(255, 255, 255));
+        hconcat (pad, frame, frame);
+    }
+    else {
+        Mat pad (length - frame.rows, length, frame.type(), Scalar(255, 255, 255));
+        vconcat (pad, frame, frame);
+    }
+
+    //Mark: Prepare for inference
+    static Mat blob = blobFromImage(frame, 
+                                    1, // scalarfactor: double
+                                    Size(resize, resize), // resizeRes: Size
+                                    Scalar(), 
+                                    true, // swapRB: bool
+                                    false, 
+                                    CV_8U);
+
+    net.setInput(blob,
+                 "", 
+                 1/255.0, // scale: double
+                 Scalar()); // mean: Scalar
 }
 
 int Yolo_cpu::postProcess(Mat& frame, const vector<Mat>& outs) {
@@ -171,19 +207,4 @@ int Yolo_cpu::postProcess(Mat& frame, const vector<Mat>& outs) {
         }
     }
     return people;
-}
-
-void Yolo_cpu::imagePadding(Mat& frame) {
-    if (frame.rows == frame.cols)
-        return;
-
-    int length = frame.cols > frame.rows ? frame.cols : frame.rows;
-    if (frame.cols < length) {
-        Mat pad (length, length - frame.cols, frame.type(), Scalar(255, 255, 255));
-        hconcat (pad, frame, frame);
-    }
-    else {
-        Mat pad (length - frame.rows, length, frame.type(), Scalar(255, 255, 255));
-        vconcat (pad, frame, frame);
-    }
 }
