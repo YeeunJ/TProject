@@ -30,25 +30,26 @@ Yolo_cpu::Yolo_cpu(const Napi::CallbackInfo& info) : Napi::ObjectWrap<Yolo_cpu>(
 
 Napi::Value Yolo_cpu::start(const Napi::CallbackInfo& info) {
     Napi::Env env = info.Env();
-    if (info.Length() < 2) {
+    if (info.Length() < 3) {
         Napi::TypeError::New(env, "Wrong number of arguments").ThrowAsJavaScriptException();
         return env.Null();
     }
-    if (!info[0].IsString() || !info[1].IsNumber()) {
+    if (!info[0].IsString() || !info[1].IsString() || !info[2].IsNumber()) {
         Napi::TypeError::New(env, "Wrong arguments").ThrowAsJavaScriptException();
         return env.Null();
     }
     string arg0 = info[0].As<Napi::String>().Utf8Value();
-    int arg1 = info[1].As<Napi::Number>().Int32Value();
+    string arg1 = info[1].As<Napi::String>().Utf8Value();
+    int arg2 = info[2].As<Napi::Number>().Int32Value();
     
-    int result = this->doInference(arg0, arg1);
+    int result = this->doInference(arg0, arg1, arg2);
 
     Napi::Number ret = Napi::Number::New(env, result);
     return ret;
 }
 
-int Yolo_cpu::doInference(const string imagePath, const int resize) {
-    Mat frame = imread(imagePath, IMREAD_COLOR); 
+int Yolo_cpu::doInference(const string inputImagePath, const string outputImagePath, const int resize) {
+    Mat frame = imread(inputImagePath, IMREAD_COLOR); 
     vector<Mat> outs;
     
 //Mark: Pre-process
@@ -83,6 +84,7 @@ int Yolo_cpu::doInference(const string imagePath, const int resize) {
     putText (frame, labelInferTime, Point(0, 35), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255), 2);
     putText (frame, labelPeople, Point(0, 70), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255), 2);
 
+    imwrite(outputImagePath, frame);
     return peopleNum;
 }
 
